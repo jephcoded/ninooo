@@ -1,0 +1,28 @@
+<svg width="1400" height="1000" viewBox="0 0 1400 1000" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1400" height="1000" fill="#06090E"/>
+  <rect width="1400" height="1000" fill="url(#bg)"/>
+  <ellipse cx="1086" cy="198" rx="202" ry="118" fill="#FF7A18" fill-opacity="0.2"/>
+  <rect x="112" y="156" width="380" height="544" rx="26" fill="#0B1018" stroke="rgba(255,255,255,0.12)"/>
+  <rect x="152" y="208" width="300" height="172" rx="18" fill="#111926"/>
+  <rect x="152" y="406" width="144" height="112" rx="18" fill="#101722"/>
+  <rect x="308" y="406" width="144" height="112" rx="18" fill="#101722"/>
+  <rect x="152" y="542" width="300" height="114" rx="18" fill="#0F1620"/>
+  <path d="M154 296H452" stroke="#FF7A18" stroke-width="6" stroke-linecap="round"/>
+  <path d="M154 452H296" stroke="#5A83C5" stroke-width="5" stroke-linecap="round"/>
+  <path d="M308 474H452" stroke="#FFB15F" stroke-width="5" stroke-linecap="round"/>
+  <rect x="592" y="116" width="700" height="700" rx="34" fill="rgba(9,13,20,0.72)" stroke="rgba(255,255,255,0.12)"/>
+  <path d="M674 636C760 516 934 478 1076 510C1130 524 1190 560 1230 632" stroke="rgba(255,255,255,0.2)" stroke-width="6"/>
+  <path d="M712 650C792 572 874 536 990 536C1092 536 1156 566 1206 640" stroke="#FF7A18" stroke-width="6" stroke-linecap="round"/>
+  <circle cx="826" cy="408" r="104" fill="#0C1119" stroke="rgba(255,255,255,0.14)" stroke-width="6"/>
+  <circle cx="826" cy="408" r="46" fill="#111926" stroke="#FF7A18" stroke-width="6"/>
+  <path d="M890 356H1090C1142 356 1184 398 1184 450V544" stroke="rgba(149,188,255,0.2)" stroke-width="6"/>
+  <path d="M626 240H1220" stroke="rgba(255,255,255,0.08)" stroke-width="2" stroke-dasharray="10 10"/>
+  <text x="154" y="188" fill="#96A3BB" font-family="Arial, sans-serif" font-size="24" letter-spacing="6">SYSTEM MAP</text>
+  <text x="640" y="184" fill="#FFFFFF" font-family="Arial, sans-serif" font-size="44">DIAGNOSTICS LAB</text>
+  <defs>
+    <linearGradient id="bg" x1="700" y1="0" x2="700" y2="1000" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0A0E15"/>
+      <stop offset="1" stop-color="#04060A"/>
+    </linearGradient>
+  </defs>
+</svg>

@@ -1,0 +1,43 @@
+<svg width="1600" height="1100" viewBox="0 0 1600 1100" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1600" height="1100" fill="#06080D"/>
+  <rect width="1600" height="1100" fill="url(#grad)"/>
+  <ellipse cx="1204" cy="232" rx="250" ry="150" fill="#FF7A18" fill-opacity="0.22"/>
+  <ellipse cx="340" cy="260" rx="280" ry="170" fill="#2A4F8B" fill-opacity="0.16"/>
+  <path d="M0 806C212 688 426 642 722 632H1600V1100H0V806Z" fill="url(#ground)"/>
+  <path d="M188 694H960C1114 694 1260 742 1382 838L1454 894V966H164V852L188 694Z" fill="url(#truck)" stroke="rgba(255,255,255,0.16)" stroke-width="4"/>
+  <path d="M262 676L358 498H872C948 498 1022 524 1082 574L1180 652H262V676Z" fill="url(#cargo)"/>
+  <rect x="930" y="596" width="188" height="74" rx="18" fill="rgba(149,188,255,0.14)"/>
+  <rect x="1108" y="616" width="136" height="54" rx="16" fill="rgba(149,188,255,0.12)"/>
+  <path d="M222 760H1314" stroke="url(#light)" stroke-width="8" stroke-linecap="round"/>
+  <circle cx="450" cy="918" r="104" fill="#070A10" stroke="rgba(255,255,255,0.18)" stroke-width="8"/>
+  <circle cx="450" cy="918" r="48" fill="#101722" stroke="#FF7A18" stroke-width="6"/>
+  <circle cx="1140" cy="918" r="104" fill="#070A10" stroke="rgba(255,255,255,0.18)" stroke-width="8"/>
+  <circle cx="1140" cy="918" r="48" fill="#101722" stroke="#FF7A18" stroke-width="6"/>
+  <rect x="1186" y="182" width="248" height="128" rx="28" fill="rgba(7,10,16,0.7)" stroke="rgba(255,255,255,0.12)"/>
+  <text x="1228" y="232" fill="#98A5BD" font-family="Arial, sans-serif" font-size="24" letter-spacing="5">FEATURED</text>
+  <text x="1228" y="274" fill="#FFFFFF" font-family="Arial, sans-serif" font-size="44">FLEET CONVERSION</text>
+  <defs>
+    <linearGradient id="grad" x1="800" y1="0" x2="800" y2="1100" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0A0F16"/>
+      <stop offset="1" stop-color="#04060A"/>
+    </linearGradient>
+    <linearGradient id="ground" x1="800" y1="632" x2="800" y2="1100" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#09101A" stop-opacity="0"/>
+      <stop offset="1" stop-color="#030407"/>
+    </linearGradient>
+    <linearGradient id="truck" x1="164" y1="694" x2="1454" y2="966" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#121B28"/>
+      <stop offset="0.55" stop-color="#1B2533"/>
+      <stop offset="1" stop-color="#090D14"/>
+    </linearGradient>
+    <linearGradient id="cargo" x1="262" y1="498" x2="1180" y2="676" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#192434"/>
+      <stop offset="1" stop-color="#0A1018"/>
+    </linearGradient>
+    <linearGradient id="light" x1="222" y1="760" x2="1314" y2="760" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FF7A18" stop-opacity="0"/>
+      <stop offset="0.5" stop-color="#FF7A18"/>
+      <stop offset="1" stop-color="#FFB15F" stop-opacity="0.18"/>
+    </linearGradient>
+  </defs>
+</svg>

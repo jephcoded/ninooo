@@ -1,0 +1,23 @@
+<svg width="1400" height="1000" viewBox="0 0 1400 1000" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1400" height="1000" fill="#04060A"/>
+  <rect width="1400" height="1000" fill="url(#bg)"/>
+  <path d="M0 784L428 422L716 664L1030 330L1400 674V1000H0V784Z" fill="rgba(255,255,255,0.03)"/>
+  <rect x="168" y="176" width="1064" height="652" rx="34" fill="#0A1018" stroke="rgba(255,255,255,0.1)"/>
+  <path d="M168 320H1232" stroke="rgba(255,255,255,0.06)" stroke-width="3"/>
+  <path d="M404 176V828" stroke="rgba(255,255,255,0.06)" stroke-width="3"/>
+  <path d="M748 176V828" stroke="rgba(255,255,255,0.06)" stroke-width="3"/>
+  <path d="M1044 176V828" stroke="rgba(255,255,255,0.06)" stroke-width="3"/>
+  <rect x="238" y="388" width="220" height="280" rx="26" fill="#111926"/>
+  <rect x="496" y="388" width="220" height="280" rx="26" fill="#111926"/>
+  <rect x="754" y="388" width="220" height="280" rx="26" fill="#111926"/>
+  <rect x="1012" y="388" width="150" height="280" rx="26" fill="#111926"/>
+  <ellipse cx="1086" cy="214" rx="204" ry="118" fill="#FF7A18" fill-opacity="0.18"/>
+  <text x="222" y="244" fill="#FFFFFF" font-family="Arial, sans-serif" font-size="42">PREMIUM WORKSHOP INTERIOR</text>
+  <text x="222" y="288" fill="#97A3BA" font-family="Arial, sans-serif" font-size="22" letter-spacing="4">DARK INDUSTRIAL ATMOSPHERE</text>
+  <defs>
+    <linearGradient id="bg" x1="700" y1="0" x2="700" y2="1000" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#090D14"/>
+      <stop offset="1" stop-color="#030407"/>
+    </linearGradient>
+  </defs>
+</svg>

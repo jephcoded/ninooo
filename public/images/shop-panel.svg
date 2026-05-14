@@ -1,0 +1,45 @@
+<svg width="1600" height="1200" viewBox="0 0 1600 1200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1600" height="1200" fill="#07101C"/>
+  <rect width="1600" height="1200" fill="url(#bg)"/>
+  <circle cx="1280" cy="240" r="220" fill="url(#glow)"/>
+  <circle cx="300" cy="930" r="260" fill="url(#glow2)"/>
+  <rect x="126" y="116" width="304" height="116" rx="28" fill="#0C1A2B" stroke="#2D4B6A"/>
+  <text x="178" y="190" fill="#FFB067" font-family="Arial, sans-serif" font-size="54" font-weight="700" letter-spacing="10">SHOP</text>
+  <text x="124" y="330" fill="#ECF4FF" font-family="Arial, sans-serif" font-size="104" font-weight="700">Premium parts</text>
+  <text x="124" y="422" fill="#ECF4FF" font-family="Arial, sans-serif" font-size="104" font-weight="700">Workshop add-ons</text>
+  <text x="124" y="514" fill="#ECF4FF" font-family="Arial, sans-serif" font-size="104" font-weight="700">Ready to order</text>
+  <path d="M930 370H1316L1276 636H990L930 370Z" fill="#101E30" stroke="#355673" stroke-width="12" stroke-linejoin="round"/>
+  <path d="M876 304H948L974 370H1268" stroke="#DCEBFA" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="1044" cy="740" r="52" fill="#0B1422" stroke="#DCEBFA" stroke-width="12"/>
+  <circle cx="1234" cy="740" r="52" fill="#0B1422" stroke="#DCEBFA" stroke-width="12"/>
+  <rect x="1014" y="450" width="82" height="82" rx="18" fill="#FF7A18"/>
+  <rect x="1116" y="450" width="82" height="82" rx="18" fill="#18283D" stroke="#46688A"/>
+  <rect x="1218" y="450" width="82" height="82" rx="18" fill="#18283D" stroke="#46688A"/>
+  <path d="M1056 490H1094" stroke="#08101C" stroke-width="12" stroke-linecap="round"/>
+  <path d="M1075 470V510" stroke="#08101C" stroke-width="12" stroke-linecap="round"/>
+  <g opacity="0.24" stroke="#26425E">
+    <path d="M0 180H1600"/>
+    <path d="M0 420H1600"/>
+    <path d="M0 660H1600"/>
+    <path d="M0 900H1600"/>
+    <path d="M320 0V1200"/>
+    <path d="M720 0V1200"/>
+    <path d="M1120 0V1200"/>
+    <path d="M1520 0V1200"/>
+  </g>
+  <defs>
+    <linearGradient id="bg" x1="154" y1="100" x2="1410" y2="1090" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0A1524"/>
+      <stop offset="0.58" stop-color="#0E1B2D"/>
+      <stop offset="1" stop-color="#17263B"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1280 240) rotate(90) scale(220)">
+      <stop stop-color="#FF7A18" stop-opacity="0.36"/>
+      <stop offset="1" stop-color="#FF7A18" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glow2" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(300 930) rotate(90) scale(260)">
+      <stop stop-color="#78C2FF" stop-opacity="0.24"/>
+      <stop offset="1" stop-color="#78C2FF" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+</svg>

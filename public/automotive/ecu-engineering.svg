@@ -1,0 +1,26 @@
+<svg width="1400" height="1000" viewBox="0 0 1400 1000" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1400" height="1000" fill="#06080D"/>
+  <rect width="1400" height="1000" fill="url(#bg)"/>
+  <ellipse cx="1100" cy="220" rx="220" ry="140" fill="#FF7A18" fill-opacity="0.18"/>
+  <rect x="232" y="180" width="936" height="636" rx="36" fill="#0B1018" stroke="rgba(255,255,255,0.12)"/>
+  <rect x="372" y="274" width="656" height="448" rx="28" fill="#121A28" stroke="rgba(255,255,255,0.14)"/>
+  <rect x="520" y="382" width="360" height="232" rx="22" fill="#0E1420" stroke="#FF7A18" stroke-width="4"/>
+  <path d="M520 458H880" stroke="rgba(255,255,255,0.12)" stroke-width="2"/>
+  <path d="M520 534H880" stroke="rgba(255,255,255,0.12)" stroke-width="2"/>
+  <path d="M474 402V594" stroke="rgba(255,255,255,0.16)" stroke-width="8" stroke-linecap="round"/>
+  <path d="M926 402V594" stroke="rgba(255,255,255,0.16)" stroke-width="8" stroke-linecap="round"/>
+  <path d="M700 274V180" stroke="rgba(255,255,255,0.16)" stroke-width="10" stroke-linecap="round"/>
+  <path d="M404 340H276" stroke="rgba(149,188,255,0.2)" stroke-width="8" stroke-linecap="round"/>
+  <path d="M1124 340H996" stroke="rgba(149,188,255,0.2)" stroke-width="8" stroke-linecap="round"/>
+  <circle cx="700" cy="498" r="62" fill="#111926" stroke="#FFB15F" stroke-width="6"/>
+  <path d="M666 498H734" stroke="#FF7A18" stroke-width="6" stroke-linecap="round"/>
+  <path d="M700 464V532" stroke="#FF7A18" stroke-width="6" stroke-linecap="round"/>
+  <text x="284" y="238" fill="#FFFFFF" font-family="Arial, sans-serif" font-size="44">ECU ENGINEERING</text>
+  <text x="284" y="286" fill="#9AA5BA" font-family="Arial, sans-serif" font-size="24" letter-spacing="5">PRECISION ELECTRONICS REPAIR</text>
+  <defs>
+    <linearGradient id="bg" x1="700" y1="0" x2="700" y2="1000" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0A0E16"/>
+      <stop offset="1" stop-color="#04060A"/>
+    </linearGradient>
+  </defs>
+</svg>

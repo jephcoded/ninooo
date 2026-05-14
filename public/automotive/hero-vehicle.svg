@@ -1,0 +1,55 @@
+<svg width="1600" height="1200" viewBox="0 0 1600 1200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1600" height="1200" fill="#070A10"/>
+  <rect width="1600" height="1200" fill="url(#bg)"/>
+  <g opacity="0.32" filter="url(#blur)">
+    <ellipse cx="1180" cy="284" rx="262" ry="160" fill="#FF7A18"/>
+    <ellipse cx="482" cy="238" rx="312" ry="182" fill="#274A84"/>
+  </g>
+  <path d="M0 912C184 798 394 722 670 712H1600V1200H0V912Z" fill="url(#floor)"/>
+  <path d="M250 736C334 706 420 656 522 626C618 598 738 584 888 584H1050C1178 584 1288 628 1390 726L1490 816V906H194V798L250 736Z" fill="url(#body)" stroke="rgba(255,255,255,0.2)" stroke-width="4"/>
+  <path d="M420 612C500 472 656 406 876 396L1092 416C1188 470 1266 548 1330 648H420V612Z" fill="url(#cabin)" opacity="0.9"/>
+  <path d="M490 634H1224" stroke="url(#line)" stroke-width="8" stroke-linecap="round"/>
+  <path d="M444 618H688C744 618 790 650 816 700H388C398 664 412 640 444 618Z" fill="#0B1018"/>
+  <path d="M856 604H1114C1182 610 1248 646 1296 700H890C882 658 874 626 856 604Z" fill="#0E1521"/>
+  <path d="M540 436H820C882 436 920 470 946 560H464C488 488 520 450 540 436Z" fill="rgba(149,188,255,0.18)"/>
+  <path d="M886 440H1098C1170 452 1220 486 1284 562H944C930 498 916 460 886 440Z" fill="rgba(149,188,255,0.12)"/>
+  <circle cx="538" cy="810" r="118" fill="#080B11" stroke="rgba(255,255,255,0.18)" stroke-width="8"/>
+  <circle cx="538" cy="810" r="54" fill="#101722" stroke="#FF7A18" stroke-width="6"/>
+  <circle cx="1188" cy="810" r="118" fill="#080B11" stroke="rgba(255,255,255,0.18)" stroke-width="8"/>
+  <circle cx="1188" cy="810" r="54" fill="#101722" stroke="#FF7A18" stroke-width="6"/>
+  <path d="M1326 670H1474L1530 740H1354Z" fill="rgba(255,255,255,0.08)"/>
+  <path d="M214 722H308L270 786H164Z" fill="#FF7A18"/>
+  <ellipse cx="838" cy="920" rx="472" ry="64" fill="rgba(255,122,24,0.16)"/>
+  <g opacity="0.48">
+    <rect x="1076" y="132" width="228" height="118" rx="28" fill="rgba(8,11,17,0.74)" stroke="rgba(255,255,255,0.14)"/>
+    <text x="1116" y="182" fill="#93A0B8" font-family="Arial, sans-serif" font-size="24" letter-spacing="6">LIVE HUD</text>
+    <text x="1116" y="220" fill="#FFFFFF" font-family="Arial, sans-serif" font-size="42">EV-CNG READY</text>
+  </g>
+  <defs>
+    <linearGradient id="bg" x1="800" y1="0" x2="800" y2="1200" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0A0F18"/>
+      <stop offset="1" stop-color="#04060A"/>
+    </linearGradient>
+    <linearGradient id="floor" x1="800" y1="712" x2="800" y2="1200" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0A0F18" stop-opacity="0"/>
+      <stop offset="1" stop-color="#030407"/>
+    </linearGradient>
+    <linearGradient id="body" x1="194" y1="584" x2="1490" y2="906" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#121B28"/>
+      <stop offset="0.45" stop-color="#202A38"/>
+      <stop offset="1" stop-color="#0B1018"/>
+    </linearGradient>
+    <linearGradient id="cabin" x1="420" y1="396" x2="1330" y2="648" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#131D2A"/>
+      <stop offset="1" stop-color="#090D14"/>
+    </linearGradient>
+    <linearGradient id="line" x1="490" y1="638" x2="1224" y2="638" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FF7A18" stop-opacity="0"/>
+      <stop offset="0.48" stop-color="#FF7A18"/>
+      <stop offset="1" stop-color="#FFB15F" stop-opacity="0.18"/>
+    </linearGradient>
+    <filter id="blur" x="70" y="0" width="1372" height="604" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feGaussianBlur stdDeviation="80"/>
+    </filter>
+  </defs>
+</svg>

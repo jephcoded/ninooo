@@ -1,0 +1,45 @@
+<svg width="1600" height="1200" viewBox="0 0 1600 1200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1600" height="1200" fill="#08101A"/>
+  <rect width="1600" height="1200" fill="url(#bg)"/>
+  <circle cx="1310" cy="260" r="230" fill="url(#glow)"/>
+  <circle cx="280" cy="910" r="240" fill="url(#glow2)"/>
+  <rect x="126" y="118" width="382" height="116" rx="28" fill="#0C1A2B" stroke="#2D4B6A"/>
+  <text x="178" y="192" fill="#FFB067" font-family="Arial, sans-serif" font-size="50" font-weight="700" letter-spacing="8">TRACK REPAIR</text>
+  <text x="124" y="332" fill="#ECF4FF" font-family="Arial, sans-serif" font-size="102" font-weight="700">Live status</text>
+  <text x="124" y="424" fill="#ECF4FF" font-family="Arial, sans-serif" font-size="102" font-weight="700">Milestones</text>
+  <text x="124" y="516" fill="#ECF4FF" font-family="Arial, sans-serif" font-size="102" font-weight="700">Delivery updates</text>
+  <path d="M204 770C324 770 372 652 482 652C592 652 636 820 754 820C872 820 908 582 1030 582C1152 582 1210 742 1366 742" stroke="#FF7A18" stroke-width="18" stroke-linecap="round"/>
+  <circle cx="482" cy="652" r="28" fill="#FF7A18"/>
+  <circle cx="754" cy="820" r="28" fill="#6EC1FF"/>
+  <circle cx="1030" cy="582" r="28" fill="#FF7A18"/>
+  <circle cx="1366" cy="742" r="28" fill="#6EC1FF"/>
+  <rect x="980" y="264" width="298" height="182" rx="28" fill="#0E1B2C" stroke="#33536F"/>
+  <text x="1030" y="336" fill="#DCEBFA" font-family="Arial, sans-serif" font-size="34" font-weight="700">Vehicle in Bay 04</text>
+  <text x="1030" y="388" fill="#89A3BF" font-family="Arial, sans-serif" font-size="28">Inspection complete</text>
+  <text x="1030" y="428" fill="#89A3BF" font-family="Arial, sans-serif" font-size="28">Approval received</text>
+  <g opacity="0.24" stroke="#24415F">
+    <path d="M0 170H1600"/>
+    <path d="M0 390H1600"/>
+    <path d="M0 610H1600"/>
+    <path d="M0 830H1600"/>
+    <path d="M260 0V1200"/>
+    <path d="M620 0V1200"/>
+    <path d="M980 0V1200"/>
+    <path d="M1340 0V1200"/>
+  </g>
+  <defs>
+    <linearGradient id="bg" x1="154" y1="118" x2="1390" y2="1088" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0A1524"/>
+      <stop offset="0.55" stop-color="#0E1B2D"/>
+      <stop offset="1" stop-color="#17263A"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1310 260) rotate(90) scale(230)">
+      <stop stop-color="#FF7A18" stop-opacity="0.32"/>
+      <stop offset="1" stop-color="#FF7A18" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glow2" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(280 910) rotate(90) scale(240)">
+      <stop stop-color="#5CB2FF" stop-opacity="0.26"/>
+      <stop offset="1" stop-color="#5CB2FF" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+</svg>
