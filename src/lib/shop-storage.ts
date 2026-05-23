@@ -1,5 +1,10 @@
 import { readBackendCollection, writeBackendCollection } from "@/lib/backend-client";
-import { SHOP_ORDERS_COLLECTION } from "@/lib/backend-config";
+import {
+  SHOP_CART_COLLECTION,
+  SHOP_ORDERS_COLLECTION,
+  SHOP_PINNED_COLLECTION,
+  SHOP_REMINDERS_COLLECTION,
+} from "@/lib/backend-config";
 
 export const SHOP_CART_KEY = "nino-shop-cart";
 export const SHOP_PINNED_KEY = "nino-shop-pinned";
@@ -31,6 +36,30 @@ export type StoredOrder = {
   status: string;
 };
 
+export type ShopReminder = {
+  id: string;
+  title: string;
+  detail: string;
+};
+
+export const defaultShopReminders: ShopReminder[] = [
+  {
+    id: "restock-watch",
+    title: "Restock watch",
+    detail: "Keep high-demand repair tools, replacement boards, and programming accessories visible here for follow-up restock decisions.",
+  },
+  {
+    id: "delivery-updates",
+    title: "Delivery updates",
+    detail: "Track incoming parts and delivery confirmations so customer orders can move without manual back-and-forth.",
+  },
+  {
+    id: "secretary-payment",
+    title: "Secretary payment",
+    detail: "Use this space for secretary payment confirmation notes and customer handoff reminders after checkout is saved.",
+  },
+];
+
 function canUseStorage() {
   return typeof window !== "undefined";
 }
@@ -58,6 +87,30 @@ export function writeStoredValue<T>(key: string, value: T) {
 export function getCartCount() {
   const items = readStoredValue<StoredCartItem[]>(SHOP_CART_KEY, []);
   return items.reduce((total, item) => total + item.quantity, 0);
+}
+
+export async function readStoredCart() {
+  return readBackendCollection<StoredCartItem[]>(SHOP_CART_COLLECTION, SHOP_CART_KEY, []);
+}
+
+export async function writeStoredCart(value: StoredCartItem[]) {
+  return writeBackendCollection(SHOP_CART_COLLECTION, SHOP_CART_KEY, value, [SHOP_EVENT]);
+}
+
+export async function readStoredPins() {
+  return readBackendCollection<string[]>(SHOP_PINNED_COLLECTION, SHOP_PINNED_KEY, []);
+}
+
+export async function writeStoredPins(value: string[]) {
+  return writeBackendCollection(SHOP_PINNED_COLLECTION, SHOP_PINNED_KEY, value, [SHOP_EVENT]);
+}
+
+export async function readStoredReminders() {
+  return readBackendCollection<ShopReminder[]>(SHOP_REMINDERS_COLLECTION, SHOP_REMINDERS_KEY, defaultShopReminders);
+}
+
+export async function writeStoredReminders(value: ShopReminder[]) {
+  return writeBackendCollection(SHOP_REMINDERS_COLLECTION, SHOP_REMINDERS_KEY, value, [SHOP_EVENT]);
 }
 
 export async function readStoredOrders() {

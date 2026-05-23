@@ -9,26 +9,26 @@ export function FeaturedVehicleSection() {
       <div className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
         <Reveal className="panel min-h-[32rem] overflow-hidden p-6 sm:p-8">
           <div className="absolute inset-0">
-            <Image src="/automotive/featured-truck.svg" alt="Featured converted luxury truck" fill className="object-cover" sizes="(max-width: 1024px) 100vw, 55vw" />
+            <Image src="/automotive/ecu-engineering.svg" alt="Featured ECU engineering workflow" fill className="object-cover" sizes="(max-width: 1024px) 100vw, 55vw" />
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_78%_20%,rgba(255,122,24,0.18),transparent_20%),linear-gradient(180deg,rgba(6,10,16,0),rgba(6,10,16,0.72))]" />
           </div>
           <div className="absolute right-6 top-6 glass-panel rounded-[1.4rem] px-4 py-3">
             <p className="text-[10px] uppercase tracking-[0.24em] text-slate-400">Featured platform</p>
-            <p className="mt-2 font-display text-lg text-white">Performance Fleet Truck</p>
+            <p className="mt-2 font-display text-lg text-white">ECU Engineering Bench</p>
           </div>
           <div className="absolute bottom-6 left-6 grid gap-3 sm:max-w-[18rem]">
             <div className="hud-card rounded-[1.25rem] px-4 py-3">
               <p className="text-[10px] uppercase tracking-[0.24em] text-slate-400">Range profile</p>
-              <p className="mt-2 font-display text-xl text-white">Fleet-grade CNG architecture</p>
+              <p className="mt-2 font-display text-xl text-white">Board-level diagnostics workflow</p>
             </div>
           </div>
         </Reveal>
 
         <Reveal delay={0.08} className="space-y-6">
           <SectionHeading
-            eyebrow="Featured Vehicle"
-            title="A cinematic showcase built around conversion engineering, diagnostics depth, and fleet-grade confidence."
-            description="This section frames the brand like a premium automotive technology company, using dashboard-style cards and layered vehicle presentation instead of SaaS panels."
+            eyebrow="Featured Workflow"
+            title="A cinematic showcase built around repair depth, diagnostics discipline, and premium electronics confidence."
+            description="This section frames the brand like a serious electronics technology company, using dashboard-style cards and layered technical presentation instead of generic service panels."
           />
 
           <div className="grid gap-4 sm:grid-cols-3 lg:grid-cols-1">

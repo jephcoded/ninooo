@@ -1,16 +1,16 @@
 @import "tailwindcss";
 
 :root {
-  --background: #05070c;
-  --background-elevated: #0a111a;
-  --foreground: #f8fafc;
-  --muted: #8a95a8;
-  --line: rgba(148, 163, 184, 0.12);
-  --card: rgba(9, 13, 20, 0.8);
-  --accent: #ff7a18;
-  --accent-2: #ffb15f;
-  --navy-soft: #0f1726;
-  --steel: #1b2433;
+  --background: #f8fafc;
+  --background-elevated: #ffffff;
+  --foreground: #0f172a;
+  --muted: #334155;
+  --line: #e2e8f0;
+  --card: #ffffff;
+  --accent: #f97316;
+  --accent-2: #fb923c;
+  --navy-soft: #0f172a;
+  --charcoal: #1e293b;
 }
 
 * {
@@ -23,9 +23,9 @@
 
 html {
   background:
-    radial-gradient(circle at top, rgba(24, 48, 92, 0.24), transparent 20%),
-    radial-gradient(circle at 82% 0%, rgba(255, 122, 24, 0.22), transparent 18%),
-    linear-gradient(180deg, #05070c 0%, #060a11 36%, #030407 100%);
+    radial-gradient(circle at top, rgba(15, 23, 42, 0.06), transparent 20%),
+    radial-gradient(circle at 82% 0%, rgba(249, 115, 22, 0.1), transparent 18%),
+    linear-gradient(180deg, #ffffff 0%, #f8fafc 42%, #f1f5f9 100%);
   scroll-behavior: smooth;
 }
 
@@ -35,8 +35,8 @@ body {
   font-family: "Manrope", "Aptos", "Segoe UI", sans-serif;
   overflow-x: clip;
   background-image:
-    linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+    linear-gradient(rgba(15, 23, 42, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(15, 23, 42, 0.03) 1px, transparent 1px);
   background-size: 128px 128px;
 }
 
@@ -45,7 +45,7 @@ a {
 }
 
 ::selection {
-  background: rgba(255, 138, 61, 0.28);
+  background: rgba(249, 115, 22, 0.22);
   color: white;
 }
 
@@ -55,18 +55,18 @@ a {
 }
 
 .panel {
-  border: 1px solid rgba(148, 163, 184, 0.14);
-  background: linear-gradient(180deg, rgba(12, 17, 26, 0.9), rgba(5, 8, 14, 0.96));
-  border-radius: 2rem;
-  box-shadow: 0 20px 80px rgba(0, 0, 0, 0.42);
-  backdrop-filter: blur(18px);
   position: relative;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  background: linear-gradient(180deg, #0f172a, #111c34);
+  border-radius: 2rem;
+  box-shadow: 0 20px 80px rgba(15, 23, 42, 0.18);
+  backdrop-filter: blur(18px);
 }
 
 .glass-panel {
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03));
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 24px 80px rgba(0, 0, 0, 0.32);
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.95), rgba(248, 250, 252, 0.96));
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8), 0 24px 80px rgba(15, 23, 42, 0.08);
   backdrop-filter: blur(24px);
 }
 
@@ -80,18 +80,18 @@ a {
 
 .hero-grid {
   background-image:
-    linear-gradient(rgba(148, 163, 184, 0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(148, 163, 184, 0.05) 1px, transparent 1px);
+    linear-gradient(rgba(148, 163, 184, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(148, 163, 184, 0.08) 1px, transparent 1px);
   background-size: 88px 88px;
   mask-image: radial-gradient(circle at center, black, transparent 80%);
 }
 
 .carbon-grid {
   background-image:
-    linear-gradient(135deg, rgba(255, 255, 255, 0.022) 25%, transparent 25%),
-    linear-gradient(225deg, rgba(255, 255, 255, 0.022) 25%, transparent 25%),
-    linear-gradient(315deg, rgba(255, 255, 255, 0.022) 25%, transparent 25%),
-    linear-gradient(45deg, rgba(255, 255, 255, 0.022) 25%, transparent 25%);
+    linear-gradient(135deg, rgba(15, 23, 42, 0.03) 25%, transparent 25%),
+    linear-gradient(225deg, rgba(15, 23, 42, 0.03) 25%, transparent 25%),
+    linear-gradient(315deg, rgba(15, 23, 42, 0.03) 25%, transparent 25%),
+    linear-gradient(45deg, rgba(15, 23, 42, 0.03) 25%, transparent 25%);
   background-position: 14px 0, 14px 0, 0 0, 0 0;
   background-size: 28px 28px;
 }
@@ -129,18 +129,18 @@ a {
 }
 
 .text-gradient {
-  background: linear-gradient(135deg, #ffffff 0%, #ffb15f 42%, #ffffff 100%);
+  background: linear-gradient(135deg, #0f172a 0%, #f97316 42%, #0f172a 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
 }
 
 .orange-glow {
-  box-shadow: 0 0 0 1px rgba(255, 122, 24, 0.2), 0 18px 60px rgba(255, 122, 24, 0.2);
+  box-shadow: 0 0 0 1px rgba(249, 115, 22, 0.18), 0 18px 60px rgba(249, 115, 22, 0.16);
 }
 
 .orange-line {
-  background: linear-gradient(90deg, rgba(255, 122, 24, 0), rgba(255, 122, 24, 0.8), rgba(255, 122, 24, 0));
+  background: linear-gradient(90deg, rgba(249, 115, 22, 0), rgba(249, 115, 22, 0.8), rgba(249, 115, 22, 0));
 }
 
 @keyframes pulseGlow {
@@ -162,7 +162,7 @@ a {
 .noise-overlay {
   position: absolute;
   inset: 0;
-  background-image: radial-gradient(rgba(255,255,255,0.06) 0.6px, transparent 0.6px);
+  background-image: radial-gradient(rgba(15, 23, 42, 0.05) 0.6px, transparent 0.6px);
   background-size: 16px 16px;
   opacity: 0.08;
   pointer-events: none;
@@ -170,9 +170,9 @@ a {
 
 .editorial-card {
   position: relative;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
-  box-shadow: 0 18px 70px rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  background: linear-gradient(180deg, #ffffff, #f8fafc);
+  box-shadow: 0 18px 70px rgba(15, 23, 42, 0.06);
 }
 
 .editorial-card::after {
@@ -180,15 +180,15 @@ a {
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  border: 1px solid rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(15, 23, 42, 0.04);
   pointer-events: none;
 }
 
 .hud-card {
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  background: linear-gradient(180deg, rgba(10, 15, 23, 0.78), rgba(8, 11, 18, 0.92));
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  background: linear-gradient(180deg, #ffffff, #f8fafc);
   backdrop-filter: blur(18px);
-  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 16px 48px rgba(15, 23, 42, 0.08);
 }
 
 .bg-white .panel {
@@ -222,7 +222,7 @@ a {
 }
 
 .metal-line {
-  background: linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,0.24), rgba(255,255,255,0));
+  background: linear-gradient(90deg, rgba(15, 23, 42, 0), rgba(15, 23, 42, 0.18), rgba(15, 23, 42, 0));
 }
 
 @keyframes loadingBar {
@@ -237,6 +237,57 @@ a {
   100% {
     transform: scaleX(1);
     opacity: 0.6;
+  }
+}
+
+.circuit-trace {
+  stroke: rgba(255, 177, 95, 0.22);
+  stroke-dasharray: 12 18;
+  stroke-dashoffset: 120;
+  animation: circuitTravel 2.8s linear infinite;
+}
+
+.circuit-node {
+  fill: #ffb15f;
+}
+
+.circuit-node-core {
+  fill: #ff8a2f;
+  filter: drop-shadow(0 0 12px rgba(255, 122, 24, 0.65));
+}
+
+.circuit-node-halo {
+  fill: rgba(255, 122, 24, 0.14);
+}
+
+.circuit-pulse {
+  animation: circuitPulse 2.8s ease-in-out infinite;
+  transform-origin: center;
+}
+
+@keyframes circuitTravel {
+  0% {
+    stroke: rgba(255, 177, 95, 0.12);
+    stroke-dashoffset: 160;
+  }
+  40% {
+    stroke: rgba(255, 177, 95, 0.92);
+  }
+  100% {
+    stroke: rgba(255, 177, 95, 0.14);
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes circuitPulse {
+  0%,
+  100% {
+    opacity: 0.4;
+    transform: scale(0.96);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1);
   }
 }
 

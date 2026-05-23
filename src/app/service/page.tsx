@@ -4,10 +4,8 @@ import { AnimatePresence, motion, useMotionValueEvent, useScroll } from "framer-
 import dynamic from "next/dynamic";
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import Image from "next/image";
-import visualImage from "../../../visual.png";
-import outImage from "../../../out.png";
-import manImage from "../../../man.png";
+import boxImage from "../../../box 1.png";
+import gopImage from "../../../gop.png";
 
 import { ADMIN_DATA_EVENT, defaultServices, ManagedService, readManagedServices } from "@/lib/admin-data";
 
@@ -109,12 +107,12 @@ export default function ServicePage() {
                 );
               })}
             </div>
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(255,156,64,0.12),transparent_16%),radial-gradient(circle_at_82%_78%,rgba(100,177,255,0.1),transparent_18%)]" />
-            <div className="absolute inset-0 opacity-[0.12] [background-image:linear-gradient(rgba(255,255,255,0.08)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.08)_1px,transparent_1px)] [background-size:4.5rem_4.5rem]" />
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(249,115,22,0.12),transparent_16%),radial-gradient(circle_at_82%_78%,rgba(15,23,42,0.08),transparent_18%)]" />
+            <div className="absolute inset-0 opacity-[0.12] [background-image:linear-gradient(rgba(15,23,42,0.08)_1px,transparent_1px),linear-gradient(90deg,rgba(15,23,42,0.08)_1px,transparent_1px)] [background-size:4.5rem_4.5rem]" />
             <ServiceWebGLStage
               progress={sceneProgress}
-              stageOneSrc={visualImage.src}
-              stageTwoSrc={outImage.src}
+              stageOneSrc={boxImage.src}
+              stageTwoSrc={gopImage.src}
               parts={diagramParts}
               compact={isCompactStage}
               onPartSelect={(partName) => {
@@ -125,7 +123,7 @@ export default function ServicePage() {
                 }
               }}
             />
-            <div className="pointer-events-none absolute inset-x-0 bottom-0 h-28 bg-[linear-gradient(180deg,transparent,rgba(5,10,16,0.96))] sm:h-40" />
+            <div className="pointer-events-none absolute inset-x-0 bottom-0 h-28 bg-[linear-gradient(180deg,transparent,#f8fafc)] sm:h-40" />
           </div>
         </section>
 
@@ -166,7 +164,7 @@ export default function ServicePage() {
                   href={`/booking?service=${selectedService.slug}&id=${selectedService.code}`}
                   className="inline-flex items-center rounded-full bg-[var(--accent)] px-5 py-3 text-[0.74rem] font-semibold uppercase tracking-[0.22em] text-black transition-transform duration-300 hover:-translate-y-0.5"
                 >
-                  Book Inspection
+                  Book Repair
                 </Link>
                 <Link
                   href={trackingHref}
@@ -188,10 +186,10 @@ export default function ServicePage() {
                 {selectedService.label}
               </p>
               <h3 className="mt-4 font-display text-[1.3rem] font-semibold leading-[1.06] tracking-[-0.03em] text-slate-950 sm:text-[1.6rem]">
-                Clear workshop service, cleaner diagnosis, and a better repair direction.
+                Clear repair flow, cleaner diagnostics, and a better technical direction.
               </h3>
               <p className="mt-4 text-sm leading-7 text-slate-600">
-                NINO handles inspection, diagnosis, parts guidance, and repair follow-through with a workshop process that keeps the customer clear on what is being fixed and why it matters.
+                NINO handles inspection, diagnosis, parts guidance, and repair follow-through with a process that keeps the customer clear on what is being fixed and why it matters.
               </p>
               <div className="mt-6 border-l-2 border-[var(--accent)]/25 pl-4">
                 <p className="text-[0.62rem] font-semibold uppercase tracking-[0.22em] text-[#ffb15f]">

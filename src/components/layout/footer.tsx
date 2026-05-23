@@ -105,28 +105,26 @@ function FooterIcon({ icon, className = "h-4 w-4" }: { icon: string; className?:
 
 export function Footer() {
   return (
-    <footer id="footer" className="border-t border-white/8 py-12 lg:py-14">
-      <div className="section-shell panel overflow-hidden rounded-[2rem] p-7 lg:p-9">
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,_rgba(255,122,24,0.16),transparent_24%),linear-gradient(180deg,transparent,rgba(8,12,20,0.78))]" />
-        <div className="relative grid gap-10 lg:grid-cols-[1.2fr_1.8fr]">
+    <footer id="footer" className="relative overflow-hidden bg-[#0f172a] py-12 text-white lg:py-14">
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 top-auto h-full bg-[radial-gradient(circle_at_top_right,_rgba(249,115,22,0.16),transparent_26%),linear-gradient(180deg,#0f172a_0%,#0b1220_100%)]" />
+      <div className="section-shell relative px-0">
+        <div className="grid gap-10 lg:grid-cols-[1.2fr_1.8fr]">
           <div>
-            <p className="text-[0.62rem] font-semibold uppercase tracking-[0.34em] text-[var(--accent-2)]">NINO Premium Workshop</p>
+            <p className="text-[0.62rem] font-semibold uppercase tracking-[0.34em] text-[var(--accent-2)]">NINO Electronics Solutions</p>
             <h2 className="mt-4 max-w-lg font-display text-[1.7rem] font-semibold tracking-[-0.04em] text-white sm:text-[1.95rem]">
-              Service, booking, repair tracking, premium parts, and customer support in one automotive platform.
+              Service, booking, repair tracking, electronics supply, and customer support in one platform.
             </h2>
             <p className="mt-4 max-w-lg text-[0.92rem] leading-7 text-slate-300">
-              Built for drivers and fleet teams who want fast access to workshop services, cleaner updates, and a more reliable path from inspection to delivery.
+              Built for customers and businesses who want fast access to electronics repairs, cleaner updates, and a more reliable path from diagnosis to delivery.
             </p>
             <p className="mt-8 text-[0.72rem] font-semibold uppercase tracking-[0.22em] text-[var(--accent-2)]">
-              Premium vehicle support, clearer progress, and workshop confidence from anywhere.
+              Precision electronics support, clearer progress, and technical confidence from anywhere.
             </p>
           </div>
 
           <div className="grid gap-8 sm:grid-cols-2 xl:grid-cols-4">
             <div>
-              <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-slate-400">
-                Explore
-              </p>
+              <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-slate-400">Explore</p>
               <div className="mt-4 space-y-3">
                 {quickLinks.slice(0, 4).map((link) => (
                   <a
@@ -144,9 +142,7 @@ export function Footer() {
             </div>
 
             <div>
-              <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-slate-400">
-                More
-              </p>
+              <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-slate-400">More</p>
               <div className="mt-4 space-y-3">
                 {quickLinks.slice(4).map((link) => (
                   <a
@@ -164,11 +160,9 @@ export function Footer() {
             </div>
 
             <div>
-              <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-slate-400">
-                Contact
-              </p>
+              <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-slate-400">Contact</p>
               <div className="mt-4 space-y-3 text-[0.9rem] leading-6 text-slate-200 break-words">
-                <p>Workshop support by email, call, and WhatsApp.</p>
+                <p>Repair support by email, call, and WhatsApp.</p>
                 {CONTACT_EMAILS.map((email) => (
                   <a key={email} href={`mailto:${email}`} className="block transition-colors duration-300 hover:text-[var(--accent-2)]">
                     {email}
@@ -182,9 +176,7 @@ export function Footer() {
             </div>
 
             <div>
-              <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-slate-400">
-                Follow NINO
-              </p>
+              <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-slate-400">Follow NINO</p>
               <div className="mt-4 space-y-3">
                 {socials.map((social) => (
                   <a
@@ -206,7 +198,7 @@ export function Footer() {
         </div>
 
         <div className="relative mt-10 flex flex-col gap-4 border-t border-white/8 pt-6 text-[0.88rem] text-slate-400 sm:flex-row sm:items-center sm:justify-between">
-          <p>© 2026 NINO. All rights reserved.</p>
+          <p>(c) 2026 NINO. All rights reserved.</p>
           <div className="flex flex-wrap gap-5">
             <a href="/about-us" className="transition-colors duration-300 hover:text-white">About</a>
             <a href={CONTACT_WHATSAPP} className="transition-colors duration-300 hover:text-white">WhatsApp Us</a>

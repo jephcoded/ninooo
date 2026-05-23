@@ -15,7 +15,7 @@
   <circle cx="1140" cy="918" r="48" fill="#101722" stroke="#FF7A18" stroke-width="6"/>
   <rect x="1186" y="182" width="248" height="128" rx="28" fill="rgba(7,10,16,0.7)" stroke="rgba(255,255,255,0.12)"/>
   <text x="1228" y="232" fill="#98A5BD" font-family="Arial, sans-serif" font-size="24" letter-spacing="5">FEATURED</text>
-  <text x="1228" y="274" fill="#FFFFFF" font-family="Arial, sans-serif" font-size="44">FLEET CONVERSION</text>
+  <text x="1228" y="274" fill="#FFFFFF" font-family="Arial, sans-serif" font-size="44">ECU ENGINEERING</text>
   <defs>
     <linearGradient id="grad" x1="800" y1="0" x2="800" y2="1100" gradientUnits="userSpaceOnUse">
       <stop stop-color="#0A0F16"/>

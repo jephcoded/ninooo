@@ -6,13 +6,13 @@ import { Reveal } from "@/components/animations/reveal";
 
 const visualStories = [
   {
-    title: "Workshop detail",
-    caption: "Tighter workshop scenes with premium composition and real automotive atmosphere.",
+    title: "Repair detail",
+    caption: "Tighter repair scenes with premium composition and real electronics-lab atmosphere.",
     image: "/images/mo-1.png",
   },
   {
-    title: "Service bay",
-    caption: "A cleaner view into the work floor, equipment zones, and the environment customers trust.",
+    title: "Service station",
+    caption: "A cleaner view into the bench setup, equipment zones, and the environment customers trust.",
     image: "/images/mo-2.png",
   },
   {
@@ -21,7 +21,7 @@ const visualStories = [
     image: "/images/mo-3.png",
   },
   {
-    title: "Workshop operations",
+    title: "Lab operations",
     caption: "A broader visual story showing scale, confidence, and the technical character of the brand.",
     image: "/images/mo-4.png",
   },
@@ -35,10 +35,10 @@ export function EditorialGallerySection() {
           <div className="max-w-3xl space-y-3">
             <p className="eyebrow">Visual Story</p>
             <h2 className="max-w-3xl font-display text-[1.45rem] font-semibold leading-[1.08] tracking-[-0.04em] text-slate-950 sm:text-[1.8rem] lg:text-[2.2rem] xl:max-w-[40rem] xl:text-[2.45rem]">
-              Real workshop scenes with a cleaner premium automotive presentation.
+              Real repair scenes with a cleaner premium electronics presentation.
             </h2>
             <p className="max-w-2xl text-[0.92rem] leading-7 text-slate-600 sm:text-[0.98rem]">
-              The visual story now uses your uploaded workshop images, smaller copy, and motion that feels more polished and alive.
+              The visual story now uses your uploaded repair images, smaller copy, and motion that feels more polished and alive.
             </p>
           </div>
         </Reveal>

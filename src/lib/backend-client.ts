@@ -38,13 +38,20 @@ export async function readBackendCollection<T>(
 ) {
   if (!canUseStorage()) return fallback;
 
+  const localValue = readLocalValue(storageKey, fallback);
+
   try {
     const response = await fetch(`${BACKEND_COLLECTION_ROUTE}/${collection}`, {
       cache: "no-store",
     });
 
     if (response.ok) {
-      const body = (await response.json()) as { data?: T };
+      const body = (await response.json()) as { data?: T; backendConfigured?: boolean };
+
+      if (body.backendConfigured === false) {
+        return localValue;
+      }
+
       const value = body.data ?? fallback;
       writeLocalValue(storageKey, value);
       return value;
@@ -53,7 +60,7 @@ export async function readBackendCollection<T>(
     // Fall back to local cache while backend configuration is incomplete.
   }
 
-  return readLocalValue(storageKey, fallback);
+  return localValue;
 }
 
 export async function writeBackendCollection<T>(

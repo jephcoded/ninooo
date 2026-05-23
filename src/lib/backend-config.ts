@@ -7,6 +7,9 @@ export const BOOKING_REPLIES_COLLECTION = "bookingReplies";
 export const ADMINS_COLLECTION = "adminUsers";
 export const BOOKINGS_COLLECTION = "bookings";
 export const SHOP_ORDERS_COLLECTION = "shopOrders";
+export const SHOP_CART_COLLECTION = "shopCart";
+export const SHOP_PINNED_COLLECTION = "shopPinned";
+export const SHOP_REMINDERS_COLLECTION = "shopReminders";
 
 export const BACKEND_COLLECTION_KEYS = [
   SERVICES_COLLECTION,
@@ -18,6 +21,9 @@ export const BACKEND_COLLECTION_KEYS = [
   ADMINS_COLLECTION,
   BOOKINGS_COLLECTION,
   SHOP_ORDERS_COLLECTION,
+  SHOP_CART_COLLECTION,
+  SHOP_PINNED_COLLECTION,
+  SHOP_REMINDERS_COLLECTION,
 ] as const;
 
 export type BackendCollectionKey = (typeof BACKEND_COLLECTION_KEYS)[number];

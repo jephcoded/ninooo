@@ -33,7 +33,9 @@ export default function TrackRepairPage() {
   }, []);
 
   useEffect(() => {
-    setLookupId(id ?? "");
+    queueMicrotask(() => {
+      setLookupId(id ?? "");
+    });
   }, [id]);
 
   const trackingEntry = useMemo(() => entries.find((entry) => entry.id === id), [entries, id]);
@@ -61,14 +63,14 @@ export default function TrackRepairPage() {
   };
 
   return (
-    <main className="bg-white">
+    <main className="bg-[linear-gradient(180deg,#ffffff_0%,#f8fafc_100%)]">
       <section className="section-shell py-16 sm:py-20 lg:py-24">
       <div className="max-w-4xl space-y-6">
         <span className="inline-flex rounded-full border border-[var(--accent)]/20 bg-[var(--accent)]/8 px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.28em] text-[var(--accent)]">
           Track Repair
         </span>
         <h1 className="font-display text-[2.2rem] font-semibold tracking-[-0.04em] text-slate-950 sm:text-[3rem]">
-          Follow your vehicle through inspection, repair, testing, and final delivery.
+          Follow your repair through diagnosis, repair, testing, and final delivery.
         </h1>
         <p className="max-w-2xl text-base leading-8 text-slate-600">
           Stay informed with clearer repair milestones, approval updates, and progress information from start to finish.
@@ -85,7 +87,7 @@ export default function TrackRepairPage() {
             </div>
             <button
               type="submit"
-              className="inline-flex items-center justify-center rounded-full bg-[var(--accent)] px-5 py-3 text-[0.74rem] font-semibold uppercase tracking-[0.22em] text-black transition-transform duration-300 hover:-translate-y-0.5"
+            className="inline-flex items-center justify-center rounded-full bg-[var(--accent)] px-5 py-3 text-[0.74rem] font-semibold uppercase tracking-[0.22em] text-white transition-transform duration-300 hover:-translate-y-0.5"
             >
               Search tracker
             </button>
@@ -116,7 +118,7 @@ export default function TrackRepairPage() {
                       {chartPoints.map((point, index) => (
                         <div key={`${trackingEntry.id}-${index}`} className="flex-1">
                           <div
-                            className="rounded-t-[1rem] bg-[linear-gradient(180deg,#ffb15f,#ff8f2a)]"
+                            className="rounded-t-[1rem] bg-[linear-gradient(180deg,#fb923c,#f97316)]"
                             style={{ height: `${Math.max(point, 8)}%` }}
                           />
                         </div>

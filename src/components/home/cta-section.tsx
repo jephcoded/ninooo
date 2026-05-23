@@ -8,12 +8,12 @@ export function CtaSection() {
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_30%,rgba(255,122,24,0.22),transparent_18%),radial-gradient(circle_at_80%_20%,rgba(18,44,94,0.28),transparent_22%),linear-gradient(115deg,rgba(255,255,255,0.06),transparent_28%,rgba(255,122,24,0.08))]" />
         <div className="relative flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
           <div className="max-w-3xl space-y-4">
-            <p className="eyebrow">Book Your Vehicle</p>
+            <p className="eyebrow">Book Your Repair</p>
             <h2 className="font-display text-3xl font-semibold uppercase tracking-[-0.05em] text-white sm:text-4xl lg:text-5xl">
-              Move your vehicle into a premium diagnostics and conversion workflow.
+              Move your device or ECU into a premium diagnostics and repair workflow.
             </h2>
             <p className="text-base leading-8 text-slate-300 sm:text-lg">
-              Talk to the team about passenger cars, performance builds, fleet vehicles, CNG conversion, or complex electronics faults.
+              Talk to the team about ECU faults, TV repairs, laptop repairs, phone repairs, programming, or complex electronics faults.
             </p>
           </div>
 
@@ -22,7 +22,7 @@ export function CtaSection() {
               href={CONTACT_MAILTO}
               className="inline-flex items-center justify-center rounded-full bg-[var(--accent)] px-7 py-3.5 text-sm font-semibold uppercase tracking-[0.18em] text-black"
             >
-              Book Inspection
+              Book Repair
             </a>
             <a
               href={CONTACT_WHATSAPP}

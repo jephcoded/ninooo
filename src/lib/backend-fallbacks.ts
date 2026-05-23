@@ -29,7 +29,7 @@ export function getCollectionFallback(key: BackendCollectionKey) {
     case SERVICES_COLLECTION:
       return defaultServices satisfies ManagedService[];
     case BLOGS_COLLECTION:
-      return [] satisfies ManagedBlogPost[];
+      return defaultBlogPosts satisfies ManagedBlogPost[];
     case PRODUCTS_COLLECTION:
       return defaultShopProducts satisfies ManagedProduct[];
     case TRACKING_COLLECTION:

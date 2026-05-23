@@ -11,8 +11,8 @@ export function TestimonialsSection() {
       <Reveal>
         <SectionHeading
           eyebrow="Client Testimonials"
-          title="Premium client confidence from fleet operators, SUV owners, and performance-focused customers."
-          description="Glass cards, restrained motion, and darker automotive styling keep the section rich without becoming cluttered."
+          title="Premium client confidence from repair customers, businesses, and diagnostics-focused clients."
+          description="Glass cards, restrained motion, and darker technical styling keep the section rich without becoming cluttered."
           align="center"
         />
       </Reveal>

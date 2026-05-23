@@ -6,7 +6,7 @@ export const ADMIN_EMAIL = PRIMARY_CONTACT_EMAIL;
 export const ADMIN_SECONDARY_EMAIL = SECONDARY_CONTACT_EMAIL;
 export const ADMIN_PASSWORD = "NinoAdmin2026!";
 export const ADMIN_SESSION_KEY = "nino-admin-session";
-export const ADMIN_DISPLAY_NAME = "NINO Workshop Admin";
+export const ADMIN_DISPLAY_NAME = "NINO Electronics Admin";
 export const ADMIN_USERS_KEY = "nino-admin-users";
 
 export type AdminAuthUser = {

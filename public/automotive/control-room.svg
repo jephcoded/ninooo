@@ -13,7 +13,7 @@
   <path d="M296 620H1100" stroke="rgba(255,255,255,0.08)" stroke-width="2" stroke-dasharray="10 10"/>
   <circle cx="1080" cy="638" r="52" fill="#101722" stroke="#FF7A18" stroke-width="6"/>
   <text x="220" y="220" fill="#FFFFFF" font-family="Arial, sans-serif" font-size="42">ENGINEERING CONTROL ROOM</text>
-  <text x="220" y="264" fill="#98A5BD" font-family="Arial, sans-serif" font-size="22" letter-spacing="4">FLEET OVERSIGHT AND SYSTEM TELEMETRY</text>
+  <text x="220" y="264" fill="#98A5BD" font-family="Arial, sans-serif" font-size="22" letter-spacing="4">DEVICE OVERSIGHT AND SYSTEM TELEMETRY</text>
   <defs>
     <linearGradient id="bg" x1="700" y1="0" x2="700" y2="1000" gradientUnits="userSpaceOnUse">
       <stop stop-color="#0A0E15"/>

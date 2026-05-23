@@ -8,12 +8,12 @@ export function ServicesSection() {
     <section id="services" className="section-shell py-16 lg:py-20">
       <Reveal>
         <div className="max-w-3xl space-y-4">
-          <p className="eyebrow">Automotive Services</p>
+          <p className="eyebrow">Electronics Services</p>
           <h2 className="font-display text-3xl font-semibold tracking-[-0.04em] text-slate-950 sm:text-4xl lg:text-5xl">
-            Aggressive engineering services for modern vehicles, trucks, and fleet systems.
+            Precision repair services for ECU systems, modules, and everyday electronics.
           </h2>
           <p className="text-base leading-8 text-slate-600 sm:text-lg">
-            Every card is tuned to feel like performance technology rather than a generic workshop menu.
+            Every card is tuned to feel like serious repair technology rather than a generic service menu.
           </p>
         </div>
       </Reveal>

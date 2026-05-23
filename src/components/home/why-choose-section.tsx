@@ -9,7 +9,7 @@ export function WhyChooseSection() {
           <div className="max-w-3xl space-y-4">
             <p className="eyebrow">Why Choose Us</p>
             <h2 className="font-display text-3xl font-semibold tracking-[-0.04em] text-slate-950 sm:text-4xl lg:text-5xl">
-              Luxury workshop perception with the systems discipline of an automotive engineering lab.
+              Premium presentation with the systems discipline of a serious electronics diagnostics lab.
             </h2>
             <p className="text-base leading-8 text-slate-600 sm:text-lg">
               From trust indicators to process visibility, every block is designed to feel technically serious and visually expensive.

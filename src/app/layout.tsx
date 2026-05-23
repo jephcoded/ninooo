@@ -3,9 +3,9 @@ import { PageShell } from "@/components/layout/page-shell";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Nino Automotive Engineering",
+  title: "Nino Electronics Solutions",
   description:
-    "Luxury automotive engineering brand for diagnostics, ECU systems, CNG conversion, and fleet performance technology.",
+    "Electronics repair platform for ECU repairs, programming, diagnostics, board work, device repairs, and module recovery.",
 };
 
 export default function RootLayout({

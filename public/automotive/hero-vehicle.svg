@@ -23,7 +23,7 @@
   <g opacity="0.48">
     <rect x="1076" y="132" width="228" height="118" rx="28" fill="rgba(8,11,17,0.74)" stroke="rgba(255,255,255,0.14)"/>
     <text x="1116" y="182" fill="#93A0B8" font-family="Arial, sans-serif" font-size="24" letter-spacing="6">LIVE HUD</text>
-    <text x="1116" y="220" fill="#FFFFFF" font-family="Arial, sans-serif" font-size="42">EV-CNG READY</text>
+    <text x="1116" y="220" fill="#FFFFFF" font-family="Arial, sans-serif" font-size="42">ECU LAB READY</text>
   </g>
   <defs>
     <linearGradient id="bg" x1="800" y1="0" x2="800" y2="1200" gradientUnits="userSpaceOnUse">

@@ -13,7 +13,7 @@
   <path d="M710 584H1056" stroke="rgba(255,255,255,0.12)" stroke-width="2"/>
   <path d="M710 636H940" stroke="rgba(255,177,95,0.36)" stroke-width="4" stroke-linecap="round"/>
   <circle cx="1042" cy="628" r="42" fill="#101722" stroke="#FF7A18" stroke-width="6"/>
-  <text x="236" y="230" fill="#FFFFFF" font-family="Arial, sans-serif" font-size="42">CNG CONVERSION</text>
+  <text x="236" y="230" fill="#FFFFFF" font-family="Arial, sans-serif" font-size="42">ECU PROGRAMMING</text>
   <text x="236" y="274" fill="#96A4BC" font-family="Arial, sans-serif" font-size="22" letter-spacing="4">INTEGRATION, CALIBRATION, SAFETY</text>
   <defs>
     <linearGradient id="bg" x1="700" y1="0" x2="700" y2="1000" gradientUnits="userSpaceOnUse">

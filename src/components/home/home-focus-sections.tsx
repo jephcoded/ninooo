@@ -5,7 +5,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { Reveal } from "@/components/animations/reveal";
 import bookingImage from "../../../booking.png";
-import servicesImage from "../../../services.png";
+import servicesImage from "../../../box 1.png";
 import trackingImage from "../../../tracking.png";
 
 type PreviewCard = {
@@ -38,30 +38,30 @@ const focusSections: FocusSection[] = [
   {
     slug: "service",
     eyebrow: "Services",
-    title: "Professional diagnostics, electrical repair, conversion support, and premium vehicle care.",
-    description: "From fault tracing to repair execution, NINO handles modern automotive service with speed, precision, and clear customer communication.",
+    title: "Professional electronics diagnostics, repair, programming, and board-level recovery.",
+    description: "From ECU faults to damaged laptops, phones, TVs, and modules, NINO handles electronic repair with speed, precision, and clear customer communication.",
     href: "/service",
     cta: "View Services",
     cards: [
       {
         label: "Diagnostics",
         title: "Advanced fault tracing",
-        description: "Live scanning, ECU checks, and system-level diagnosis for modern vehicles with accurate reporting.",
+        description: "Signal checks, ECU analysis, and board-level diagnostics for damaged electronics with accurate reporting.",
         meta: "Core service",
         image: "/images/service-panel.svg",
       },
       {
-        label: "Electrical",
-        title: "Module and wiring repair",
-        description: "Clean electrical troubleshooting for sensors, lighting, modules, and harness faults.",
-        meta: "Electrical care",
+        label: "Repair",
+        title: "Module and board repair",
+        description: "Precision troubleshooting for damaged modules, wiring faults, connectors, and electronic boards.",
+        meta: "Technical repair",
         image: "/images/service-panel.svg",
       },
       {
-        label: "Conversion",
-        title: "CNG integration and calibration",
-        description: "Conversion planning, installation support, and calibration validation for efficiency-focused drivers.",
-        meta: "Efficiency upgrade",
+        label: "Programming",
+        title: "ECU cloning and programming",
+        description: "Programming, immobilizer setup, key coding, and software recovery for supported electronic modules.",
+        meta: "Specialist workflow",
         image: "/images/service-panel.svg",
       },
     ],
@@ -69,29 +69,29 @@ const focusSections: FocusSection[] = [
   {
     slug: "booking",
     eyebrow: "Booking",
-    title: "Simple booking for inspections, diagnostics, routine service, and fleet appointments.",
-    description: "Choose the right service path quickly and submit your request with confidence, whether you are booking one vehicle or coordinating several.",
+    title: "Simple booking for diagnostics, repairs, programming, and electronics support.",
+    description: "Choose the right repair path quickly and submit your request with confidence, whether you are booking a single device or several electronics jobs.",
     href: "/booking",
     cta: "Book Now",
     cards: [
       {
-        label: "Inspection",
-        title: "Vehicle health booking",
-        description: "Reserve a diagnostic slot for fault finding, scanning, and inspection reporting.",
+        label: "Diagnostics",
+        title: "Device fault booking",
+        description: "Reserve a diagnostic slot for fault finding, scanning, testing, and repair reporting.",
         meta: "Quick start",
         image: "/images/booking-panel.svg",
       },
       {
-        label: "Service",
-        title: "Maintenance scheduling",
-        description: "Choose a service window for repairs, diagnostics, or scheduled maintenance work.",
+        label: "Repair",
+        title: "Repair scheduling",
+        description: "Choose a service window for board repair, programming, diagnostics, or device recovery.",
         meta: "Customer booking",
         image: "/images/booking-panel.svg",
       },
       {
-        label: "Fleet",
+        label: "Business",
         title: "Commercial requests",
-        description: "Submit coordinated booking requests for fleet vehicles and repeated workshop visits.",
+        description: "Submit coordinated repair requests for office devices, modules, and repeated electronics service jobs.",
         meta: "Business support",
         image: "/images/booking-panel.svg",
       },
@@ -100,8 +100,8 @@ const focusSections: FocusSection[] = [
   {
     slug: "tracking",
     eyebrow: "Tracking",
-    title: "Follow your vehicle from inspection through repair, testing, and delivery.",
-    description: "Customers can stay informed with clearer repair milestones, approval points, and delivery updates throughout the service journey.",
+    title: "Follow your repair from diagnosis through recovery, testing, and delivery.",
+    description: "Customers can stay informed with clearer repair milestones, approval points, and completion updates throughout the service journey.",
     href: "/track-repair",
     cta: "Track Repair",
     cards: [
@@ -121,7 +121,7 @@ const focusSections: FocusSection[] = [
       },
       {
         label: "Completion",
-        title: "Ready for pickup",
+        title: "Ready for collection",
         description: "Final checks, testing updates, and completion confirmations sit inside the tracking experience.",
         meta: "Delivery notice",
         image: "/images/tracking-panel.svg",
@@ -138,8 +138,8 @@ const focusSections: FocusSection[] = [
     cards: [
       {
         label: "Hardware",
-        title: "CNG conversion kits",
-        description: "Featured kit options for selected passenger vehicles and commercial platforms.",
+        title: "Programming tools",
+        description: "Featured tools, adapters, and support hardware for diagnostics and electronics service work.",
         meta: "Featured stock",
         price: "₦1,250,000",
         image: "/images/shop-panel.svg",
@@ -147,7 +147,7 @@ const focusSections: FocusSection[] = [
       {
         label: "Electronics",
         title: "Diagnostic accessories",
-        description: "Scanners, connectors, adapters, and workshop support items curated for quality.",
+        description: "Scanners, connectors, adapters, and repair support items curated for quality.",
         meta: "Best seller",
         price: "₦320,000",
         image: "/images/shop-panel.svg",
@@ -155,15 +155,15 @@ const focusSections: FocusSection[] = [
       {
         label: "Support",
         title: "Service add-ons",
-        description: "Priority inspection slots, calibration support, and premium care bundles.",
+        description: "Priority diagnostics, programming support, and premium care bundles.",
         meta: "Premium option",
         price: "₦180,000",
         image: "/images/shop-panel.svg",
       },
       {
         label: "Care",
-        title: "Premium maintenance plan",
-        description: "Longer-term workshop support, inspections, and premium service attention.",
+        title: "Premium repair plan",
+        description: "Longer-term electronics support, inspections, and premium service attention.",
         meta: "New arrival",
         price: "₦540,000",
         image: "/images/shop-panel.svg",
@@ -201,13 +201,13 @@ function FocusCarousel({ cards, href, sectionIndex, sectionSlug }: FocusCarousel
 
   if (isServiceSection) {
     return (
-      <div className="relative overflow-hidden rounded-[2rem] bg-white shadow-[0_24px_70px_rgba(15,23,42,0.1)]">
-        <div className="relative min-h-[28rem] overflow-hidden bg-white sm:min-h-[35rem]">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_78%_18%,rgba(255,122,24,0.08),transparent_16%),linear-gradient(180deg,rgba(255,255,255,0.92),rgba(248,250,252,0.92))]" />
+      <div className="relative overflow-hidden rounded-[2rem] bg-transparent shadow-none">
+        <div className="relative min-h-[28rem] overflow-hidden bg-transparent sm:min-h-[35rem]">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_78%_18%,rgba(255,122,24,0.08),transparent_16%),linear-gradient(180deg,rgba(255,255,255,0.42),rgba(248,250,252,0.28))]" />
           <div className="absolute inset-0 px-2 py-2 sm:px-4 sm:py-4">
             <Image
               src={servicesImage}
-              alt="Car services overview"
+              alt="Electronics services overview"
               fill
               sizes="(max-width: 1024px) 100vw, 46vw"
               className="object-contain object-center opacity-100"
@@ -221,23 +221,19 @@ function FocusCarousel({ cards, href, sectionIndex, sectionSlug }: FocusCarousel
 
   if (isBookingSection) {
     return (
-      <div className="relative overflow-hidden rounded-[2rem] bg-[#070b12] shadow-[0_26px_80px_rgba(15,23,42,0.18)]">
-        <div className="relative min-h-[28rem] overflow-hidden bg-[#070b12] sm:min-h-[35rem]">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_82%_18%,rgba(255,122,24,0.14),transparent_16%),linear-gradient(180deg,rgba(6,10,18,0.04),rgba(6,10,18,0.48))]" />
-          <div className="absolute inset-0 flex items-center justify-end px-4 py-6 sm:px-8 sm:py-8">
-            <div className="relative h-full w-full max-w-[40rem]">
-              <Image
-                src={bookingImage}
-                alt="Booking experience on mobile"
-                fill
-                sizes="(max-width: 1024px) 100vw, 42vw"
-                className="object-contain object-right opacity-100"
-                priority={false}
-              />
-            </div>
+      <div className="relative overflow-hidden rounded-[2rem] bg-transparent shadow-none">
+        <div className="relative min-h-[28rem] overflow-hidden bg-transparent sm:min-h-[35rem]">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_82%_18%,rgba(249,115,22,0.08),transparent_16%),linear-gradient(180deg,rgba(255,255,255,0.24),rgba(248,250,252,0.2))]" />
+          <div className="absolute inset-0 px-2 py-2 sm:px-4 sm:py-4">
+            <Image
+              src={bookingImage}
+              alt="Booking experience on mobile"
+              fill
+              sizes="(max-width: 1024px) 100vw, 46vw"
+              className="object-contain object-center opacity-100"
+              priority={false}
+            />
           </div>
-          <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(7,11,18,0.56)_0%,rgba(7,11,18,0.1)_36%,rgba(7,11,18,0.22)_100%)]" />
-          <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(7,11,18,0.08)_0%,rgba(7,11,18,0.24)_60%,rgba(7,11,18,0.5)_100%)]" />
         </div>
       </div>
     );
@@ -245,23 +241,19 @@ function FocusCarousel({ cards, href, sectionIndex, sectionSlug }: FocusCarousel
 
   if (isTrackingSection) {
     return (
-      <div className="relative overflow-hidden rounded-[2rem] bg-[#070b12] shadow-[0_26px_80px_rgba(15,23,42,0.18)]">
-        <div className="relative min-h-[28rem] overflow-hidden bg-[#070b12] sm:min-h-[35rem]">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,rgba(255,122,24,0.16),transparent_16%),linear-gradient(180deg,rgba(6,10,18,0.04),rgba(6,10,18,0.5))]" />
-          <div className="absolute inset-0 flex items-center justify-end px-4 py-6 sm:px-8 sm:py-8">
-            <div className="relative h-full w-full max-w-[40rem]">
-              <Image
-                src={trackingImage}
-                alt="Tracking experience on mobile"
-                fill
-                sizes="(max-width: 1024px) 100vw, 42vw"
-                className="object-contain object-right opacity-100"
-                priority={false}
-              />
-            </div>
+      <div className="relative overflow-hidden rounded-[2rem] bg-transparent shadow-none">
+        <div className="relative min-h-[28rem] overflow-hidden bg-transparent sm:min-h-[35rem]">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,rgba(249,115,22,0.08),transparent_16%),linear-gradient(180deg,rgba(255,255,255,0.24),rgba(248,250,252,0.2))]" />
+          <div className="absolute inset-0 px-2 py-2 sm:px-4 sm:py-4">
+            <Image
+              src={trackingImage}
+              alt="Tracking experience on mobile"
+              fill
+              sizes="(max-width: 1024px) 100vw, 46vw"
+              className="object-contain object-center opacity-100"
+              priority={false}
+            />
           </div>
-          <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(7,11,18,0.54)_0%,rgba(7,11,18,0.08)_36%,rgba(7,11,18,0.22)_100%)]" />
-          <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(7,11,18,0.08)_0%,rgba(7,11,18,0.22)_60%,rgba(7,11,18,0.48)_100%)]" />
         </div>
       </div>
     );
@@ -387,7 +379,7 @@ function FocusCarousel({ cards, href, sectionIndex, sectionSlug }: FocusCarousel
         </div>
       </div>
 
-      <div className="mt-5 overflow-hidden rounded-[1.6rem] bg-[linear-gradient(180deg,#101826,#050912)] shadow-[inset_0_0_0_1px_rgba(255,255,255,0.04)]">
+      <div className="mt-5 overflow-hidden rounded-[1.6rem] bg-transparent shadow-none">
         <AnimatePresence mode="wait">
           <motion.article
             key={card.title}
@@ -397,7 +389,7 @@ function FocusCarousel({ cards, href, sectionIndex, sectionSlug }: FocusCarousel
             transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
             className="min-h-[20rem] p-0 sm:min-h-[21rem]"
           >
-            <div className="relative min-h-[25rem] overflow-hidden rounded-[1.6rem] bg-[#060b14] sm:min-h-[29rem]">
+            <div className="relative min-h-[25rem] overflow-hidden rounded-[1.6rem] bg-transparent sm:min-h-[29rem]">
               <div className="absolute inset-0">
                 <Image
                   src={card.image}
@@ -407,21 +399,21 @@ function FocusCarousel({ cards, href, sectionIndex, sectionSlug }: FocusCarousel
                   className="object-cover opacity-[0.84]"
                 />
               </div>
-              <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(4,6,10,0.18)_0%,rgba(4,6,10,0.24)_26%,rgba(4,6,10,0.9)_100%)]" />
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_16%,rgba(255,122,24,0.18),transparent_20%),radial-gradient(circle_at_16%_82%,rgba(120,194,255,0.1),transparent_26%),linear-gradient(90deg,rgba(5,8,14,0.32),transparent_26%,transparent_74%,rgba(5,8,14,0.2))]" />
+              <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0.08)_0%,rgba(255,255,255,0.24)_26%,rgba(15,23,42,0.2)_100%)]" />
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_16%,rgba(249,115,22,0.18),transparent_20%),radial-gradient(circle_at_16%_82%,rgba(15,23,42,0.05),transparent_26%),linear-gradient(90deg,rgba(255,255,255,0.18),transparent_26%,transparent_74%,rgba(15,23,42,0.06))]" />
 
               <div className="absolute inset-x-5 top-5 flex flex-wrap items-center justify-between gap-3 sm:inset-x-6 sm:top-6">
                 <div className="flex flex-wrap items-center gap-2.5">
-                  <p className="rounded-full border border-white/14 bg-black/30 px-3 py-2 text-[0.64rem] font-semibold uppercase tracking-[0.24em] text-[var(--accent-2)] backdrop-blur-xl">
+                  <p className="rounded-full border border-white/40 bg-white/70 px-3 py-2 text-[0.64rem] font-semibold uppercase tracking-[0.24em] text-[var(--accent)] backdrop-blur-xl">
                     {card.label}
                   </p>
-                  <span className="rounded-full border border-white/12 bg-white/10 px-3 py-2 text-[0.6rem] uppercase tracking-[0.18em] text-white backdrop-blur-xl">
+                  <span className="rounded-full border border-white/30 bg-white/70 px-3 py-2 text-[0.6rem] uppercase tracking-[0.18em] text-[#0f172a] backdrop-blur-xl">
                     {card.meta}
                   </span>
                 </div>
                 {sectionSlug === "shop" ? (
-                  <div className="inline-flex items-center gap-2 rounded-full border border-white/12 bg-white/10 px-3 py-2 text-[0.62rem] font-semibold uppercase tracking-[0.2em] text-white backdrop-blur-xl">
-                    <span className="inline-flex size-7 items-center justify-center rounded-full bg-[var(--accent)] text-black">
+                  <div className="inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/70 px-3 py-2 text-[0.62rem] font-semibold uppercase tracking-[0.2em] text-[#0f172a] backdrop-blur-xl">
+                    <span className="inline-flex size-7 items-center justify-center rounded-full bg-[var(--accent)] text-white">
                       <svg viewBox="0 0 24 24" className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth="2">
                         <circle cx="9" cy="20" r="1.5" />
                         <circle cx="18" cy="20" r="1.5" />
@@ -434,14 +426,14 @@ function FocusCarousel({ cards, href, sectionIndex, sectionSlug }: FocusCarousel
               </div>
 
               <div className="absolute inset-x-5 bottom-5 sm:inset-x-6 sm:bottom-6">
-                <div className="max-w-2xl rounded-[1.4rem] bg-[linear-gradient(180deg,rgba(12,18,29,0.76),rgba(6,10,18,0.56))] p-5 backdrop-blur-xl sm:p-6">
-                  <p className="text-[0.66rem] font-semibold uppercase tracking-[0.24em] text-slate-300">
+                <div className="max-w-2xl rounded-[1.4rem] bg-[linear-gradient(180deg,rgba(255,255,255,0.84),rgba(248,250,252,0.92))] p-5 backdrop-blur-xl sm:p-6">
+                  <p className="text-[0.66rem] font-semibold uppercase tracking-[0.24em] text-slate-500">
                     Featured Highlight
                   </p>
-                  <h3 className="mt-3 font-display text-[1.5rem] font-semibold tracking-[-0.04em] text-white sm:text-[1.8rem]">
+                  <h3 className="mt-3 font-display text-[1.5rem] font-semibold tracking-[-0.04em] text-[#0f172a] sm:text-[1.8rem]">
                     {card.title}
                   </h3>
-                  <p className="mt-3 max-w-xl text-sm leading-7 text-slate-200 sm:text-[0.95rem]">
+                  <p className="mt-3 max-w-xl text-sm leading-7 text-slate-600 sm:text-[0.95rem]">
                     {card.description}
                   </p>
                   <div className="mt-5 grid gap-3 sm:grid-cols-3">
@@ -452,8 +444,8 @@ function FocusCarousel({ cards, href, sectionIndex, sectionSlug }: FocusCarousel
                         onClick={() => setActiveCard(index)}
                         className={`rounded-2xl border px-4 py-3 text-left transition-colors duration-300 ${
                           index === activeCard
-                            ? "border-[var(--accent)]/35 bg-white/16 text-white"
-                            : "border-white/8 bg-white/[0.04] text-slate-300 hover:bg-white/[0.08]"
+                            ? "border-[var(--accent)]/35 bg-[var(--accent)]/10 text-[#0f172a]"
+                            : "border-slate-200 bg-white text-slate-500 hover:bg-[#fff7ed]"
                         }`}
                       >
                         <p className="text-[0.68rem] uppercase tracking-[0.2em]">{item.label}</p>
@@ -461,7 +453,7 @@ function FocusCarousel({ cards, href, sectionIndex, sectionSlug }: FocusCarousel
                       </button>
                     ))}
                   </div>
-                  <div className="mt-5 h-2 rounded-full bg-white/10">
+                  <div className="mt-5 h-2 rounded-full bg-slate-200">
                     <div
                       className="h-2 rounded-full bg-[var(--accent)] transition-all duration-500"
                       style={{ width: `${((activeCard + 1) / cards.length) * 100}%` }}
@@ -502,7 +494,7 @@ export function HomeFocusSections() {
                   </p>
                   <a
                     href={section.href}
-                    className="inline-flex items-center rounded-full border border-[var(--accent)]/15 bg-[var(--accent)] px-5 py-3 text-[0.78rem] font-semibold uppercase tracking-[0.22em] text-black shadow-[0_14px_34px_rgba(255,122,24,0.24)] transition-transform duration-300 hover:-translate-y-0.5 hover:shadow-[0_18px_40px_rgba(255,122,24,0.32)]"
+                    className="inline-flex items-center rounded-full border border-[var(--accent)]/15 bg-[var(--accent)] px-5 py-3 text-[0.78rem] font-semibold uppercase tracking-[0.22em] text-white shadow-[0_14px_34px_rgba(255,122,24,0.18)] transition-transform duration-300 hover:-translate-y-0.5 hover:shadow-[0_18px_40px_rgba(255,122,24,0.24)]"
                   >
                     {section.cta}
                   </a>

@@ -8,17 +8,17 @@ type ItemWithIcon = {
 };
 
 export const stats = [
-  { value: 3200, suffix: "+", label: "Vehicles converted and calibrated" },
+  { value: 3200, suffix: "+", label: "ECUs repaired and programmed" },
   { value: 18750, suffix: "+", label: "Diagnostics sessions completed" },
-  { value: 140, suffix: "+", label: "Fleet clients supported" },
-  { value: 38, suffix: "%", label: "Fuel savings achieved after conversion" },
+  { value: 140, suffix: "+", label: "Business clients supported" },
+  { value: 38, suffix: "%", label: "Repeat repair workload reduced" },
 ];
 
 export const services: ItemWithIcon[] = [
   {
-    title: "CNG Conversion",
+    title: "ECU Repair",
     description:
-      "Precision installation, calibration, and safety validation for passenger vehicles, SUVs, and commercial fleets.",
+      "Precision board-level repair, fault isolation, and recovery for damaged ECU units and control modules.",
     icon: (
       <svg viewBox="0 0 24 24" className="size-6" fill="none" stroke="currentColor" strokeWidth="1.7">
         <path d="M7 20h10" />
@@ -26,12 +26,12 @@ export const services: ItemWithIcon[] = [
         <path d="M9 7c0-1.7 1.3-3 3-3s3 1.3 3 3c0 3-3 4-3 7 0-3-3-4-3-7Z" />
       </svg>
     ),
-    image: "/automotive/cng-conversion.svg",
+    image: "/automotive/ecu-engineering.svg",
   },
   {
-    title: "ECU Repair",
+    title: "ECU Cloning and Programming",
     description:
-      "Motherboard-level repair, programming, and recovery for damaged control modules and critical vehicle electronics.",
+      "Programming, cloning, and recovery for immobilizers, keys, and supported electronic control systems.",
     icon: (
       <svg viewBox="0 0 24 24" className="size-6" fill="none" stroke="currentColor" strokeWidth="1.7">
         <rect x="7" y="7" width="10" height="10" rx="2" />
@@ -41,9 +41,9 @@ export const services: ItemWithIcon[] = [
     image: "/automotive/ecu-engineering.svg",
   },
   {
-    title: "Automotive Diagnostics",
+    title: "Electronics Diagnostics",
     description:
-      "Advanced scanner diagnostics, fault tracing, and sensor analysis for premium vehicles and performance platforms.",
+      "Advanced diagnostics, fault tracing, and signal analysis for ECUs, modules, boards, and consumer electronics.",
     icon: (
       <svg viewBox="0 0 24 24" className="size-6" fill="none" stroke="currentColor" strokeWidth="1.7">
         <path d="M4 19V8l8-4 8 4v11" />
@@ -54,9 +54,9 @@ export const services: ItemWithIcon[] = [
     image: "/automotive/diagnostics-lab.svg",
   },
   {
-    title: "Vehicle Wiring",
+    title: "Board and Wiring Repair",
     description:
-      "Harness repair, lighting systems, module integration, and electrical restoration for modern vehicles.",
+      "Connector repair, board tracing, jumper work, and wiring restoration for damaged electronic systems.",
     icon: (
       <svg viewBox="0 0 24 24" className="size-6" fill="none" stroke="currentColor" strokeWidth="1.7">
         <path d="M6 4v10a3 3 0 0 0 3 3h6" />
@@ -68,9 +68,9 @@ export const services: ItemWithIcon[] = [
     image: "/automotive/workshop-interior.svg",
   },
   {
-    title: "Truck Conversion",
+    title: "TV Repair",
     description:
-      "Heavy-duty CNG systems and drivetrain-adjacent engineering tailored for commercial trucks and logistics operators.",
+      "Panel faults, power issues, backlight failure, and signal-board problems repaired with a structured workflow.",
     icon: (
       <svg viewBox="0 0 24 24" className="size-6" fill="none" stroke="currentColor" strokeWidth="1.7">
         <path d="M3 16V7h10v9" />
@@ -79,12 +79,12 @@ export const services: ItemWithIcon[] = [
         <circle cx="17" cy="17" r="2" />
       </svg>
     ),
-    image: "/automotive/featured-truck.svg",
+    image: "/automotive/diagnostics-lab.svg",
   },
   {
-    title: "Fleet Maintenance",
+    title: "Laptop Repair",
     description:
-      "Scheduled diagnostics, preventive maintenance, and conversion lifecycle support for high-utilization fleets.",
+      "Motherboard diagnosis, charging faults, screen issues, keyboard faults, and component-level laptop repair.",
     icon: (
       <svg viewBox="0 0 24 24" className="size-6" fill="none" stroke="currentColor" strokeWidth="1.7">
         <path d="M5 18V9l3-3h8l3 3v9" />
@@ -95,9 +95,9 @@ export const services: ItemWithIcon[] = [
     image: "/automotive/control-room.svg",
   },
   {
-    title: "Engine Scanning",
+    title: "Phone Repair",
     description:
-      "Live performance data capture, emissions analysis, and root-cause identification for drivability issues.",
+      "Phone board repair, charging faults, display issues, and data-safe diagnostics for supported devices.",
     icon: (
       <svg viewBox="0 0 24 24" className="size-6" fill="none" stroke="currentColor" strokeWidth="1.7">
         <path d="M4 14h4l2-3 3 6 2-3h5" />
@@ -107,9 +107,9 @@ export const services: ItemWithIcon[] = [
     image: "/automotive/diagnostics-lab.svg",
   },
   {
-    title: "Hybrid Systems",
+    title: "Module Repair",
     description:
-      "Battery interface diagnostics, controller support, and complex electronic troubleshooting for hybrid vehicles.",
+      "Module testing, replacement-path guidance, and recovery workflow for damaged electronic units.",
     icon: (
       <svg viewBox="0 0 24 24" className="size-6" fill="none" stroke="currentColor" strokeWidth="1.7">
         <rect x="6" y="7" width="10" height="10" rx="2" />
@@ -126,7 +126,7 @@ export const reasons: ItemWithIcon[] = [
   {
     title: "Engineering-Led Inspections",
     description:
-      "Every job begins with documented fault isolation, system mapping, and decision-making grounded in real engineering diagnostics.",
+      "Every job begins with documented fault isolation, signal tracing, and decisions grounded in real electronics diagnostics.",
     icon: (
       <svg viewBox="0 0 24 24" className="size-6" fill="none" stroke="currentColor" strokeWidth="1.7">
         <circle cx="11" cy="11" r="6" />
@@ -137,7 +137,7 @@ export const reasons: ItemWithIcon[] = [
   {
     title: "OEM-Grade Calibration",
     description:
-      "From ECU behavior to CNG tuning, our output is calibrated for reliability, efficiency, and premium drivability.",
+      "From ECU behavior to module programming, our output is calibrated for reliability, clean recovery, and repeatable results.",
     icon: (
       <svg viewBox="0 0 24 24" className="size-6" fill="none" stroke="currentColor" strokeWidth="1.7">
         <path d="M12 2v4" />
@@ -152,9 +152,9 @@ export const reasons: ItemWithIcon[] = [
     ),
   },
   {
-    title: "Fleet-Ready Operations",
+    title: "Component-Level Precision",
     description:
-      "We handle repeatable inspection, conversion, testing, and maintenance workflows for commercial fleets at scale.",
+      "We handle fine repair work on boards, connectors, modules, and programming workflows without guesswork.",
     icon: (
       <svg viewBox="0 0 24 24" className="size-6" fill="none" stroke="currentColor" strokeWidth="1.7">
         <path d="M12 3 5 6v6c0 4.5 3 7.5 7 9 4-1.5 7-4.5 7-9V6z" />
@@ -165,15 +165,15 @@ export const reasons: ItemWithIcon[] = [
 ];
 
 export const engineeringMetrics = [
-  { label: "Conversion Accuracy", value: "99.1%" },
-  { label: "Emission Optimization", value: "34%" },
+  { label: "Programming Accuracy", value: "99.1%" },
+  { label: "Board Recovery Rate", value: "34%" },
   { label: "Module Recovery", value: "93%" },
 ];
 
 export const visualStories = [
   {
     title: "Diagnostics Lab",
-    caption: "Real-time fault mapping and premium workshop control.",
+    caption: "Real-time fault mapping and precision electronics diagnostics.",
     image: "/automotive/diagnostics-lab.svg",
   },
   {
@@ -182,13 +182,13 @@ export const visualStories = [
     image: "/automotive/ecu-engineering.svg",
   },
   {
-    title: "CNG Conversion",
-    caption: "Integrated conversion workflow built for efficiency, safety, and fleet repeatability.",
-    image: "/automotive/cng-conversion.svg",
+    title: "Programming Workflow",
+    caption: "Integrated programming workflow built for clean recovery, stability, and repeatable results.",
+    image: "/automotive/ecu-engineering.svg",
   },
   {
-    title: "Workshop Interior",
-    caption: "Dark industrial spaces designed to feel premium and technically serious.",
+    title: "Repair Bench",
+    caption: "Technical repair spaces designed to feel premium and electronically precise.",
     image: "/automotive/workshop-interior.svg",
   },
 ];
@@ -196,15 +196,15 @@ export const visualStories = [
 export const processSteps = [
   {
     title: "Inspection",
-    description: "Vehicle intake, performance review, and initial mechanical-electronic assessment.",
+    description: "Device intake, fault history review, and initial electronics assessment.",
   },
   {
     title: "Diagnostics",
     description: "Scanner analysis, ECU checks, electrical tracing, and system-level fault isolation.",
   },
   {
-    title: "Conversion",
-    description: "CNG kit integration, wiring refinement, controller programming, and calibration alignment.",
+    title: "Programming",
+    description: "Software recovery, cloning, coding, configuration, and alignment for supported electronics.",
   },
   {
     title: "Testing",
@@ -219,33 +219,33 @@ export const processSteps = [
 export const testimonials = [
   {
     name: "Adewale Omotoso",
-    role: "Fleet Director",
+    role: "Operations Director",
     quote:
-      "Our logistics trucks now run cleaner and more efficiently after conversion. The process felt engineered, not improvised.",
+      "Their team recovered multiple damaged control units for us with a process that felt engineered, not improvised.",
   },
   {
     name: "Zainab Kareem",
-    role: "Luxury SUV Owner",
+    role: "Business Owner",
     quote:
-      "The team traced an intermittent electrical issue and restored my SUV without the guesswork I got elsewhere. The experience felt premium from start to finish.",
+      "The team traced an intermittent board fault and restored my device without the guesswork I got elsewhere. The experience felt premium from start to finish.",
   },
   {
     name: "Michael Eze",
-    role: "Transport Operator",
+    role: "Store Manager",
     quote:
-      "Their diagnostics and conversion workflow improved our operating cost and vehicle uptime. The reporting and delivery quality were exceptional.",
+      "Their diagnostics and repair workflow reduced repeat faults in our equipment. The reporting and delivery quality were exceptional.",
   },
   {
     name: "Chiamaka Nnadi",
-    role: "Performance Enthusiast",
+    role: "Electronics Client",
     quote:
-      "They solved an ECU problem that other workshops misdiagnosed. The workshop aesthetic and technical discipline feel closer to a performance lab than a garage.",
+      "They solved an ECU problem that others misdiagnosed. The technical discipline feels closer to a precision electronics lab than a random repair shop.",
   },
 ];
 
 export const trustIndicators = [
-  "Certified conversion hardware partners",
+  "Specialist ECU and module workflows",
   "Advanced scanner and oscilloscope workflow",
-  "Heavy-duty truck and fleet capability",
-  "Engineering-led calibration and delivery checks",
+  "Board-level repair and connector tracing",
+  "Engineering-led programming and delivery checks",
 ];

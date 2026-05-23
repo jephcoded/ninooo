@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useEffect, useMemo, useState } from "react";
 
-import { ADMIN_DATA_EVENT, ManagedProduct, SHOP_PRODUCTS_KEY, readManagedProducts } from "@/lib/admin-data";
+import { ADMIN_DATA_EVENT, ManagedProduct, readManagedProducts } from "@/lib/admin-data";
 import {
   readStoredOrders,
   readStoredValue,
@@ -117,8 +117,7 @@ export default function ShopPage() {
 
   useEffect(() => {
     const syncShop = async () => {
-      const hasExplicitProducts = Boolean(window.localStorage.getItem(SHOP_PRODUCTS_KEY));
-      setProducts(hasExplicitProducts ? readManagedProducts() : []);
+      setProducts(await readManagedProducts());
       setOrders(await readStoredOrders());
       setCart(readStoredValue<StoredCartItem[]>(SHOP_CART_KEY, []));
       setPins(readStoredValue<string[]>(SHOP_PINNED_KEY, []));
@@ -261,128 +260,129 @@ export default function ShopPage() {
   };
 
   return (
-    <main className="bg-[linear-gradient(180deg,#fffefc_0%,#ffffff_40%,#fff8f0_100%)] text-slate-950">
+    <main className="bg-[linear-gradient(180deg,#f8fafc_0%,#ffffff_40%,#f8fafc_100%)] text-[var(--foreground)]">
       <section className="w-full pb-12 pl-[4.7rem] pr-4 pt-2 sm:pb-14 sm:pl-[5.1rem] sm:pr-6 sm:pt-3 lg:pb-16 lg:pl-[7.25rem] lg:pr-8 lg:pt-4">
         <div className="mx-auto max-w-[1280px]">
           <aside className="fixed left-0 top-[5.05rem] z-30 h-[calc(100vh-5.05rem)] w-[4.25rem] sm:top-[5.25rem] sm:h-[calc(100vh-5.25rem)] sm:w-[4.55rem] lg:w-[6.25rem]">
-            <div className="flex h-full flex-col gap-2 overflow-hidden rounded-r-[1.4rem] border-y border-r border-white/8 bg-[#06080d] p-2 shadow-[0_18px_50px_rgba(0,0,0,0.2)] lg:gap-3 lg:rounded-r-[2rem] lg:p-2">
+            <div className="flex h-full flex-col gap-2 overflow-hidden rounded-r-[1.4rem] border-y border-r border-white/8 bg-[var(--navy-soft)] p-2 shadow-[0_18px_50px_rgba(15,23,42,0.06)] lg:gap-3 lg:rounded-r-[2rem] lg:p-2">
               {sidebarItems.map((item) => (
-                <div key={item.id} className="flex min-w-0 flex-col items-center justify-center rounded-[1rem] bg-[rgba(255,255,255,0.04)] px-2 py-3 text-center text-[var(--accent)] lg:min-h-[5rem] lg:rounded-[1.3rem] lg:px-3 lg:py-4">
+                <div key={item.id} className="flex min-w-0 flex-col items-center justify-center rounded-[1rem] bg-white px-2 py-3 text-center text-[var(--accent)] lg:min-h-[5rem] lg:rounded-[1.3rem] lg:px-3 lg:py-4">
                   <ShopActionIcon type={item.icon} />
-                  <span className="mt-2 text-[0.68rem] font-semibold text-white lg:text-[0.72rem]">{item.value}</span>
+                  <span className="mt-2 text-[0.68rem] font-semibold text-[#0f172a] lg:text-[0.72rem]">{item.value}</span>
                 </div>
               ))}
             </div>
           </aside>
 
           <div>
-            <div className="mx-auto mt-1 max-w-[58rem] rounded-[1.7rem] border border-slate-200 bg-white/90 p-3 shadow-[0_24px_70px_rgba(15,23,42,0.06)] sm:mt-2 sm:p-4 lg:max-w-[60rem]">
-              <div className="flex items-center gap-3 rounded-full border border-slate-200 bg-[linear-gradient(180deg,#fff8ee,#ffffff)] px-4 py-2.5 sm:px-5 sm:py-3">
-                <span className="text-[var(--accent)]"><ShopActionIcon type="search" /></span>
-                <input
-                  value={searchQuery}
-                  onChange={(event) => setSearchQuery(event.target.value)}
-                  placeholder="Search for items, categories, or parts if available"
-                  className="w-full bg-transparent text-sm text-slate-900 outline-none placeholder:text-slate-400"
-                />
+            <div>
+              <div className="mx-auto mt-1 max-w-[58rem] rounded-[1.7rem] border border-slate-200 bg-white p-3 shadow-[0_24px_70px_rgba(15,23,42,0.06)] sm:mt-2 sm:p-4 lg:max-w-[60rem]">
+                <div className="flex items-center gap-3 rounded-full border border-slate-200 bg-[linear-gradient(180deg,#f8fafc,#ffffff)] px-4 py-2.5 sm:px-5 sm:py-3">
+                  <span className="text-[var(--accent)]"><ShopActionIcon type="search" /></span>
+                  <input
+                    value={searchQuery}
+                    onChange={(event) => setSearchQuery(event.target.value)}
+                    placeholder="Search for items, categories, or parts if available"
+                    className="w-full bg-transparent text-sm text-slate-900 outline-none placeholder:text-slate-400"
+                  />
+                </div>
+
+                <div className="mt-3 flex flex-wrap items-center justify-center gap-2">
+                  {categories.map((category) => (
+                    <button
+                      key={category}
+                      type="button"
+                      onClick={() => setActiveCategory(category)}
+                      className={`rounded-full border px-4 py-2 text-[0.66rem] font-semibold uppercase tracking-[0.18em] transition-colors duration-300 ${
+                        activeCategory === category
+                          ? "border-[var(--accent)] bg-[var(--accent)] text-white"
+                          : "border-slate-200 bg-white text-[var(--foreground)]"
+                      }`}
+                    >
+                      {category}
+                    </button>
+                  ))}
+                </div>
+
+                <div className="mt-3 text-center text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-slate-500 sm:text-[0.72rem]">
+                  {searchHasNoResult
+                    ? "Not available"
+                    : `${filteredProducts.length} item${filteredProducts.length === 1 ? "" : "s"} available in ${activeCategory}`}
+                </div>
               </div>
 
-              <div className="mt-3 flex flex-wrap items-center justify-center gap-2">
-                {categories.map((category) => (
-                  <button
-                    key={category}
-                    type="button"
-                    onClick={() => setActiveCategory(category)}
-                    className={`rounded-full border px-4 py-2 text-[0.66rem] font-semibold uppercase tracking-[0.18em] transition-colors duration-300 ${
-                      activeCategory === category
-                        ? "border-[var(--accent)] bg-[var(--accent)] text-black"
-                        : "border-slate-200 bg-white text-slate-600"
-                    }`}
-                  >
-                    {category}
-                  </button>
-                ))}
-              </div>
+              <section className="mt-6 grid grid-cols-2 gap-4 sm:mt-7 sm:grid-cols-3 xl:grid-cols-4">
+                {visibleSlots.map((product, index) => {
+                  const isPinned = product ? pins.includes(product.id) : false;
 
-              <div className="mt-3 text-center text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-slate-500 sm:text-[0.72rem]">
-                {searchHasNoResult
-                  ? "Not available"
-                  : `${filteredProducts.length} item${filteredProducts.length === 1 ? "" : "s"} available in ${activeCategory}`}
-              </div>
+                  return (
+                    <button
+                      key={product?.id ?? `slot-${index}`}
+                      type="button"
+                      onClick={() => {
+                        if (product) {
+                          openCheckout(product);
+                        }
+                      }}
+                      className={`group relative flex aspect-[0.82] flex-col justify-between overflow-hidden rounded-[1.2rem] border p-3 text-left transition-all duration-300 ${
+                          product
+                            ? "border-slate-100 bg-white hover:-translate-y-1 hover:border-[var(--accent)]/35"
+                            : "border-slate-100 bg-[var(--background)] text-[var(--muted)]"
+                        }`}
+                    >
+                      {product ? (
+                        <>
+                          <button
+                            type="button"
+                            onClick={(event) => {
+                              event.stopPropagation();
+                              togglePin(product.id);
+                            }}
+                            className={`absolute right-3 top-3 inline-flex size-9 items-center justify-center rounded-full border ${
+                              isPinned ? "border-[var(--accent)] bg-[var(--accent)] text-white" : "border-slate-200 bg-white/90 text-[var(--accent)]"
+                            }`}
+                            aria-label={isPinned ? "Remove pin" : "Pin product"}
+                          >
+                            <ShopActionIcon type="pins" />
+                          </button>
+
+                          <div className="relative flex-1">
+                            {product.image ? (
+                              <Image
+                                src={product.image}
+                                alt={product.name}
+                                fill
+                                sizes="(max-width: 1024px) 50vw, 20vw"
+                                className="object-contain p-4 opacity-95 transition-transform duration-300 group-hover:scale-105"
+                              />
+                            ) : (
+                              <div className="flex h-full items-center justify-center text-[var(--accent)]/70">
+                                <ShopActionIcon type="placeholder" />
+                              </div>
+                            )}
+                          </div>
+
+                          <div>
+                            <p className="text-[0.58rem] font-semibold uppercase tracking-[0.2em] text-[var(--accent)]">{product.category}</p>
+                            <p className="mt-2 line-clamp-2 text-[0.8rem] font-semibold text-slate-900">{product.name}</p>
+                          </div>
+                        </>
+                      ) : (
+                        <>
+                          <div className="flex flex-1 items-center justify-center text-[var(--accent)]/55">
+                            <ShopActionIcon type="placeholder" />
+                          </div>
+                          <div>
+                            <p className="text-[0.58rem] font-semibold uppercase tracking-[0.2em] text-slate-400">Awaiting upload</p>
+                            <p className="mt-2 text-sm font-semibold text-slate-400">Admin product slot</p>
+                          </div>
+                        </>
+                      )}
+                    </button>
+                  );
+                })}
+              </section>
             </div>
-
-            <section className="mt-6 grid grid-cols-2 gap-4 sm:mt-7 sm:grid-cols-3 xl:grid-cols-4">
-              {visibleSlots.map((product, index) => {
-                const isPinned = product ? pins.includes(product.id) : false;
-
-                return (
-                  <button
-                    key={product?.id ?? `slot-${index}`}
-                    type="button"
-                    onClick={() => {
-                      if (product) {
-                        openCheckout(product);
-                      }
-                    }}
-                    className={`group relative flex aspect-[0.82] flex-col justify-between overflow-hidden rounded-[1.2rem] border p-3 text-left transition-all duration-300 ${
-                      product
-                        ? "border-slate-100 bg-white/22 hover:-translate-y-1 hover:border-[var(--accent)]/35"
-                        : "border-slate-100 bg-transparent"
-                    }`}
-                  >
-                    {product ? (
-                      <>
-                        <button
-                          type="button"
-                          onClick={(event) => {
-                            event.stopPropagation();
-                            togglePin(product.id);
-                          }}
-                          className={`absolute right-3 top-3 inline-flex size-9 items-center justify-center rounded-full border ${
-                            isPinned ? "border-[var(--accent)] bg-[var(--accent)] text-black" : "border-slate-200 bg-white/90 text-[var(--accent)]"
-                          }`}
-                          aria-label={isPinned ? "Remove pin" : "Pin product"}
-                        >
-                          <ShopActionIcon type="pins" />
-                        </button>
-
-                        <div className="relative flex-1">
-                          {product.image ? (
-                            <Image
-                              src={product.image}
-                              alt={product.name}
-                              fill
-                              sizes="(max-width: 1024px) 50vw, 20vw"
-                              className="object-contain p-4 opacity-95 transition-transform duration-300 group-hover:scale-105"
-                            />
-                          ) : (
-                            <div className="flex h-full items-center justify-center text-[var(--accent)]/70">
-                              <ShopActionIcon type="placeholder" />
-                            </div>
-                          )}
-                        </div>
-
-                        <div>
-                          <p className="text-[0.58rem] font-semibold uppercase tracking-[0.2em] text-[var(--accent)]">{product.category}</p>
-                          <p className="mt-2 line-clamp-2 text-[0.8rem] font-semibold text-slate-900">{product.name}</p>
-                        </div>
-                      </>
-                    ) : (
-                      <>
-                        <div className="flex flex-1 items-center justify-center text-[var(--accent)]/55">
-                          <ShopActionIcon type="placeholder" />
-                        </div>
-                        <div>
-                          <p className="text-[0.58rem] font-semibold uppercase tracking-[0.2em] text-slate-400">Awaiting upload</p>
-                          <p className="mt-2 text-sm font-semibold text-slate-400">Admin product slot</p>
-                        </div>
-                      </>
-                    )}
-                  </button>
-                );
-              })}
-            </section>
-
           </div>
         </div>
       </section>
@@ -446,7 +446,7 @@ export default function ShopPage() {
                           type="button"
                           onClick={() => setSelectedColor(color)}
                           className={`rounded-full border px-3 py-2 text-[0.68rem] font-semibold uppercase tracking-[0.18em] ${
-                            selectedColor === color ? "border-[var(--accent)] bg-[var(--accent)] text-black" : "border-slate-200 text-slate-600"
+                            selectedColor === color ? "border-[var(--accent)] bg-[var(--accent)] text-white" : "border-slate-200 text-slate-600"
                           }`}
                         >
                           {color}
@@ -464,7 +464,7 @@ export default function ShopPage() {
                           type="button"
                           onClick={() => setSelectedSize(size)}
                           className={`rounded-full border px-3 py-2 text-[0.68rem] font-semibold uppercase tracking-[0.18em] ${
-                            selectedSize === size ? "border-[var(--accent)] bg-[var(--accent)] text-black" : "border-slate-200 text-slate-600"
+                            selectedSize === size ? "border-[var(--accent)] bg-[var(--accent)] text-white" : "border-slate-200 text-slate-600"
                           }`}
                         >
                           {size}
@@ -478,7 +478,7 @@ export default function ShopPage() {
                   <button type="button" onClick={addToCart} className="inline-flex items-center justify-center rounded-full border border-slate-200 px-5 py-3 text-[0.72rem] font-semibold uppercase tracking-[0.18em] text-slate-700">
                     Save to cart
                   </button>
-                  <button type="button" onClick={() => void checkoutProduct()} className="inline-flex items-center justify-center rounded-full bg-[var(--accent)] px-5 py-3 text-[0.72rem] font-semibold uppercase tracking-[0.18em] text-black">
+                  <button type="button" onClick={() => void checkoutProduct()} className="inline-flex items-center justify-center rounded-full bg-[var(--accent)] px-5 py-3 text-[0.72rem] font-semibold uppercase tracking-[0.18em] text-white">
                     Complete checkout
                   </button>
                 </div>

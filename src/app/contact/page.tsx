@@ -12,7 +12,7 @@ export default function ContactPage() {
             Reach the team for bookings, inspections, repair updates, and service enquiries.
           </h1>
           <p className="max-w-2xl text-base leading-8 text-slate-300">
-            Use the contact details below for bookings, support questions, repair follow-up, and workshop coordination. The layout stays compact on mobile so customers can tap the right action quickly.
+            Use the contact details below for bookings, support questions, repair follow-up, and electronics service coordination. The layout stays compact on mobile so customers can tap the right action quickly.
           </p>
           <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
             <a href={CONTACT_TEL} className="inline-flex items-center justify-center rounded-full bg-[var(--accent)] px-5 py-3 text-[0.76rem] font-semibold uppercase tracking-[0.22em] text-black">

@@ -71,9 +71,9 @@ function ServiceScene({
       rootRef.current.rotation.y = THREE.MathUtils.damp(rootRef.current.rotation.y, THREE.MathUtils.lerp(-0.16, 0.18, eased) + orbitPhase * 0.34, 3.2, delta);
       rootRef.current.rotation.z = THREE.MathUtils.damp(rootRef.current.rotation.z, orbitPhase * 0.03, 3.4, delta);
       rootRef.current.position.y = THREE.MathUtils.damp(rootRef.current.position.y, THREE.MathUtils.lerp(-0.18, 0.2, eased), 4.2, delta);
-      rootRef.current.scale.x = THREE.MathUtils.damp(rootRef.current.scale.x, compact ? 0.8 : 1, 4.6, delta);
-      rootRef.current.scale.y = THREE.MathUtils.damp(rootRef.current.scale.y, compact ? 0.8 : 1, 4.6, delta);
-      rootRef.current.scale.z = THREE.MathUtils.damp(rootRef.current.scale.z, compact ? 0.8 : 1, 4.6, delta);
+      rootRef.current.scale.x = THREE.MathUtils.damp(rootRef.current.scale.x, compact ? 0.66 : 1, 4.6, delta);
+      rootRef.current.scale.y = THREE.MathUtils.damp(rootRef.current.scale.y, compact ? 0.66 : 1, 4.6, delta);
+      rootRef.current.scale.z = THREE.MathUtils.damp(rootRef.current.scale.z, compact ? 0.66 : 1, 4.6, delta);
     }
 
     if (stageOneRef.current) {
@@ -106,18 +106,18 @@ function ServiceScene({
 
     state.camera.position.x = THREE.MathUtils.damp(state.camera.position.x, THREE.MathUtils.lerp(-0.18, 0.22, eased) - orbitPhase * 0.16, 3.4, delta);
     state.camera.position.y = THREE.MathUtils.damp(state.camera.position.y, THREE.MathUtils.lerp(compact ? 0.08 : 0.14, compact ? -0.08 : -0.04, eased), 3.8, delta);
-    state.camera.position.z = THREE.MathUtils.damp(state.camera.position.z, (compact ? 9.6 : 8.9) + Math.cos(state.clock.elapsedTime * 0.32) * 0.18, 3.2, delta);
+    state.camera.position.z = THREE.MathUtils.damp(state.camera.position.z, (compact ? 10.8 : 8.9) + Math.cos(state.clock.elapsedTime * 0.32) * 0.18, 3.2, delta);
     state.camera.lookAt(0, 0, 0);
   });
 
   return (
     <>
-      <color attach="background" args={["#081018"]} />
-      <fog attach="fog" args={["#081018", 7, 17]} />
-      <ambientLight intensity={0.8} />
-      <directionalLight position={[4, 5, 6]} intensity={1.9} color="#f8fbff" />
+      <color attach="background" args={["#04080d"]} />
+      <fog attach="fog" args={["#04080d", 7, 17]} />
+      <ambientLight intensity={0.7} />
+      <directionalLight position={[4, 5, 6]} intensity={1.7} color="#f8fbff" />
       <pointLight position={[-5, 2, 5]} intensity={24} color="#ff9a3d" />
-      <pointLight position={[5, -2, 4]} intensity={14} color="#59b0ff" />
+      <pointLight position={[5, -2, 4]} intensity={10} color="#59b0ff" />
       <pointLight position={[0, 3, 7]} intensity={10} color="#ffffff" />
 
       <mesh rotation-x={-Math.PI / 2} position={[0, -2.65, 0]} receiveShadow>
@@ -128,12 +128,12 @@ function ServiceScene({
       <group ref={rootRef}>
         <mesh position={[0, 0, -1.1]}>
           <boxGeometry args={[7.9, 4.7, 0.42]} />
-          <meshStandardMaterial color="#0a121a" metalness={0.42} roughness={0.5} />
+          <meshStandardMaterial color="#0f172a" metalness={0.42} roughness={0.5} />
         </mesh>
 
         <mesh position={[0, 0, -1.28]}>
           <planeGeometry args={[8.4, 5]} />
-          <meshBasicMaterial color="#0b131c" transparent opacity={0.8} />
+          <meshBasicMaterial color="#0f172a" transparent opacity={0.8} />
         </mesh>
 
         <mesh ref={accentGlowRef} position={[0.2, 0.1, -0.6]}>
@@ -202,7 +202,7 @@ export function ServiceWebGLStage(props: ServiceWebGLStageProps) {
 
   return (
     <Canvas
-      camera={{ position: [0, compact ? 0.02 : 0.2, compact ? 9.6 : 8.9], fov: compact ? 46 : 34 }}
+      camera={{ position: [0, compact ? 0.04 : 0.2, compact ? 10.8 : 8.9], fov: compact ? 50 : 34 }}
       dpr={compact ? [1, 1.25] : [1, 1.75]}
       gl={{ antialias: true, alpha: true }}
       shadows

@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -46,33 +47,33 @@ export function Navbar() {
   }, []);
 
   return (
-    <header className="sticky top-0 z-50 px-3 pt-3 sm:px-4 lg:px-6">
+    <header className="sticky top-0 z-50 px-2 pt-2 sm:px-3 lg:px-4">
       {isHomePage ? <InfoTicker tone="dark" compact className="mb-3" /> : null}
-      <div className="section-shell flex h-[4.15rem] items-center justify-between gap-4 rounded-full border border-white/10 bg-[rgba(6,8,12,0.56)] px-4 shadow-[0_16px_45px_rgba(0,0,0,0.22)] backdrop-blur-2xl lg:h-[4.5rem] lg:px-6">
-        <a href="/" className="flex items-center gap-3">
-          <span className="relative flex size-11 items-center justify-center overflow-hidden rounded-full border border-[var(--accent)]/20 bg-[rgba(255,255,255,0.02)] shadow-[0_10px_24px_rgba(255,122,24,0.12)]">
+      <div className="section-shell flex h-[4.25rem] items-center justify-between gap-3 rounded-[2rem] border border-[#1e293b] bg-[#0f172a] px-3 shadow-[0_16px_45px_rgba(15,23,42,0.2)] lg:h-[4.8rem] lg:px-5">
+        <Link href="/" className="flex items-center gap-3">
+          <span className="relative flex size-11 items-center justify-center overflow-hidden rounded-full border border-[var(--accent)]/30 bg-white shadow-[0_10px_24px_rgba(249,115,22,0.16)]">
             <Image
               src="/images/nino-logo.jfif"
               alt="Nino logo"
               fill
               sizes="44px"
-              className="object-cover"
+              className="object-cover object-[35%_45%] scale-[1.2]"
             />
           </span>
           <p className="font-display text-base font-semibold uppercase tracking-[0.22em] text-white lg:text-[1rem]">
             NINO
           </p>
-        </a>
+        </Link>
 
-        <nav className="hidden items-center gap-2 rounded-full border border-white/8 bg-white/[0.03] px-2 py-2 text-[11px] uppercase tracking-[0.22em] text-slate-300 lg:flex">
+        <nav className="hidden min-w-[34rem] items-center justify-center rounded-full border border-white/70 bg-[#162038] px-2 py-2 text-[11px] uppercase tracking-[0.22em] text-slate-200 lg:flex">
           {navItems.map((item) => (
             <MagneticLink
               key={item.label}
               href={item.href}
-              className={`rounded-full px-4 py-2 transition-colors duration-300 ${
+              className={`rounded-full px-4 py-2.5 transition-colors duration-300 ${
                 pathname === item.href
-                  ? "bg-white/[0.09] text-white shadow-[inset_0_0_0_1px_rgba(255,255,255,0.08)]"
-                  : "hover:bg-white/[0.06] hover:text-white"
+                  ? "bg-[var(--accent)] text-white shadow-[inset_0_0_0_1px_rgba(255,255,255,0.08)]"
+                  : "hover:bg-white/[0.08] hover:text-white"
               }`}
             >
               <span className="inline-flex items-center gap-2">
@@ -80,7 +81,7 @@ export function Navbar() {
                   <span className="relative inline-flex items-center">
                     <CartIcon className="h-3.5 w-3.5" />
                     {cartCount > 0 ? (
-                      <span className="absolute -right-2 -top-2 inline-flex min-w-5 items-center justify-center rounded-full bg-[var(--accent)] px-1.5 py-0.5 text-[9px] font-bold tracking-normal text-black">
+                      <span className="absolute -right-2 -top-2 inline-flex min-w-5 items-center justify-center rounded-full bg-[var(--accent)] px-1.5 py-0.5 text-[9px] font-bold tracking-normal text-white">
                         {cartCount}
                       </span>
                     ) : null}
@@ -95,7 +96,7 @@ export function Navbar() {
         <div className="flex items-center gap-3">
           <MagneticLink
             href="/booking"
-            className="hidden items-center justify-center rounded-full border border-[var(--accent)]/20 bg-[var(--accent)] px-5 py-2.5 text-[11px] font-semibold uppercase tracking-[0.2em] text-black transition-transform duration-300 hover:-translate-y-0.5 lg:inline-flex"
+            className="hidden items-center justify-center rounded-full border border-[var(--accent)] bg-[var(--accent)] px-5 py-2.5 text-[11px] font-semibold uppercase tracking-[0.2em] text-white transition-transform duration-300 hover:-translate-y-0.5 lg:inline-flex"
           >
             Book Inspection
           </MagneticLink>
@@ -121,18 +122,19 @@ export function Navbar() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="mt-3 overflow-hidden rounded-[1.75rem] border border-white/8 bg-slate-950/92 backdrop-blur-2xl lg:hidden"
+            className="mt-3 overflow-hidden rounded-[1.75rem] border border-[#1e293b] bg-[#0f172a] backdrop-blur-2xl lg:hidden"
           >
             <div className="section-shell flex flex-col gap-3 py-4">
-              {navItems.map((item) => (
+              <div className="rounded-[1.4rem] border border-white/12 bg-[#162038] p-2">
+                {navItems.map((item) => (
                 <a
                   key={item.label}
                   href={item.href}
                   onClick={() => setIsOpen(false)}
-                  className={`rounded-2xl border px-4 py-3 text-sm uppercase tracking-[0.18em] ${
+                  className={`mb-2 block rounded-2xl border px-4 py-3 text-sm uppercase tracking-[0.18em] last:mb-0 ${
                     pathname === item.href
-                      ? "border-[var(--accent)]/35 bg-[var(--accent)]/10 text-white"
-                      : "border-white/8 bg-white/5 text-slate-200"
+                      ? "border-[var(--accent)] bg-[var(--accent)] text-white"
+                      : "border-white/10 bg-white/5 text-slate-200"
                   }`}
                 >
                   <span className="inline-flex items-center gap-2">
@@ -140,7 +142,7 @@ export function Navbar() {
                       <span className="relative inline-flex items-center">
                         <CartIcon className="h-4 w-4" />
                         {cartCount > 0 ? (
-                          <span className="absolute -right-2 -top-2 inline-flex min-w-5 items-center justify-center rounded-full bg-[var(--accent)] px-1.5 py-0.5 text-[9px] font-bold tracking-normal text-black">
+                          <span className="absolute -right-2 -top-2 inline-flex min-w-5 items-center justify-center rounded-full bg-[var(--accent)] px-1.5 py-0.5 text-[9px] font-bold tracking-normal text-white">
                             {cartCount}
                           </span>
                         ) : null}
@@ -149,11 +151,12 @@ export function Navbar() {
                     <span>{item.label}</span>
                   </span>
                 </a>
-              ))}
+                ))}
+              </div>
               <a
                 href="/booking"
                 onClick={() => setIsOpen(false)}
-                className="inline-flex items-center justify-center rounded-2xl bg-[var(--accent)] px-4 py-3 text-sm font-semibold text-black"
+                className="inline-flex items-center justify-center rounded-2xl bg-[var(--accent)] px-4 py-3 text-sm font-semibold text-white"
               >
                 Book Inspection
               </a>
