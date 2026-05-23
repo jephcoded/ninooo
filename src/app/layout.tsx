@@ -18,7 +18,7 @@ export default function RootLayout({
       lang="en"
       className="h-full scroll-smooth antialiased"
     >
-      <body className="min-h-full bg-[var(--background)] text-[var(--foreground)] selection:bg-[rgba(255,122,24,0.3)] selection:text-white">
+      <body className="min-h-full bg-transparent text-[var(--foreground)] selection:bg-[rgba(255,122,24,0.3)] selection:text-white">
         <PageShell>{children}</PageShell>
       </body>
     </html>

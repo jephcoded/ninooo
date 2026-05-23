@@ -103,8 +103,8 @@ export function HeroSection() {
                 transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
                 className="relative h-[23rem] w-full max-w-[32rem] sm:h-[29rem] sm:max-w-[38rem] lg:h-[34rem] lg:max-w-[44rem]"
               >
-                {/* Overlay for blending image with background */}
-                <div className="absolute inset-0 z-10 pointer-events-none bg-gradient-to-r from-[#0e1728] via-transparent to-[#0d1524] opacity-80" />
+                {/* Enhanced overlay for blending image with background on both sides */}
+                <div className="absolute inset-0 z-10 pointer-events-none bg-gradient-to-r from-[#0e1728] via-transparent to-[#0e1728] opacity-80 mix-blend-multiply" />
                 <Image
                   src={slides[active].image}
                   alt="NINO technician at work"
