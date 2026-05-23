@@ -33,7 +33,7 @@ export function HeroSection() {
   }, []);
 
   return (
-    <section className="relative w-full overflow-hidden bg-[linear-gradient(180deg,#0e1728_0%,#0d1524_100%)]">
+    <section className="relative w-full overflow-hidden bg-[linear-gradient(180deg,#0e1728_0%,#0d1524_100%)] pt-0">
       <div className="relative z-10 flex flex-col items-center justify-center min-h-[80vh] w-full px-0 py-0">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_76%_42%,rgba(249,115,22,0.18),transparent_15%),linear-gradient(90deg,rgba(11,20,36,0.06),rgba(11,20,36,0.14))]" />
         <div className="relative z-10 flex flex-row items-center justify-between w-full max-w-[1600px] px-8 py-12 gap-8">
@@ -103,6 +103,8 @@ export function HeroSection() {
                 transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
                 className="relative h-[23rem] w-full max-w-[32rem] sm:h-[29rem] sm:max-w-[38rem] lg:h-[34rem] lg:max-w-[44rem]"
               >
+                {/* Overlay for blending image with background */}
+                <div className="absolute inset-0 z-10 pointer-events-none bg-gradient-to-r from-[#0e1728] via-transparent to-[#0d1524] opacity-80" />
                 <Image
                   src={slides[active].image}
                   alt="NINO technician at work"
