@@ -85,14 +85,14 @@ export function HeroSection() {
       </div>
 
       {/* Hero content row - z-20 */}
-      <div className="relative z-20 mx-auto flex w-full max-w-[1400px] min-h-screen items-center px-4 sm:px-8 lg:px-12 xl:px-16">
-        {/* Left: Text content */}
+      <div className="relative mx-auto flex w-full max-w-[1400px] min-h-screen items-center px-4 sm:px-8 lg:px-12 xl:px-16">
+        {/* Left: Text content (z-30) */}
         <motion.div
-          style={{ y: contentY }}
+          style={{ y: contentY, zIndex: 30 }}
           initial={{ opacity: 0, y: 56 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.95, ease: [0.22, 1, 0.36, 1] }}
-          className="w-full max-w-[540px] pt-2 sm:pt-3 lg:pt-4"
+          className="w-full max-w-[540px] pt-2 sm:pt-3 lg:pt-4 relative z-30"
         >
           <motion.div
             initial={{ opacity: 0, y: 18 }}
@@ -181,8 +181,8 @@ export function HeroSection() {
           </motion.div>
         </motion.div>
 
-        {/* Right: Hero image - z-10, cinematic composition, advanced blending */}
-        <div className="relative z-10 flex flex-1 items-center justify-center h-full min-h-[420px] max-h-[92vh] overflow-visible">
+        {/* Right: Hero image - z-10, refined blend and sizing */}
+        <div className="relative z-10 flex flex-1 items-center justify-end h-full min-h-[420px] max-h-[92vh] overflow-visible">
           <AnimatePresence initial={false}>
             {slides.map((slide, index) => {
               const isActive = index === active;
@@ -193,23 +193,23 @@ export function HeroSection() {
                   animate={{
                     opacity: isActive ? 1 : 0,
                     scale: isActive ? 1 : 0.98,
-                    x: isActive ? 0 : 24,
+                    x: isActive ? 0 : 48, // move image further right
                     filter: isActive ? "blur(0px)" : "blur(4px)",
                   }}
                   transition={{ duration: 1.4, ease: [0.22, 1, 0.36, 1] }}
-                  className="absolute bottom-0 right-0 flex items-end justify-end w-[105vw] max-w-[1100px] h-[80vh] sm:h-[88vh] md:h-[92vh] lg:h-[98vh] xl:h-[104vh] pointer-events-none"
+                  className="absolute bottom-0 right-0 flex items-end justify-end w-[54vw] max-w-[820px] h-[70vh] sm:h-[78vh] md:h-[82vh] lg:h-[88vh] xl:h-[92vh] pointer-events-none"
                   style={{ zIndex: 10, overflow: 'visible' }}
                 >
                   {/* Orange radial glow behind mechanic */}
-                  <div className="absolute right-0 bottom-0 w-[90%] h-[90%]" style={{zIndex:1}}>
+                  <div className="absolute right-0 bottom-0 w-[80%] h-[80%]" style={{zIndex:1}}>
                     <div className="absolute right-0 bottom-0 w-full h-full" style={{
-                      background: 'radial-gradient(circle at 80% 80%, rgba(255,120,0,0.18), transparent 70%)',
-                      filter: 'blur(32px)'}} />
+                      background: 'radial-gradient(circle at 80% 80%, rgba(255,120,0,0.14), transparent 70%)',
+                      filter: 'blur(28px)'}} />
                   </div>
-                  {/* Mechanic image with mask-image gradient for soft fade */}
+                  {/* Mechanic image with mask-image gradient for soft fade only at far left edge */}
                   <div className="relative w-full h-full" style={{
-                    WebkitMaskImage: 'linear-gradient(to left, rgba(0,0,0,1) 65%, rgba(0,0,0,0.85) 78%, rgba(0,0,0,0.4) 90%, transparent 100%)',
-                    maskImage: 'linear-gradient(to left, rgba(0,0,0,1) 65%, rgba(0,0,0,0.85) 78%, rgba(0,0,0,0.4) 90%, transparent 100%)',
+                    WebkitMaskImage: 'linear-gradient(to left, rgba(0,0,0,1) 90%, rgba(0,0,0,0.7) 97%, transparent 100%)',
+                    maskImage: 'linear-gradient(to left, rgba(0,0,0,1) 90%, rgba(0,0,0,0.7) 97%, transparent 100%)',
                     overflow: 'visible',
                     zIndex: 2
                   }}>
@@ -218,13 +218,13 @@ export function HeroSection() {
                       alt={heroCopy.title}
                       fill
                       priority={index === 0}
-                      sizes="80vw"
+                      sizes="60vw"
                       className="object-contain object-bottom brightness-[1.13] contrast-[1.08] saturate-[1.1] opacity-[0.99] select-none pointer-events-none"
                       style={{ transition: 'all 0.7s cubic-bezier(0.4,0,0.2,1)', overflow: 'visible' }}
                     />
-                    {/* Overlay gradient above image for left-to-right blending */}
+                    {/* Overlay gradient above image for left-to-right blending, lighter and narrower */}
                     <div className="absolute inset-0" style={{
-                      background: 'linear-gradient(to right, rgba(2,6,23,0.96) 0%, rgba(2,6,23,0.4) 45%, rgba(0,0,0,0) 100%)',
+                      background: 'linear-gradient(to right, rgba(2,6,23,0.85) 0%, rgba(2,6,23,0.18) 22%, rgba(0,0,0,0) 60%)',
                       zIndex: 3,
                       pointerEvents: 'none'
                     }} />
