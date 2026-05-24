@@ -49,10 +49,11 @@ export function HeroSection() {
             fill
             priority={active === 0}
             sizes="100vw"
-            className="object-cover object-center w-full h-full opacity-80 transition-all duration-700"
+            className="object-contain object-bottom w-full h-full opacity-100 transition-all duration-700"
+            style={{objectFit: 'contain'}}
           />
-          {/* Overlay for blending */}
-          <div className="absolute inset-0 bg-[linear-gradient(90deg,#0e1728_0%,rgba(14,23,40,0.7)_40%,rgba(14,23,40,0.7)_60%,#0e1728_100%)]" />
+          {/* Softer overlay for blending */}
+          <div className="absolute inset-0 bg-[linear-gradient(90deg,#0e1728_0%,rgba(14,23,40,0.18)_40%,rgba(14,23,40,0.18)_60%,#0e1728_100%)]" />
         </motion.div>
       </AnimatePresence>
       <div className="relative z-10 flex flex-col justify-center w-full min-h-screen px-4 py-0 sm:px-8">
