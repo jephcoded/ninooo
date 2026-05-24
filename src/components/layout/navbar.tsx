@@ -2,10 +2,8 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { AnimatePresence, motion } from "framer-motion";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { MagneticLink } from "@/components/ui/magnetic-link";
 import { InfoTicker } from "@/components/ui/info-ticker";
 import { getCartCount, SHOP_EVENT } from "@/lib/shop-storage";
 
@@ -28,7 +26,6 @@ function CartIcon({ className = "h-4 w-4" }: { className?: string }) {
 }
 
 export function Navbar() {
-  const [isOpen, setIsOpen] = useState(false);
   const [cartCount, setCartCount] = useState(0);
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
@@ -39,7 +36,6 @@ export function Navbar() {
     syncCartCount();
     window.addEventListener("storage", syncCartCount);
     window.addEventListener(SHOP_EVENT, syncCartCount);
-    // Scroll event for navbar style
     const onScroll = () => setScrolled(window.scrollY > 40);
     window.addEventListener("scroll", onScroll);
     return () => {

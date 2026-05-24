@@ -112,12 +112,12 @@ function ServiceScene({
 
   return (
     <>
-      <color attach="background" args={["#04080d"]} />
-      <fog attach="fog" args={["#04080d", 7, 17]} />
-      <ambientLight intensity={0.7} />
-      <directionalLight position={[4, 5, 6]} intensity={1.7} color="#f8fbff" />
+      <color attach="background" args={["#f8fafc"]} />
+      <fog attach="fog" args={["#f8fafc", 7, 17]} />
+      <ambientLight intensity={0.8} />
+      <directionalLight position={[4, 5, 6]} intensity={1.9} color="#f8fbff" />
       <pointLight position={[-5, 2, 5]} intensity={24} color="#ff9a3d" />
-      <pointLight position={[5, -2, 4]} intensity={10} color="#59b0ff" />
+      <pointLight position={[5, -2, 4]} intensity={14} color="#59b0ff" />
       <pointLight position={[0, 3, 7]} intensity={10} color="#ffffff" />
 
       <mesh rotation-x={-Math.PI / 2} position={[0, -2.65, 0]} receiveShadow>

@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useEffect, useMemo, useState } from "react";
 
-import { ADMIN_DATA_EVENT, ManagedProduct, readManagedProducts } from "@/lib/admin-data";
+import { ADMIN_DATA_EVENT, ManagedProduct, SHOP_PRODUCTS_KEY, readManagedProducts } from "@/lib/admin-data";
 import {
   readStoredOrders,
   readStoredValue,
@@ -117,7 +117,8 @@ export default function ShopPage() {
 
   useEffect(() => {
     const syncShop = async () => {
-      setProducts(await readManagedProducts());
+      const hasExplicitProducts = Boolean(window.localStorage.getItem(SHOP_PRODUCTS_KEY));
+      setProducts(hasExplicitProducts ? await readManagedProducts() : []);
       setOrders(await readStoredOrders());
       setCart(readStoredValue<StoredCartItem[]>(SHOP_CART_KEY, []));
       setPins(readStoredValue<string[]>(SHOP_PINNED_KEY, []));
@@ -268,7 +269,7 @@ export default function ShopPage() {
               {sidebarItems.map((item) => (
                 <div key={item.id} className="flex min-w-0 flex-col items-center justify-center rounded-[1rem] bg-white px-2 py-3 text-center text-[var(--accent)] lg:min-h-[5rem] lg:rounded-[1.3rem] lg:px-3 lg:py-4">
                   <ShopActionIcon type={item.icon} />
-                  <span className="mt-2 text-[0.68rem] font-semibold text-[#0f172a] lg:text-[0.72rem]">{item.value}</span>
+                  <span className="mt-2 text-[0.68rem] font-semibold text-white lg:text-[0.72rem]">{item.value}</span>
                 </div>
               ))}
             </div>
@@ -339,7 +340,7 @@ export default function ShopPage() {
                               togglePin(product.id);
                             }}
                             className={`absolute right-3 top-3 inline-flex size-9 items-center justify-center rounded-full border ${
-                              isPinned ? "border-[var(--accent)] bg-[var(--accent)] text-white" : "border-slate-200 bg-white/90 text-[var(--accent)]"
+                              isPinned ? "border-[var(--accent)] bg-[var(--accent)] text-black" : "border-slate-200 bg-white/90 text-[var(--accent)]"
                             }`}
                             aria-label={isPinned ? "Remove pin" : "Pin product"}
                           >
@@ -446,7 +447,7 @@ export default function ShopPage() {
                           type="button"
                           onClick={() => setSelectedColor(color)}
                           className={`rounded-full border px-3 py-2 text-[0.68rem] font-semibold uppercase tracking-[0.18em] ${
-                            selectedColor === color ? "border-[var(--accent)] bg-[var(--accent)] text-white" : "border-slate-200 text-slate-600"
+                            selectedColor === color ? "border-[var(--accent)] bg-[var(--accent)] text-black" : "border-slate-200 text-slate-600"
                           }`}
                         >
                           {color}
@@ -464,7 +465,7 @@ export default function ShopPage() {
                           type="button"
                           onClick={() => setSelectedSize(size)}
                           className={`rounded-full border px-3 py-2 text-[0.68rem] font-semibold uppercase tracking-[0.18em] ${
-                            selectedSize === size ? "border-[var(--accent)] bg-[var(--accent)] text-white" : "border-slate-200 text-slate-600"
+                            selectedSize === size ? "border-[var(--accent)] bg-[var(--accent)] text-black" : "border-slate-200 text-slate-600"
                           }`}
                         >
                           {size}
@@ -478,7 +479,7 @@ export default function ShopPage() {
                   <button type="button" onClick={addToCart} className="inline-flex items-center justify-center rounded-full border border-slate-200 px-5 py-3 text-[0.72rem] font-semibold uppercase tracking-[0.18em] text-slate-700">
                     Save to cart
                   </button>
-                  <button type="button" onClick={() => void checkoutProduct()} className="inline-flex items-center justify-center rounded-full bg-[var(--accent)] px-5 py-3 text-[0.72rem] font-semibold uppercase tracking-[0.18em] text-white">
+                  <button type="button" onClick={() => void checkoutProduct()} className="inline-flex items-center justify-center rounded-full bg-[var(--accent)] px-5 py-3 text-[0.72rem] font-semibold uppercase tracking-[0.18em] text-black">
                     Complete checkout
                   </button>
                 </div>

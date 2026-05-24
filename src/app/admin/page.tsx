@@ -289,9 +289,9 @@ function SidebarIcon({ type, active }: { type: AdminTab; active: boolean }) {
 
 function DashboardCard({ label, value, note }: { label: string; value: string | number; note: string }) {
   return (
-    <div className="rounded-[1.4rem] border border-slate-200 bg-white px-5 py-4 shadow-[0_16px_40px_rgba(15,23,42,0.05)]">
+    <div className="rounded-[1.4rem] border border-white/8 bg-white/[0.04] px-5 py-4 backdrop-blur-xl">
       <p className="text-[0.62rem] font-semibold uppercase tracking-[0.26em] text-slate-400">{label}</p>
-      <p className="mt-3 font-display text-[1.75rem] font-semibold tracking-[-0.04em] text-[var(--foreground)]">{value}</p>
+      <p className="mt-3 font-display text-[1.75rem] font-semibold tracking-[-0.04em] text-white">{value}</p>
       <p className="mt-2 max-w-[17rem] text-[0.9rem] leading-6 text-slate-300">{note}</p>
     </div>
   );
@@ -301,10 +301,7 @@ export default function AdminPage() {
   const [email, setEmail] = useState(ADMIN_EMAIL);
   const [password, setPassword] = useState(ADMIN_PASSWORD);
   const [error, setError] = useState("");
-  const [isAuthenticated, setIsAuthenticated] = useState(() => {
-    if (typeof window === "undefined") return false;
-    return window.sessionStorage.getItem(ADMIN_SESSION_KEY) === "active";
-  });
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [activeTab, setActiveTab] = useState<AdminTab>("overview");
 
   const [bookings, setBookings] = useState<BookingRecord[]>([]);
@@ -351,6 +348,15 @@ export default function AdminPage() {
   const monthlyBookings = useMemo(() => countBookingsSince(bookings, 30), [bookings]);
   const bookingSeries = useMemo(() => buildBookingSeries(bookings, 7), [bookings]);
   const peakBookings = useMemo(() => Math.max(1, ...bookingSeries.map((item) => item.total)), [bookingSeries]);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    const sessionValue = window.sessionStorage.getItem(ADMIN_SESSION_KEY);
+    if (sessionValue === "active") {
+      setIsAuthenticated(true);
+    }
+  }, []);
 
   useEffect(() => {
     if (!isAuthenticated || typeof window === "undefined") return;
@@ -408,51 +414,41 @@ export default function AdminPage() {
     if (selectedServiceSlug === NEW_ITEM_TOKEN) return;
     if (!services.length) return;
     const target = services.find((service) => service.slug === selectedServiceSlug) ?? services[0];
-    queueMicrotask(() => {
-      setSelectedServiceSlug(target.slug);
-      setServiceDraft(serviceToDraft(target));
-    });
+    setSelectedServiceSlug(target.slug);
+    setServiceDraft(serviceToDraft(target));
   }, [services, selectedServiceSlug]);
 
   useEffect(() => {
     if (selectedBlogId === NEW_ITEM_TOKEN) return;
     if (!blogs.length) return;
     const target = blogs.find((post) => post.id === selectedBlogId) ?? blogs[0];
-    queueMicrotask(() => {
-      setSelectedBlogId(target.id);
-      setBlogDraft(blogToDraft(target));
-    });
+    setSelectedBlogId(target.id);
+    setBlogDraft(blogToDraft(target));
   }, [blogs, selectedBlogId]);
 
   useEffect(() => {
     if (selectedProductId === NEW_ITEM_TOKEN) return;
     if (!products.length) return;
     const target = products.find((product) => product.id === selectedProductId) ?? products[0];
-    queueMicrotask(() => {
-      setSelectedProductId(target.id);
-      setProductDraft(productToDraft(target));
-    });
+    setSelectedProductId(target.id);
+    setProductDraft(productToDraft(target));
   }, [products, selectedProductId]);
 
   useEffect(() => {
     if (!bookings.length) return;
     const target = bookings.find((booking) => booking.id === selectedBookingId) ?? bookings[0];
-    queueMicrotask(() => {
-      setSelectedBookingId(target.id);
-    });
+    setSelectedBookingId(target.id);
   }, [bookings, selectedBookingId]);
 
   useEffect(() => {
     if (!selectedBookingId) return;
 
-    queueMicrotask(() => {
-      setReplyDraft(currentReply?.emailReply ?? "");
-      setReplyStatus(currentReply?.status ?? "Pending review");
-      setTrackingStatus(currentTracking?.status ?? "Device received");
-      setTrackingProgress(String(currentTracking?.progress ?? 15));
-      setTrackingMilestones((currentTracking?.milestones ?? ["Device received", "Diagnostics started"]).join("\n"));
-      setTrackingChart((currentTracking?.chartPoints ?? [15, 32, 48, 74]).join(", "));
-    });
+    setReplyDraft(currentReply?.emailReply ?? "");
+    setReplyStatus(currentReply?.status ?? "Pending review");
+    setTrackingStatus(currentTracking?.status ?? "Device received");
+    setTrackingProgress(String(currentTracking?.progress ?? 15));
+    setTrackingMilestones((currentTracking?.milestones ?? ["Device received", "Diagnostics started"]).join("\n"));
+    setTrackingChart((currentTracking?.chartPoints ?? [15, 32, 48, 74]).join(", "));
   }, [selectedBookingId, currentReply, currentTracking]);
 
   const handleLogin = async (event: FormEvent<HTMLFormElement>) => {
@@ -768,7 +764,7 @@ export default function AdminPage() {
 
                 <button
                   type="submit"
-                  className="inline-flex w-full items-center justify-center rounded-full bg-[var(--accent)] px-5 py-4 text-[0.76rem] font-semibold uppercase tracking-[0.24em] text-white transition-transform duration-300 hover:-translate-y-0.5"
+                  className="inline-flex w-full items-center justify-center rounded-full bg-[var(--accent)] px-5 py-4 text-[0.76rem] font-semibold uppercase tracking-[0.24em] text-black transition-transform duration-300 hover:-translate-y-0.5"
                 >
                   Sign In
                 </button>
@@ -784,10 +780,10 @@ export default function AdminPage() {
     <main className="bg-[var(--background)] text-[var(--foreground)]">
       <section className="w-full py-8 pr-2 pl-0 sm:py-10 sm:pr-3 sm:pl-0 lg:py-12 lg:pr-4 lg:pl-0">
         <div className="grid gap-6 xl:grid-cols-[5.9rem_minmax(0,1fr)]">
-          <aside className="rounded-r-[2rem] rounded-l-none border border-l-0 border-slate-200 bg-[linear-gradient(180deg,#0f172a,#1e293b)] px-2 py-4 shadow-[0_28px_90px_rgba(15,23,42,0.06)]">
-            <div className="flex min-h-[8.25rem] flex-col items-center justify-center rounded-[1.35rem] border border-slate-200 bg-white px-3 py-4 text-center">
+          <aside className="rounded-r-[2rem] rounded-l-none border border-l-0 border-white/8 bg-[linear-gradient(180deg,#0f172a,#f8fafc)] px-2 py-4 shadow-[0_28px_90px_rgba(15,23,42,0.06)]">
+            <div className="flex min-h-[8.25rem] flex-col items-center justify-center rounded-[1.35rem] border border-white/8 bg-white px-3 py-4 text-center">
               <p className="text-[0.68rem] font-semibold uppercase tracking-[0.24em] text-[var(--accent-2)]">NINO Control</p>
-              <h1 className="mt-2 font-display text-[0.86rem] font-semibold tracking-[-0.03em] text-[var(--foreground)]">Admin</h1>
+              <h1 className="mt-2 font-display text-[0.86rem] font-semibold tracking-[-0.03em] text-white">Admin</h1>
               <p className="mt-1 text-[0.62rem] leading-5 text-slate-400">Control desk</p>
             </div>
 
@@ -816,7 +812,7 @@ export default function AdminPage() {
               ))}
             </div>
 
-            <div className="mt-6 rounded-[1.45rem] border border-slate-200 bg-white px-3 py-4 text-center text-[0.68rem] leading-5 text-[var(--foreground)]">
+            <div className="mt-6 rounded-[1.45rem] border border-white/8 bg-white px-3 py-4 text-center text-[0.68rem] leading-5 text-[var(--foreground)]">
               <p>Live links</p>
               <p className="mt-2 text-slate-400">4 pages</p>
             </div>
@@ -826,7 +822,7 @@ export default function AdminPage() {
               onClick={handleLogout}
               title="Log out"
               aria-label="Log out"
-              className="mt-6 inline-flex w-full items-center justify-center rounded-full border border-slate-200 bg-white px-3 py-3 text-[var(--foreground)]"
+              className="mt-6 inline-flex w-full items-center justify-center rounded-full border border-white/10 px-3 py-3 text-[var(--foreground)]"
             >
               <svg viewBox="0 0 24 24" className="h-5 w-5" aria-hidden="true">
                 <path d="M14 7.5V5.75A1.75 1.75 0 0 0 12.25 4h-5.5A1.75 1.75 0 0 0 5 5.75v12.5C5 19.216 5.784 20 6.75 20h5.5A1.75 1.75 0 0 0 14 18.25V16.5" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
@@ -846,13 +842,13 @@ export default function AdminPage() {
 
             {activeTab === "overview" ? (
               <div className="grid gap-6 lg:grid-cols-[1.08fr_0.92fr]">
-                <section className="rounded-[2rem] border border-slate-200 bg-white p-5 shadow-[0_18px_50px_rgba(15,23,42,0.05)] lg:p-6">
+                <section className="rounded-[2rem] border border-white/8 bg-white p-5 lg:p-6">
                   <div className="flex flex-wrap items-center justify-between gap-4">
                     <div>
                       <p className="text-[0.68rem] font-semibold uppercase tracking-[0.24em] text-[var(--accent-2)]">Control overview</p>
-                      <h2 className="mt-3 font-display text-[1.65rem] font-semibold tracking-[-0.04em] text-[var(--foreground)]">The admin desk now controls the live customer pages.</h2>
+                      <h2 className="mt-3 font-display text-[1.65rem] font-semibold tracking-[-0.04em] text-white">The admin desk now controls the live customer pages.</h2>
                     </div>
-                    <Link href="/service" className="rounded-full border border-slate-200 px-4 py-2 text-[0.72rem] font-semibold uppercase tracking-[0.22em] text-slate-700">
+                    <Link href="/service" className="rounded-full border border-white/10 px-4 py-2 text-[0.72rem] font-semibold uppercase tracking-[0.22em] text-slate-200">
                       Open live site
                     </Link>
                   </div>
@@ -860,22 +856,22 @@ export default function AdminPage() {
                   <div className="mt-5 grid max-w-[69rem] gap-3 sm:grid-cols-2 xl:grid-cols-4">
                     <div className="rounded-[1.3rem] border border-slate-200 bg-white px-4 py-4 text-[0.9rem] leading-6 text-slate-900">
                       <p className="text-[0.68rem] font-semibold uppercase tracking-[0.24em] text-[var(--accent-2)]">Bookings waiting</p>
-                      <p className="mt-2 font-display text-[1.55rem] font-semibold tracking-[-0.04em] text-[var(--foreground)]">{bookings.length}</p>
+                      <p className="mt-2 font-display text-[1.55rem] font-semibold tracking-[-0.04em] text-white">{bookings.length}</p>
                       <p className="mt-2">Open requests waiting for a reply or tracking update.</p>
                     </div>
                     <div className="rounded-[1.3rem] border border-slate-200 bg-white px-4 py-4 text-[0.9rem] leading-6 text-slate-900">
                       <p className="text-[0.68rem] font-semibold uppercase tracking-[0.24em] text-[var(--accent-2)]">Shop orders</p>
-                      <p className="mt-2 font-display text-[1.55rem] font-semibold tracking-[-0.04em] text-[var(--foreground)]">{orders.length}</p>
+                      <p className="mt-2 font-display text-[1.55rem] font-semibold tracking-[-0.04em] text-white">{orders.length}</p>
                       <p className="mt-2">Orders stored from the customer shop flow.</p>
                     </div>
                     <div className="rounded-[1.3rem] border border-slate-200 bg-white px-4 py-4 text-[0.9rem] leading-6 text-slate-900">
                       <p className="text-[0.68rem] font-semibold uppercase tracking-[0.24em] text-[var(--accent-2)]">Today</p>
-                      <p className="mt-2 font-display text-[1.55rem] font-semibold tracking-[-0.04em] text-[var(--foreground)]">{dailyBookings}</p>
+                      <p className="mt-2 font-display text-[1.55rem] font-semibold tracking-[-0.04em] text-white">{dailyBookings}</p>
                       <p className="mt-2">Bookings created since midnight.</p>
                     </div>
                     <div className="rounded-[1.3rem] border border-slate-200 bg-white px-4 py-4 text-[0.9rem] leading-6 text-slate-900">
                       <p className="text-[0.68rem] font-semibold uppercase tracking-[0.24em] text-[var(--accent-2)]">Month</p>
-                      <p className="mt-2 font-display text-[1.55rem] font-semibold tracking-[-0.04em] text-[var(--foreground)]">{monthlyBookings}</p>
+                      <p className="mt-2 font-display text-[1.55rem] font-semibold tracking-[-0.04em] text-white">{monthlyBookings}</p>
                       <p className="mt-2">Rolling 30-day booking total.</p>
                     </div>
                   </div>
@@ -884,17 +880,17 @@ export default function AdminPage() {
                     <div className="rounded-[1.35rem] border border-slate-200 bg-white px-4 py-4 text-[0.9rem] leading-6 text-slate-900">
                       <p className="text-[0.68rem] font-semibold uppercase tracking-[0.24em] text-[var(--accent-2)]">Booking monitor</p>
                       <div className="mt-4 grid gap-3 sm:grid-cols-3">
-                        <div className="rounded-[1rem] border border-slate-200 bg-[#f8fafc] px-4 py-3">
+                        <div className="rounded-[1rem] border border-white/8 bg-white/[0.03] px-4 py-3">
                           <p className="text-[0.64rem] uppercase tracking-[0.2em] text-slate-500">Daily</p>
-                          <p className="mt-1.5 font-display text-[1.3rem] font-semibold text-[var(--foreground)]">{dailyBookings}</p>
+                          <p className="mt-1.5 font-display text-[1.3rem] font-semibold text-white">{dailyBookings}</p>
                         </div>
-                        <div className="rounded-[1rem] border border-slate-200 bg-[#f8fafc] px-4 py-3">
+                        <div className="rounded-[1rem] border border-white/8 bg-white/[0.03] px-4 py-3">
                           <p className="text-[0.64rem] uppercase tracking-[0.2em] text-slate-500">Weekly</p>
-                          <p className="mt-1.5 font-display text-[1.3rem] font-semibold text-[var(--foreground)]">{weeklyBookings}</p>
+                          <p className="mt-1.5 font-display text-[1.3rem] font-semibold text-white">{weeklyBookings}</p>
                         </div>
-                        <div className="rounded-[1rem] border border-slate-200 bg-[#f8fafc] px-4 py-3">
+                        <div className="rounded-[1rem] border border-white/8 bg-white/[0.03] px-4 py-3">
                           <p className="text-[0.64rem] uppercase tracking-[0.2em] text-slate-500">Monthly</p>
-                          <p className="mt-1.5 font-display text-[1.3rem] font-semibold text-[var(--foreground)]">{monthlyBookings}</p>
+                          <p className="mt-1.5 font-display text-[1.3rem] font-semibold text-white">{monthlyBookings}</p>
                         </div>
                       </div>
                     </div>
@@ -908,7 +904,7 @@ export default function AdminPage() {
                         {bookingSeries.map((item) => (
                           <div key={item.label} className="flex flex-1 flex-col items-center justify-end gap-2.5">
                             <span className="text-[0.68rem] text-slate-400">{item.total}</span>
-                            <div className="flex h-full w-full items-end rounded-full bg-[#eef2f7] px-1.5 py-1.5">
+                            <div className="flex h-full w-full items-end rounded-full bg-white/[0.04] px-1.5 py-1.5">
                               <div
                                 className="w-full rounded-full bg-[linear-gradient(180deg,#ffb15f,#ff7a18)]"
                                 style={{ height: `${Math.max((item.total / peakBookings) * 100, item.total ? 16 : 4)}%` }}
@@ -922,13 +918,13 @@ export default function AdminPage() {
                   </div>
                 </section>
 
-                <section className="rounded-[2rem] border border-slate-200 bg-white p-5 shadow-[0_18px_50px_rgba(15,23,42,0.05)] lg:p-6">
+                <section className="rounded-[2rem] border border-white/8 bg-white p-5 lg:p-6">
                   <p className="text-[0.68rem] font-semibold uppercase tracking-[0.24em] text-[var(--accent-2)]">Recent history</p>
                   <div className="mt-5 space-y-3">
                     {recentHistory.length ? (
                       recentHistory.map((entry) => (
-                        <div key={entry.id} className="rounded-[1.3rem] border border-slate-200 bg-[#f8fafc] p-4 text-sm leading-7 text-[var(--foreground)]">
-                          <p className="font-medium text-[var(--foreground)]">{entry.action} {entry.entity}</p>
+                        <div key={entry.id} className="rounded-[1.3rem] border border-white/8 bg-[var(--background)] p-4 text-sm leading-7 text-[var(--foreground)]">
+                          <p className="font-medium text-white">{entry.action} {entry.entity}</p>
                           <p className="mt-1">{entry.detail}</p>
                           <p className="mt-2 text-[0.72rem] uppercase tracking-[0.18em] text-slate-500">{formatDate(entry.createdAt)}</p>
                         </div>
@@ -943,13 +939,13 @@ export default function AdminPage() {
 
             {activeTab === "services" ? (
               <div className="grid gap-6 xl:grid-cols-[0.84fr_1.16fr]">
-                <section className="rounded-[2rem] border border-slate-200 bg-white p-6 shadow-[0_18px_50px_rgba(15,23,42,0.05)]">
+                <section className="rounded-[2rem] border border-white/8 bg-white/[0.04] p-6">
                   <div className="flex items-center justify-between gap-4">
                     <div>
                       <p className="text-[0.68rem] font-semibold uppercase tracking-[0.24em] text-[var(--accent-2)]">Services</p>
-                      <h2 className="mt-3 font-display text-[1.7rem] font-semibold tracking-[-0.04em] text-[var(--foreground)]">Service menu and FAQs</h2>
+                      <h2 className="mt-3 font-display text-[1.7rem] font-semibold tracking-[-0.04em] text-white">Service menu and FAQs</h2>
                     </div>
-                    <button type="button" onClick={resetServiceDraft} className="rounded-full border border-slate-200 px-4 py-2 text-[0.72rem] font-semibold uppercase tracking-[0.22em] text-slate-700">New service</button>
+                    <button type="button" onClick={resetServiceDraft} className="rounded-full border border-white/10 px-4 py-2 text-[0.72rem] font-semibold uppercase tracking-[0.22em] text-slate-200">New service</button>
                   </div>
 
                   <div className="mt-6 space-y-3">
@@ -961,16 +957,16 @@ export default function AdminPage() {
                           setSelectedServiceSlug(service.slug);
                           setServiceDraft(serviceToDraft(service));
                         }}
-                        className={`w-full rounded-[1.3rem] border px-4 py-4 text-left ${selectedServiceSlug === service.slug ? "border-[var(--accent)] bg-[var(--accent)]/12" : "border-slate-200 bg-[#f8fafc]"}`}
+                        className={`w-full rounded-[1.3rem] border px-4 py-4 text-left ${selectedServiceSlug === service.slug ? "border-[var(--accent)] bg-[var(--accent)]/12" : "border-white/8 bg-[#111926]"}`}
                       >
-                        <p className="font-medium text-[var(--foreground)]">{service.label}</p>
+                        <p className="font-medium text-white">{service.label}</p>
                         <p className="mt-2 text-sm leading-7 text-slate-400">{service.title}</p>
                       </button>
                     ))}
                   </div>
                 </section>
 
-                <section className="rounded-[2rem] border border-slate-200 bg-white p-6 shadow-[0_18px_50px_rgba(15,23,42,0.05)]">
+                <section className="rounded-[2rem] border border-white/8 bg-white/[0.04] p-6">
                   <div className="grid gap-4 md:grid-cols-2">
                     {[
                       ["slug", "Slug"],
@@ -983,7 +979,7 @@ export default function AdminPage() {
                         <input
                           value={serviceDraft[key as keyof ServiceDraft]}
                           onChange={(event) => setServiceDraft((current) => ({ ...current, [key]: event.target.value }))}
-                          className="w-full rounded-[1rem] border border-slate-200 bg-white px-4 py-3 text-[var(--foreground)] outline-none"
+                          className="w-full rounded-[1rem] border border-white/10 bg-[#111926] px-4 py-3 text-white outline-none"
                         />
                       </label>
                     ))}
@@ -1003,7 +999,7 @@ export default function AdminPage() {
                           rows={key === "summary" || key === "title" ? 2 : 4}
                           value={serviceDraft[key as keyof ServiceDraft]}
                           onChange={(event) => setServiceDraft((current) => ({ ...current, [key]: event.target.value }))}
-                          className="w-full rounded-[1rem] border border-slate-200 bg-white px-4 py-3 text-[var(--foreground)] outline-none"
+                          className="w-full rounded-[1rem] border border-white/10 bg-[#111926] px-4 py-3 text-white outline-none"
                         />
                       </label>
                     ))}
@@ -1016,7 +1012,7 @@ export default function AdminPage() {
                         rows={6}
                         value={serviceDraft.checks}
                         onChange={(event) => setServiceDraft((current) => ({ ...current, checks: event.target.value }))}
-                        className="w-full rounded-[1rem] border border-slate-200 bg-white px-4 py-3 text-[var(--foreground)] outline-none"
+                        className="w-full rounded-[1rem] border border-white/10 bg-[#111926] px-4 py-3 text-white outline-none"
                         placeholder="One per line"
                       />
                     </label>
@@ -1026,26 +1022,26 @@ export default function AdminPage() {
                         rows={6}
                         value={serviceDraft.parts}
                         onChange={(event) => setServiceDraft((current) => ({ ...current, parts: event.target.value }))}
-                        className="w-full rounded-[1rem] border border-slate-200 bg-white px-4 py-3 text-[var(--foreground)] outline-none"
+                        className="w-full rounded-[1rem] border border-white/10 bg-[#111926] px-4 py-3 text-white outline-none"
                         placeholder="Name | Info | Fit"
                       />
                     </label>
                   </div>
 
                   <div className="mt-5 flex flex-wrap gap-3">
-                    <button type="button" onClick={saveService} className="rounded-full bg-[var(--accent)] px-5 py-3 text-[0.74rem] font-semibold uppercase tracking-[0.22em] text-white">Save service</button>
-                    {selectedServiceSlug && selectedServiceSlug !== NEW_ITEM_TOKEN ? <button type="button" onClick={() => deleteService(selectedServiceSlug)} className="rounded-full border border-slate-200 px-5 py-3 text-[0.74rem] font-semibold uppercase tracking-[0.22em] text-slate-700">Delete service</button> : null}
+                    <button type="button" onClick={saveService} className="rounded-full bg-[var(--accent)] px-5 py-3 text-[0.74rem] font-semibold uppercase tracking-[0.22em] text-black">Save service</button>
+                    {selectedServiceSlug && selectedServiceSlug !== NEW_ITEM_TOKEN ? <button type="button" onClick={() => deleteService(selectedServiceSlug)} className="rounded-full border border-white/10 px-5 py-3 text-[0.74rem] font-semibold uppercase tracking-[0.22em] text-slate-200">Delete service</button> : null}
                   </div>
 
                   {selectedService ? (
-                    <div className="mt-8 rounded-[1.6rem] border border-slate-200 bg-[#f8fafc] p-5">
+                    <div className="mt-8 rounded-[1.6rem] border border-white/8 bg-[#111926] p-5">
                       <p className="text-[0.68rem] font-semibold uppercase tracking-[0.24em] text-[var(--accent-2)]">FAQs</p>
                       <div className="mt-4 space-y-3">
                         {selectedService.faqs.map((faq) => (
-                          <div key={faq.id} className="rounded-[1.2rem] border border-slate-200 bg-[#f8fafc] p-4">
+                          <div key={faq.id} className="rounded-[1.2rem] border border-white/8 bg-white/[0.03] p-4">
                             <div className="flex items-start justify-between gap-3">
                               <div>
-                                <p className="font-medium text-[var(--foreground)]">{faq.question}</p>
+                                <p className="font-medium text-white">{faq.question}</p>
                                 <p className="mt-2 text-sm leading-7 text-slate-300">{faq.answer}</p>
                               </div>
                               <button type="button" onClick={() => deleteFaq(selectedService.slug, faq.id)} className="text-[0.72rem] font-semibold uppercase tracking-[0.2em] text-[var(--accent-2)]">Delete</button>
@@ -1055,9 +1051,9 @@ export default function AdminPage() {
                       </div>
 
                       <div className="mt-5 grid gap-4">
-                        <input value={faqQuestion} onChange={(event) => setFaqQuestion(event.target.value)} placeholder="FAQ question" className="w-full rounded-[1rem] border border-slate-200 bg-[#f8fafc] px-4 py-3 text-[var(--foreground)] outline-none" />
-                        <textarea value={faqAnswer} onChange={(event) => setFaqAnswer(event.target.value)} rows={4} placeholder="FAQ answer" className="w-full rounded-[1rem] border border-slate-200 bg-[#f8fafc] px-4 py-3 text-[var(--foreground)] outline-none" />
-                        <button type="button" onClick={addFaqToService} className="w-fit rounded-full bg-[var(--accent)] px-5 py-3 text-[0.74rem] font-semibold uppercase tracking-[0.22em] text-white">Add FAQ</button>
+                        <input value={faqQuestion} onChange={(event) => setFaqQuestion(event.target.value)} placeholder="FAQ question" className="w-full rounded-[1rem] border border-white/10 bg-white/[0.03] px-4 py-3 text-white outline-none" />
+                        <textarea value={faqAnswer} onChange={(event) => setFaqAnswer(event.target.value)} rows={4} placeholder="FAQ answer" className="w-full rounded-[1rem] border border-white/10 bg-white/[0.03] px-4 py-3 text-white outline-none" />
+                        <button type="button" onClick={addFaqToService} className="w-fit rounded-full bg-[var(--accent)] px-5 py-3 text-[0.74rem] font-semibold uppercase tracking-[0.22em] text-black">Add FAQ</button>
                       </div>
                     </div>
                   ) : null}
@@ -1067,13 +1063,13 @@ export default function AdminPage() {
 
             {activeTab === "blogs" ? (
               <div className="grid gap-6 xl:grid-cols-[0.84fr_1.16fr]">
-                <section className="rounded-[2rem] border border-slate-200 bg-white p-6 shadow-[0_18px_50px_rgba(15,23,42,0.05)]">
+                <section className="rounded-[2rem] border border-white/8 bg-white/[0.04] p-6">
                   <div className="flex items-center justify-between gap-4">
                     <div>
                       <p className="text-[0.68rem] font-semibold uppercase tracking-[0.24em] text-[var(--accent-2)]">Blogs</p>
-                      <h2 className="mt-3 font-display text-[1.7rem] font-semibold tracking-[-0.04em] text-[var(--foreground)]">Publish and delete posts</h2>
+                      <h2 className="mt-3 font-display text-[1.7rem] font-semibold tracking-[-0.04em] text-white">Publish and delete posts</h2>
                     </div>
-                    <button type="button" onClick={resetBlogDraft} className="rounded-full border border-slate-200 px-4 py-2 text-[0.72rem] font-semibold uppercase tracking-[0.22em] text-slate-700">New post</button>
+                    <button type="button" onClick={resetBlogDraft} className="rounded-full border border-white/10 px-4 py-2 text-[0.72rem] font-semibold uppercase tracking-[0.22em] text-slate-200">New post</button>
                   </div>
 
                   <div className="mt-6 space-y-3">
@@ -1086,27 +1082,27 @@ export default function AdminPage() {
                             setSelectedBlogId(post.id);
                             setBlogDraft(blogToDraft(post));
                           }}
-                        className={`w-full rounded-[1.3rem] border px-4 py-4 text-left ${selectedBlogId === post.id ? "border-[var(--accent)] bg-[var(--accent)]/12" : "border-slate-200 bg-[#f8fafc]"}`}
+                          className={`w-full rounded-[1.3rem] border px-4 py-4 text-left ${selectedBlogId === post.id ? "border-[var(--accent)] bg-[var(--accent)]/12" : "border-white/8 bg-[#111926]"}`}
                         >
-                          <p className="font-medium text-[var(--foreground)]">{post.title}</p>
+                          <p className="font-medium text-white">{post.title}</p>
                           <p className="mt-2 text-sm leading-7 text-slate-400">{post.excerpt}</p>
                         </button>
                       ))
                     ) : (
-                      <div className="relative overflow-hidden rounded-[1.45rem] border border-slate-200 bg-[radial-gradient(circle_at_top_left,rgba(255,176,95,0.16),transparent_28%),radial-gradient(circle_at_bottom_right,rgba(88,163,255,0.10),transparent_28%),linear-gradient(180deg,#ffffff,#f8fafc)] p-5 shadow-[0_18px_48px_rgba(15,23,42,0.08)]">
+                      <div className="relative overflow-hidden rounded-[1.45rem] border border-white/10 bg-[radial-gradient(circle_at_top_left,rgba(255,176,95,0.16),transparent_28%),radial-gradient(circle_at_bottom_right,rgba(88,163,255,0.14),transparent_28%),linear-gradient(180deg,#111926,#0f1722)] p-5 shadow-[0_18px_48px_rgba(0,0,0,0.22)]">
                         <div className="absolute -right-10 top-0 h-28 w-28 rounded-full bg-[radial-gradient(circle,rgba(255,156,64,0.24),transparent_70%)] blur-2xl animate-pulse" />
                         <div className="absolute -left-8 bottom-0 h-32 w-32 rounded-full bg-[radial-gradient(circle,rgba(88,163,255,0.18),transparent_70%)] blur-2xl animate-pulse" />
                         <div className="relative">
-                          <span className="inline-flex rounded-full border border-slate-200 bg-white px-3 py-1.5 text-[0.62rem] font-semibold uppercase tracking-[0.22em] text-[var(--accent-2)]">
+                          <span className="inline-flex rounded-full border border-white/10 bg-white/[0.04] px-3 py-1.5 text-[0.62rem] font-semibold uppercase tracking-[0.22em] text-[var(--accent-2)]">
                             No posts yet
                           </span>
-                          <h3 className="mt-4 max-w-[12ch] font-display text-[1.3rem] font-semibold tracking-[-0.03em] text-[var(--foreground)]">
+                          <h3 className="mt-4 max-w-[12ch] font-display text-[1.3rem] font-semibold tracking-[-0.03em] text-white">
                             The blog desk is ready for the first upload.
                           </h3>
                           <p className="mt-3 text-sm leading-7 text-slate-300">
                             Use the editor on the right to add a title, upload an image, write the content, and publish the first article.
                           </p>
-                          <div className="mt-4 rounded-[1rem] border border-slate-200 bg-[#f8fafc] px-4 py-3 text-[0.72rem] uppercase tracking-[0.2em] text-slate-400">
+                          <div className="mt-4 rounded-[1rem] border border-white/8 bg-white/[0.04] px-4 py-3 text-[0.72rem] uppercase tracking-[0.2em] text-slate-400">
                             New posts will appear here instantly
                           </div>
                         </div>
@@ -1115,7 +1111,7 @@ export default function AdminPage() {
                   </div>
                 </section>
 
-                <section className="rounded-[2rem] border border-slate-200 bg-white p-6 shadow-[0_18px_50px_rgba(15,23,42,0.05)]">
+                <section className="rounded-[2rem] border border-white/8 bg-white/[0.04] p-6">
                   <div className="grid gap-5">
                     {[
                       ["id", "Post ID"],
@@ -1126,7 +1122,7 @@ export default function AdminPage() {
                         <input
                           value={blogDraft[key as keyof BlogDraft]}
                           onChange={(event) => setBlogDraft((current) => ({ ...current, [key]: event.target.value }))}
-                          className="w-full rounded-[1rem] border border-slate-200 bg-white px-4 py-3.5 text-sm leading-6 text-[var(--foreground)] outline-none"
+                          className="w-full rounded-[1rem] border border-white/10 bg-[#111926] px-4 py-3.5 text-sm leading-6 text-white outline-none"
                         />
                       </label>
                     ))}
@@ -1143,30 +1139,30 @@ export default function AdminPage() {
                           </button>
                         ) : null}
                       </div>
-                      <label className="flex cursor-pointer flex-col items-center justify-center rounded-[1.2rem] border border-dashed border-slate-300 bg-[#f8fafc] px-4 py-6 text-center transition-colors duration-300 hover:border-[var(--accent)]/50 hover:bg-[#fff7ed]">
+                      <label className="flex cursor-pointer flex-col items-center justify-center rounded-[1.2rem] border border-dashed border-white/12 bg-[#111926] px-4 py-6 text-center transition-colors duration-300 hover:border-[var(--accent)]/50 hover:bg-white/[0.04]">
                         <input type="file" accept="image/*" onChange={handleBlogImageUpload} className="hidden" />
-                        <span className="text-sm font-medium text-[var(--foreground)]">Choose blog image</span>
+                        <span className="text-sm font-medium text-white">Choose blog image</span>
                         <span className="mt-2 text-[0.82rem] leading-6 text-slate-400">Upload from your device. The image will be saved locally in the admin data.</span>
                       </label>
                       {blogDraft.image ? (
-                        <div className="overflow-hidden rounded-[1.2rem] border border-slate-200 bg-white p-3">
+                        <div className="overflow-hidden rounded-[1.2rem] border border-white/10 bg-[#111926] p-3">
                           <img src={blogDraft.image} alt="Blog preview" className="h-44 w-full rounded-[0.9rem] object-cover" />
                         </div>
                       ) : null}
                     </div>
                     <label className="space-y-2.5">
                       <span className="text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-slate-400">Excerpt</span>
-                      <textarea rows={3} value={blogDraft.excerpt} onChange={(event) => setBlogDraft((current) => ({ ...current, excerpt: event.target.value }))} className="w-full rounded-[1rem] border border-slate-200 bg-white px-4 py-3.5 text-sm leading-6 text-[var(--foreground)] outline-none" />
+                      <textarea rows={3} value={blogDraft.excerpt} onChange={(event) => setBlogDraft((current) => ({ ...current, excerpt: event.target.value }))} className="w-full rounded-[1rem] border border-white/10 bg-[#111926] px-4 py-3.5 text-sm leading-6 text-white outline-none" />
                     </label>
                     <label className="space-y-2.5">
                       <span className="text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-slate-400">Content</span>
-                      <textarea rows={8} value={blogDraft.content} onChange={(event) => setBlogDraft((current) => ({ ...current, content: event.target.value }))} className="w-full rounded-[1rem] border border-slate-200 bg-white px-4 py-3.5 text-sm leading-6 text-[var(--foreground)] outline-none" />
+                      <textarea rows={8} value={blogDraft.content} onChange={(event) => setBlogDraft((current) => ({ ...current, content: event.target.value }))} className="w-full rounded-[1rem] border border-white/10 bg-[#111926] px-4 py-3.5 text-sm leading-6 text-white outline-none" />
                     </label>
                   </div>
 
                   <div className="mt-5 flex flex-wrap gap-3">
-                    <button type="button" onClick={saveBlog} className="rounded-full bg-[var(--accent)] px-5 py-3 text-[0.74rem] font-semibold uppercase tracking-[0.22em] text-white">Save blog</button>
-                    {selectedBlogId && selectedBlogId !== NEW_ITEM_TOKEN ? <button type="button" onClick={() => deleteBlog(selectedBlogId)} className="rounded-full border border-slate-200 px-5 py-3 text-[0.74rem] font-semibold uppercase tracking-[0.22em] text-slate-700">Delete blog</button> : null}
+                    <button type="button" onClick={saveBlog} className="rounded-full bg-[var(--accent)] px-5 py-3 text-[0.74rem] font-semibold uppercase tracking-[0.22em] text-black">Save blog</button>
+                    {selectedBlogId && selectedBlogId !== NEW_ITEM_TOKEN ? <button type="button" onClick={() => deleteBlog(selectedBlogId)} className="rounded-full border border-white/10 px-5 py-3 text-[0.74rem] font-semibold uppercase tracking-[0.22em] text-slate-200">Delete blog</button> : null}
                   </div>
                 </section>
               </div>
@@ -1174,20 +1170,20 @@ export default function AdminPage() {
 
             {activeTab === "bookings" ? (
               <div className="grid gap-6 xl:grid-cols-[0.86fr_1.14fr]">
-                <section className="rounded-[2rem] border border-slate-200 bg-white p-5 shadow-[0_18px_50px_rgba(15,23,42,0.05)] lg:p-6">
+                <section className="rounded-[2rem] border border-white/8 bg-white/[0.04] p-5 lg:p-6">
                   <p className="text-[0.68rem] font-semibold uppercase tracking-[0.24em] text-[var(--accent-2)]">Bookings</p>
-                  <h2 className="mt-3 font-display text-[1.7rem] font-semibold tracking-[-0.04em] text-[var(--foreground)]">Customer requests and responses</h2>
+                  <h2 className="mt-3 font-display text-[1.7rem] font-semibold tracking-[-0.04em] text-white">Customer requests and responses</h2>
                   <div className="mt-6 space-y-3">
                     {bookings.map((booking) => (
                       <button
                         key={booking.id}
                         type="button"
                         onClick={() => setSelectedBookingId(booking.id)}
-                        className={`w-full rounded-[1.3rem] border px-4 py-4 text-left ${selectedBookingId === booking.id ? "border-[var(--accent)] bg-[var(--accent)]/12" : "border-slate-200 bg-[#f8fafc]"}`}
+                        className={`w-full rounded-[1.3rem] border px-4 py-4 text-left ${selectedBookingId === booking.id ? "border-[var(--accent)] bg-[var(--accent)]/12" : "border-white/8 bg-[#111926]"}`}
                       >
                         <div className="flex items-start justify-between gap-4">
                           <div>
-                            <p className="font-medium text-[var(--foreground)]">{booking.customerName}</p>
+                            <p className="font-medium text-white">{booking.customerName}</p>
                             <p className="mt-2 text-sm leading-7 text-slate-400">{booking.service} / {booking.part}</p>
                           </div>
                           <p className="text-[0.72rem] uppercase tracking-[0.18em] text-slate-500">{booking.id}</p>
@@ -1198,16 +1194,16 @@ export default function AdminPage() {
                   </div>
                 </section>
 
-                <section className="rounded-[2rem] border border-slate-200 bg-white p-6 shadow-[0_18px_50px_rgba(15,23,42,0.05)]">
+                <section className="rounded-[2rem] border border-white/8 bg-white/[0.04] p-6">
                   {selectedBooking ? (
                     <>
-                      <div className="rounded-[1.5rem] border border-slate-200 bg-[#f8fafc] p-5">
+                      <div className="rounded-[1.5rem] border border-white/8 bg-[#111926] p-5">
                         <div className="flex flex-wrap items-start justify-between gap-4">
                           <div>
                             <p className="text-[0.68rem] font-semibold uppercase tracking-[0.24em] text-[var(--accent-2)]">Selected booking</p>
-                            <h3 className="mt-3 font-display text-[1.5rem] font-semibold tracking-[-0.04em] text-[var(--foreground)]">{selectedBooking.customerName}</h3>
+                            <h3 className="mt-3 font-display text-[1.5rem] font-semibold tracking-[-0.04em] text-white">{selectedBooking.customerName}</h3>
                           </div>
-                          <a href={mailtoLink(selectedBooking.email, `Update for ${selectedBooking.id}`, replyDraft || "Your booking update from NINO.")} className="rounded-full border border-slate-200 px-4 py-2 text-[0.72rem] font-semibold uppercase tracking-[0.22em] text-slate-700">
+                          <a href={mailtoLink(selectedBooking.email, `Update for ${selectedBooking.id}`, replyDraft || "Your booking update from NINO.")} className="rounded-full border border-white/10 px-4 py-2 text-[0.72rem] font-semibold uppercase tracking-[0.22em] text-slate-200">
                             Open email reply
                           </a>
                         </div>
@@ -1222,31 +1218,31 @@ export default function AdminPage() {
                       <div className="mt-5 grid gap-4 lg:grid-cols-2">
                         <label className="space-y-2 lg:col-span-2">
                           <span className="text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-slate-400">Reply email draft</span>
-                          <textarea rows={6} value={replyDraft} onChange={(event) => setReplyDraft(event.target.value)} className="w-full rounded-[1rem] border border-slate-200 bg-white px-4 py-3 text-[var(--foreground)] outline-none" />
+                          <textarea rows={6} value={replyDraft} onChange={(event) => setReplyDraft(event.target.value)} className="w-full rounded-[1rem] border border-white/10 bg-[#111926] px-4 py-3 text-white outline-none" />
                         </label>
                         <label className="space-y-2">
                           <span className="text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-slate-400">Response status</span>
-                          <input value={replyStatus} onChange={(event) => setReplyStatus(event.target.value)} className="w-full rounded-[1rem] border border-slate-200 bg-white px-4 py-3 text-[var(--foreground)] outline-none" />
+                          <input value={replyStatus} onChange={(event) => setReplyStatus(event.target.value)} className="w-full rounded-[1rem] border border-white/10 bg-[#111926] px-4 py-3 text-white outline-none" />
                         </label>
                         <label className="space-y-2">
                           <span className="text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-slate-400">Tracking status</span>
-                          <input value={trackingStatus} onChange={(event) => setTrackingStatus(event.target.value)} className="w-full rounded-[1rem] border border-slate-200 bg-white px-4 py-3 text-[var(--foreground)] outline-none" />
+                          <input value={trackingStatus} onChange={(event) => setTrackingStatus(event.target.value)} className="w-full rounded-[1rem] border border-white/10 bg-[#111926] px-4 py-3 text-white outline-none" />
                         </label>
                         <label className="space-y-2">
                           <span className="text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-slate-400">Progress %</span>
-                          <input value={trackingProgress} onChange={(event) => setTrackingProgress(event.target.value)} className="w-full rounded-[1rem] border border-slate-200 bg-white px-4 py-3 text-[var(--foreground)] outline-none" />
+                          <input value={trackingProgress} onChange={(event) => setTrackingProgress(event.target.value)} className="w-full rounded-[1rem] border border-white/10 bg-[#111926] px-4 py-3 text-white outline-none" />
                         </label>
                         <label className="space-y-2">
                           <span className="text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-slate-400">Chart points</span>
-                          <input value={trackingChart} onChange={(event) => setTrackingChart(event.target.value)} className="w-full rounded-[1rem] border border-slate-200 bg-white px-4 py-3 text-[var(--foreground)] outline-none" placeholder="15, 35, 60, 90" />
+                          <input value={trackingChart} onChange={(event) => setTrackingChart(event.target.value)} className="w-full rounded-[1rem] border border-white/10 bg-[#111926] px-4 py-3 text-white outline-none" placeholder="15, 35, 60, 90" />
                         </label>
                         <label className="space-y-2 lg:col-span-2">
                           <span className="text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-slate-400">Milestones</span>
-                          <textarea rows={5} value={trackingMilestones} onChange={(event) => setTrackingMilestones(event.target.value)} className="w-full rounded-[1rem] border border-slate-200 bg-white px-4 py-3 text-[var(--foreground)] outline-none" placeholder="One milestone per line" />
+                          <textarea rows={5} value={trackingMilestones} onChange={(event) => setTrackingMilestones(event.target.value)} className="w-full rounded-[1rem] border border-white/10 bg-[#111926] px-4 py-3 text-white outline-none" placeholder="One milestone per line" />
                         </label>
                       </div>
 
-                      <button type="button" onClick={saveBookingResponse} className="mt-5 rounded-full bg-[var(--accent)] px-5 py-3 text-[0.74rem] font-semibold uppercase tracking-[0.22em] text-white">Save response and tracking</button>
+                      <button type="button" onClick={saveBookingResponse} className="mt-5 rounded-full bg-[var(--accent)] px-5 py-3 text-[0.74rem] font-semibold uppercase tracking-[0.22em] text-black">Save response and tracking</button>
                     </>
                   ) : (
                     <p className="text-sm leading-7 text-slate-400">Select a booking to write a reply, store its status, and update the track-repair page.</p>
@@ -1257,13 +1253,13 @@ export default function AdminPage() {
 
             {activeTab === "shop" ? (
               <div className="grid gap-6 xl:grid-cols-[0.84fr_1.16fr]">
-                <section className="rounded-[2rem] border border-slate-200 bg-white p-6 shadow-[0_18px_50px_rgba(15,23,42,0.05)]">
+                <section className="rounded-[2rem] border border-white/8 bg-white/[0.04] p-6">
                   <div className="flex items-center justify-between gap-4">
                     <div>
                       <p className="text-[0.68rem] font-semibold uppercase tracking-[0.24em] text-[var(--accent-2)]">Shop products</p>
-                      <h2 className="mt-3 font-display text-[1.7rem] font-semibold tracking-[-0.04em] text-[var(--foreground)]">Catalog and price control</h2>
+                      <h2 className="mt-3 font-display text-[1.7rem] font-semibold tracking-[-0.04em] text-white">Catalog and price control</h2>
                     </div>
-                    <button type="button" onClick={resetProductDraft} className="rounded-full border border-slate-200 px-4 py-2 text-[0.72rem] font-semibold uppercase tracking-[0.22em] text-slate-700">New product</button>
+                    <button type="button" onClick={resetProductDraft} className="rounded-full border border-white/10 px-4 py-2 text-[0.72rem] font-semibold uppercase tracking-[0.22em] text-slate-200">New product</button>
                   </div>
 
                   <div className="mt-6 space-y-3">
@@ -1275,11 +1271,11 @@ export default function AdminPage() {
                           setSelectedProductId(product.id);
                           setProductDraft(productToDraft(product));
                         }}
-                        className={`w-full rounded-[1.3rem] border px-4 py-4 text-left ${selectedProductId === product.id ? "border-[var(--accent)] bg-[var(--accent)]/12" : "border-slate-200 bg-[#f8fafc]"}`}
+                        className={`w-full rounded-[1.3rem] border px-4 py-4 text-left ${selectedProductId === product.id ? "border-[var(--accent)] bg-[var(--accent)]/12" : "border-white/8 bg-[#111926]"}`}
                       >
                         <div className="flex items-start justify-between gap-4">
                           <div>
-                            <p className="font-medium text-[var(--foreground)]">{product.name}</p>
+                            <p className="font-medium text-white">{product.name}</p>
                             <p className="mt-2 text-sm leading-7 text-slate-400">{product.category}</p>
                           </div>
                           <p className="text-sm text-slate-300">NGN {product.price.toLocaleString()}</p>
@@ -1288,11 +1284,11 @@ export default function AdminPage() {
                     ))}
                   </div>
 
-                  <div className="mt-6 rounded-[1.5rem] border border-slate-200 bg-[#f8fafc] p-5 text-sm leading-7 text-slate-300">
-                    <p className="font-medium text-[var(--foreground)]">Recent orders</p>
+                  <div className="mt-6 rounded-[1.5rem] border border-white/8 bg-[#111926] p-5 text-sm leading-7 text-slate-300">
+                    <p className="font-medium text-white">Recent orders</p>
                     <div className="mt-3 space-y-3">
                       {orders.slice(0, 4).map((order) => (
-                        <div key={order.id} className="rounded-[1rem] border border-slate-200 bg-[#f8fafc] p-4">
+                        <div key={order.id} className="rounded-[1rem] border border-white/8 bg-white/[0.03] p-4">
                           <p>{order.id}</p>
                           <p className="mt-1 text-slate-400">{order.items.length} item(s) • {formatDate(order.createdAt)}</p>
                         </div>
@@ -1301,7 +1297,7 @@ export default function AdminPage() {
                   </div>
                 </section>
 
-                <section className="rounded-[2rem] border border-slate-200 bg-white p-6 shadow-[0_18px_50px_rgba(15,23,42,0.05)]">
+                <section className="rounded-[2rem] border border-white/8 bg-white/[0.04] p-6">
                   <div className="grid gap-5 md:grid-cols-2">
                     {[
                       ["id", "Product ID"],
@@ -1315,7 +1311,7 @@ export default function AdminPage() {
                         <input
                           value={productDraft[key as keyof ProductDraft]}
                           onChange={(event) => setProductDraft((current) => ({ ...current, [key]: event.target.value }))}
-                          className="w-full rounded-[1rem] border border-slate-200 bg-white px-4 py-3.5 text-sm leading-6 text-[var(--foreground)] outline-none"
+                          className="w-full rounded-[1rem] border border-white/10 bg-[#111926] px-4 py-3.5 text-sm leading-6 text-white outline-none"
                         />
                       </label>
                     ))}
@@ -1334,38 +1330,38 @@ export default function AdminPage() {
                           </button>
                         ) : null}
                       </div>
-                      <label className="flex cursor-pointer flex-col items-center justify-center rounded-[1.2rem] border border-dashed border-slate-300 bg-[#f8fafc] px-4 py-6 text-center transition-colors duration-300 hover:border-[var(--accent)]/50 hover:bg-[#fff7ed]">
+                      <label className="flex cursor-pointer flex-col items-center justify-center rounded-[1.2rem] border border-dashed border-white/12 bg-[#111926] px-4 py-6 text-center transition-colors duration-300 hover:border-[var(--accent)]/50 hover:bg-white/[0.04]">
                         <input type="file" accept="image/*" onChange={handleProductImageUpload} className="hidden" />
-                        <span className="text-sm font-medium text-[var(--foreground)]">Choose product image</span>
+                        <span className="text-sm font-medium text-white">Choose product image</span>
                         <span className="mt-2 text-[0.82rem] leading-6 text-slate-400">Upload from your device. The image will be stored locally and used by the shop page.</span>
                       </label>
                       {productDraft.image ? (
-                        <div className="overflow-hidden rounded-[1.2rem] border border-slate-200 bg-white p-3">
+                        <div className="overflow-hidden rounded-[1.2rem] border border-white/10 bg-[#111926] p-3">
                           <img src={productDraft.image} alt="Product preview" className="h-44 w-full rounded-[0.9rem] object-cover" />
                         </div>
                       ) : null}
                     </div>
                     <label className="space-y-2.5">
                       <span className="text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-slate-400">Description</span>
-                      <textarea rows={4} value={productDraft.description} onChange={(event) => setProductDraft((current) => ({ ...current, description: event.target.value }))} className="w-full rounded-[1rem] border border-slate-200 bg-white px-4 py-3.5 text-sm leading-6 text-[var(--foreground)] outline-none" />
+                      <textarea rows={4} value={productDraft.description} onChange={(event) => setProductDraft((current) => ({ ...current, description: event.target.value }))} className="w-full rounded-[1rem] border border-white/10 bg-[#111926] px-4 py-3.5 text-sm leading-6 text-white outline-none" />
                     </label>
                     <label className="space-y-2.5">
                       <span className="text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-slate-400">Colors</span>
-                      <input value={productDraft.colors} onChange={(event) => setProductDraft((current) => ({ ...current, colors: event.target.value }))} className="w-full rounded-[1rem] border border-slate-200 bg-white px-4 py-3.5 text-sm leading-6 text-[var(--foreground)] outline-none" placeholder="Black, Silver" />
+                      <input value={productDraft.colors} onChange={(event) => setProductDraft((current) => ({ ...current, colors: event.target.value }))} className="w-full rounded-[1rem] border border-white/10 bg-[#111926] px-4 py-3.5 text-sm leading-6 text-white outline-none" placeholder="Black, Silver" />
                     </label>
                     <label className="space-y-2.5">
                       <span className="text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-slate-400">Sizes</span>
-                      <input value={productDraft.sizes} onChange={(event) => setProductDraft((current) => ({ ...current, sizes: event.target.value }))} className="w-full rounded-[1rem] border border-slate-200 bg-white px-4 py-3.5 text-sm leading-6 text-[var(--foreground)] outline-none" placeholder="Standard, Advanced" />
+                      <input value={productDraft.sizes} onChange={(event) => setProductDraft((current) => ({ ...current, sizes: event.target.value }))} className="w-full rounded-[1rem] border border-white/10 bg-[#111926] px-4 py-3.5 text-sm leading-6 text-white outline-none" placeholder="Standard, Advanced" />
                     </label>
                     <label className="space-y-2.5">
                       <span className="text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-slate-400">Tracking note</span>
-                      <textarea rows={4} value={productDraft.trackingNote} onChange={(event) => setProductDraft((current) => ({ ...current, trackingNote: event.target.value }))} className="w-full rounded-[1rem] border border-slate-200 bg-white px-4 py-3.5 text-sm leading-6 text-[var(--foreground)] outline-none" />
+                      <textarea rows={4} value={productDraft.trackingNote} onChange={(event) => setProductDraft((current) => ({ ...current, trackingNote: event.target.value }))} className="w-full rounded-[1rem] border border-white/10 bg-[#111926] px-4 py-3.5 text-sm leading-6 text-white outline-none" />
                     </label>
                   </div>
 
                   <div className="mt-5 flex flex-wrap gap-3">
-                    <button type="button" onClick={saveProduct} className="rounded-full bg-[var(--accent)] px-5 py-3 text-[0.74rem] font-semibold uppercase tracking-[0.22em] text-white">Save product</button>
-                    {selectedProductId && selectedProductId !== NEW_ITEM_TOKEN ? <button type="button" onClick={() => deleteProduct(selectedProductId)} className="rounded-full border border-slate-200 px-5 py-3 text-[0.74rem] font-semibold uppercase tracking-[0.22em] text-slate-700">Delete product</button> : null}
+                    <button type="button" onClick={saveProduct} className="rounded-full bg-[var(--accent)] px-5 py-3 text-[0.74rem] font-semibold uppercase tracking-[0.22em] text-black">Save product</button>
+                    {selectedProductId && selectedProductId !== NEW_ITEM_TOKEN ? <button type="button" onClick={() => deleteProduct(selectedProductId)} className="rounded-full border border-white/10 px-5 py-3 text-[0.74rem] font-semibold uppercase tracking-[0.22em] text-slate-200">Delete product</button> : null}
                   </div>
                 </section>
               </div>
@@ -1373,15 +1369,15 @@ export default function AdminPage() {
 
             {activeTab === "admins" ? (
               <div className="grid gap-6 xl:grid-cols-[0.86fr_1.14fr]">
-                <section className="rounded-[2rem] border border-slate-200 bg-white p-6 shadow-[0_18px_50px_rgba(15,23,42,0.05)]">
+                <section className="rounded-[2rem] border border-white/8 bg-white/[0.04] p-6">
                   <p className="text-[0.68rem] font-semibold uppercase tracking-[0.24em] text-[var(--accent-2)]">Admin users</p>
-                  <h2 className="mt-3 font-display text-[1.7rem] font-semibold tracking-[-0.04em] text-[var(--foreground)]">Add and remove admins</h2>
+                  <h2 className="mt-3 font-display text-[1.7rem] font-semibold tracking-[-0.04em] text-white">Add and remove admins</h2>
                   <div className="mt-6 space-y-3">
                     {adminUsers.map((user) => (
-                      <div key={user.id} className="rounded-[1.3rem] border border-slate-200 bg-[#f8fafc] p-4">
+                      <div key={user.id} className="rounded-[1.3rem] border border-white/8 bg-[#111926] p-4">
                         <div className="flex items-start justify-between gap-3">
                           <div>
-                            <p className="font-medium text-[var(--foreground)]">{user.name}</p>
+                            <p className="font-medium text-white">{user.name}</p>
                             <p className="mt-1 text-sm leading-7 text-slate-400">{user.email} • {user.role}</p>
                           </div>
                           {user.email !== ADMIN_EMAIL ? <button type="button" onClick={() => deleteAdminUser(user.id)} className="text-[0.72rem] font-semibold uppercase tracking-[0.2em] text-[var(--accent-2)]">Remove</button> : <span className="text-[0.72rem] uppercase tracking-[0.2em] text-slate-500">Root</span>}
@@ -1391,7 +1387,7 @@ export default function AdminPage() {
                   </div>
                 </section>
 
-                <section className="rounded-[2rem] border border-slate-200 bg-white p-6 shadow-[0_18px_50px_rgba(15,23,42,0.05)]">
+                <section className="rounded-[2rem] border border-white/8 bg-white/[0.04] p-6">
                   <div className="grid gap-4 md:grid-cols-2">
                     {[
                       ["name", "Name"],
@@ -1405,27 +1401,27 @@ export default function AdminPage() {
                           type={key === "password" ? "password" : "text"}
                           value={adminDraft[key as keyof AdminDraft]}
                           onChange={(event) => setAdminDraft((current) => ({ ...current, [key]: event.target.value }))}
-                          className="w-full rounded-[1rem] border border-slate-200 bg-white px-4 py-3 text-[var(--foreground)] outline-none"
+                          className="w-full rounded-[1rem] border border-white/10 bg-[#111926] px-4 py-3 text-white outline-none"
                         />
                       </label>
                     ))}
                   </div>
-                  <button type="button" onClick={saveAdminUser} className="mt-5 rounded-full bg-[var(--accent)] px-5 py-3 text-[0.74rem] font-semibold uppercase tracking-[0.22em] text-white">Add admin</button>
+                  <button type="button" onClick={saveAdminUser} className="mt-5 rounded-full bg-[var(--accent)] px-5 py-3 text-[0.74rem] font-semibold uppercase tracking-[0.22em] text-black">Add admin</button>
                 </section>
               </div>
             ) : null}
 
             {activeTab === "history" ? (
-              <section className="rounded-[2rem] border border-slate-200 bg-white p-6 shadow-[0_18px_50px_rgba(15,23,42,0.05)]">
+              <section className="rounded-[2rem] border border-white/8 bg-white/[0.04] p-6">
                 <p className="text-[0.68rem] font-semibold uppercase tracking-[0.24em] text-[var(--accent-2)]">History</p>
-                <h2 className="mt-3 font-display text-[1.7rem] font-semibold tracking-[-0.04em] text-[var(--foreground)]">Admin activity log</h2>
+                <h2 className="mt-3 font-display text-[1.7rem] font-semibold tracking-[-0.04em] text-white">Admin activity log</h2>
                 <div className="mt-6 space-y-3">
                   {history.length ? (
                     history.map((entry) => (
-                      <div key={entry.id} className="rounded-[1.3rem] border border-slate-200 bg-[#f8fafc] p-4">
+                      <div key={entry.id} className="rounded-[1.3rem] border border-white/8 bg-[#111926] p-4">
                         <div className="flex flex-wrap items-start justify-between gap-3">
                           <div>
-                            <p className="font-medium text-[var(--foreground)]">{entry.action} {entry.entity}</p>
+                            <p className="font-medium text-white">{entry.action} {entry.entity}</p>
                             <p className="mt-1 text-sm leading-7 text-slate-300">{entry.detail}</p>
                           </div>
                           <p className="text-[0.72rem] uppercase tracking-[0.18em] text-slate-500">{formatDate(entry.createdAt)}</p>
