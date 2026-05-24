@@ -57,7 +57,7 @@ export function HeroSection() {
   return (
     <section
       ref={sectionRef}
-      className="relative w-full min-h-screen overflow-hidden bg-[#0a1530] text-white"
+      className="relative w-full min-h-screen overflow-hidden bg-[#0a1530] text-white flex flex-col"
     >
       {/* Background overlays - z-0 */}
       <div className="absolute inset-0 z-0 pointer-events-none">
@@ -85,14 +85,15 @@ export function HeroSection() {
       </div>
 
       {/* Hero content row - z-20 */}
-      <div className="relative mx-auto flex w-full max-w-[1400px] min-h-screen items-center px-4 sm:px-8 lg:px-12 xl:px-16">
+      <div className="flex-1 flex items-center justify-center">
+        <div className="relative mx-auto flex w-full max-w-[1400px] min-h-[70vh] md:min-h-[76vh] lg:min-h-[82vh] xl:min-h-[88vh] items-center justify-center px-4 sm:px-8 lg:px-12 xl:px-16 py-8 md:py-12 lg:py-16">
         {/* Left: Text content (z-30) */}
         <motion.div
           style={{ y: contentY, zIndex: 30 }}
           initial={{ opacity: 0, y: 56 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.95, ease: [0.22, 1, 0.36, 1] }}
-          className="w-full max-w-[540px] pt-2 sm:pt-3 lg:pt-4 relative z-30"
+          className="w-full max-w-[540px] relative z-30 flex flex-col justify-center"
         >
           <motion.div
             initial={{ opacity: 0, y: 18 }}
@@ -233,6 +234,7 @@ export function HeroSection() {
               );
             })}
           </AnimatePresence>
+        </div>
         </div>
       </div>
     </section>
