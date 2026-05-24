@@ -58,28 +58,7 @@ export function Navbar() {
               sizes="44px"
               className="object-cover object-[35%_45%] scale-[1.2]"
             />
-          </span>
-          <span className="font-display text-lg font-bold tracking-[0.18em] text-white">NINO</span>
-        </Link>
-        <nav className={`flex items-center gap-6 ${scrolled ? '' : 'bg-transparent border-none shadow-none'}`}>
-          {navItems.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className={`inline-flex items-center gap-2 px-2 py-2 text-sm font-semibold uppercase tracking-[0.18em] text-white hover:text-[var(--accent)] transition-colors duration-200 ${scrolled ? 'rounded-full px-4 bg-[#19233a] border border-[#22304a]' : ''}`}
-            >
-              {item.icon === "cart" ? <CartIcon /> : null}
-              {item.label}
-            </Link>
-          ))}
-        </nav>
-        <Link
-          href="/booking"
-          className={`inline-flex items-center justify-center rounded-full bg-[var(--accent)] px-6 py-2.5 text-sm font-semibold uppercase tracking-[0.18em] text-black shadow-[0_10px_24px_rgba(249,115,22,0.16)] hover:bg-white hover:text-[var(--accent)] transition-colors duration-200 ${scrolled ? '' : 'border-none shadow-none'}`}
-        >
-          Book Inspection
-        </Link>
-      </div>
+          }
     </header>
   );
 }
