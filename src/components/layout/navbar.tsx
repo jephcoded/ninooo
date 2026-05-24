@@ -61,20 +61,20 @@ export function Navbar() {
 
   return (
     <header
-      className={`left-0 top-0 z-50 w-full px-2 pt-2 transition-all duration-300 sm:px-3 lg:px-4 ${
+      className={`left-0 top-0 z-50 w-full px-2 pt-1 transition-all duration-300 sm:px-2 lg:px-3 ${
         scrolled ? "fixed" : "absolute"
       }`}
     >
       {isHomePage ? <InfoTicker tone="dark" compact className="mb-3" /> : null}
 
       <div
-        className={`section-shell flex items-center justify-between gap-3 transition-all duration-300 ${
+        className={`section-shell flex items-center justify-between gap-2 transition-all duration-300 ${
           scrolled
-            ? "rounded-[2rem] border border-[#1e293b] bg-[#0f172a]/96 px-3 py-3 shadow-[0_16px_45px_rgba(15,23,42,0.28)] backdrop-blur-xl lg:px-5"
-            : "rounded-[2rem] border border-white/10 bg-[#0b1120]/70 px-3 py-3 backdrop-blur-md lg:px-5"
+            ? "rounded-[1.3rem] border border-[#1e293b] bg-[#0f172a]/96 px-2 py-2 shadow-[0_8px_24px_rgba(15,23,42,0.18)] backdrop-blur-xl lg:px-3"
+            : "rounded-[1.3rem] border border-white/10 bg-[#0b1120]/70 px-2 py-2 backdrop-blur-md lg:px-3"
         }`}
       >
-        <Link href="/" className="flex items-center gap-3">
+        <Link href="/" className="flex items-center gap-2">
           <span className="relative flex size-11 items-center justify-center overflow-hidden rounded-full border border-[var(--accent)]/30 bg-white shadow-[0_10px_24px_rgba(249,115,22,0.16)]">
             <Image
               src="/images/nino-logo.jfif"
@@ -84,10 +84,10 @@ export function Navbar() {
               className="object-cover object-[35%_45%] scale-[1.2]"
             />
           </span>
-          <span className="font-display text-lg font-bold tracking-[0.18em] text-white">NINO</span>
+          <span className="font-display text-base font-bold tracking-[0.18em] text-white">NINO</span>
         </Link>
 
-        <nav className="hidden items-center gap-2 lg:flex">
+        <nav className="hidden items-center gap-1.5 lg:flex">
           {navItems.map((item) => {
             const isActive = pathname === item.href;
 
@@ -95,7 +95,7 @@ export function Navbar() {
               <Link
                 key={item.href}
                 href={item.href}
-                className={`inline-flex items-center gap-2 rounded-full border px-4 py-2 text-sm font-semibold uppercase tracking-[0.18em] transition-colors duration-200 ${
+                className={`inline-flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] transition-colors duration-200 ${
                   isActive
                     ? "border-[var(--accent)] bg-[var(--accent)] text-black"
                     : "border-[#22304a] bg-[#19233a] text-white hover:text-[var(--accent)]"
@@ -117,10 +117,10 @@ export function Navbar() {
           })}
         </nav>
 
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-1.5">
           <Link
             href="/booking"
-            className="hidden items-center justify-center rounded-full bg-[var(--accent)] px-6 py-2.5 text-sm font-semibold uppercase tracking-[0.18em] text-black shadow-[0_10px_24px_rgba(249,115,22,0.16)] transition-colors duration-200 hover:bg-white hover:text-[var(--accent)] lg:inline-flex"
+            className="hidden items-center justify-center rounded-full bg-[var(--accent)] px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-black shadow-[0_6px_18px_rgba(249,115,22,0.13)] transition-colors duration-200 hover:bg-white hover:text-[var(--accent)] lg:inline-flex"
           >
             Book Inspection
           </Link>
