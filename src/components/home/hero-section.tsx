@@ -92,7 +92,7 @@ export function HeroSection() {
           initial={{ opacity: 0, y: 56 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.95, ease: [0.22, 1, 0.36, 1] }}
-          className="w-full max-w-[520px] pt-2 sm:pt-3 lg:pt-4"
+          className="w-full max-w-[540px] pt-2 sm:pt-3 lg:pt-4"
         >
           <motion.div
             initial={{ opacity: 0, y: 18 }}
@@ -110,7 +110,7 @@ export function HeroSection() {
             transition={{ duration: 0.72, ease: [0.22, 1, 0.36, 1] }}
             className="mt-3"
           >
-            <h1 className="max-w-[15.5ch] font-display text-[2.1rem] font-semibold leading-[1.08] tracking-[-0.045em] text-[var(--foreground)] sm:max-w-2xl sm:text-[2.3rem] sm:leading-[1.12] lg:text-[2.5rem] xl:max-w-[36rem] xl:text-[2.7rem]">
+            <h1 className="max-w-[15.5ch] font-display text-[2.3rem] font-semibold leading-[1.08] tracking-[-0.045em] text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.32)] sm:max-w-2xl sm:text-[2.7rem] sm:leading-[1.12] lg:text-[3.1rem] xl:max-w-[36rem] xl:text-[3.3rem]">
               {heroCopy.title}
             </h1>
 
@@ -181,8 +181,8 @@ export function HeroSection() {
           </motion.div>
         </motion.div>
 
-        {/* Right: Hero image - z-10 */}
-        <div className="relative z-10 flex flex-1 items-center justify-end h-full min-h-[420px] max-h-[90vh]">
+        {/* Right: Hero image - z-10, cinematic composition, soft blending */}
+        <div className="relative z-10 flex flex-1 items-center justify-center h-full min-h-[420px] max-h-[92vh]">
           <AnimatePresence initial={false}>
             {slides.map((slide, index) => {
               const isActive = index === active;
@@ -193,21 +193,30 @@ export function HeroSection() {
                   animate={{
                     opacity: isActive ? 1 : 0,
                     scale: isActive ? 1 : 0.98,
-                    x: isActive ? 0 : 10,
+                    x: isActive ? 0 : 24,
                     filter: isActive ? "blur(0px)" : "blur(4px)",
                   }}
                   transition={{ duration: 1.4, ease: [0.22, 1, 0.36, 1] }}
                   className="absolute bottom-0 right-0 flex items-end justify-end w-full h-full"
                   style={{ zIndex: 10 }}
                 >
-                  <div className="relative w-full h-full min-w-[320px] max-w-[700px] flex items-end justify-end">
+                  <div className="relative flex items-end justify-end w-[90vw] max-w-[950px] h-[70vh] sm:h-[78vh] md:h-[82vh] lg:h-[88vh] xl:h-[92vh]">
+                    {/* Orange glow behind mechanic */}
+                    <div className="absolute -z-10 right-0 bottom-0 w-[80%] h-[90%] pointer-events-none">
+                      <div className="absolute right-0 bottom-0 w-full h-full rounded-full bg-[radial-gradient(circle_at_80%_80%,rgba(255,122,24,0.22),transparent_70%)] blur-3xl" />
+                    </div>
+                    {/* Soft dark radial mask for blending */}
+                    <div className="absolute right-0 bottom-0 w-full h-full pointer-events-none">
+                      <div className="absolute right-0 bottom-0 w-full h-full rounded-full bg-[radial-gradient(circle_at_70%_80%,rgba(10,21,48,0.62)_60%,transparent_100%)]" />
+                    </div>
+                    {/* Mechanic image with soft mask */}
                     <Image
                       src={slide.image}
                       alt={heroCopy.title}
                       fill
                       priority={index === 0}
-                      sizes="60vw"
-                      className="object-contain object-bottom brightness-[1.13] contrast-[1.08] saturate-[1.1] opacity-[0.98] drop-shadow-[0_32px_88px_rgba(0,0,0,0.32)]"
+                      sizes="70vw"
+                      className="object-contain object-bottom brightness-[1.13] contrast-[1.08] saturate-[1.1] opacity-[0.99] select-none pointer-events-none [mask-image:radial-gradient(circle_at_70%_80%,white_80%,transparent_100%)]"
                       style={{ transition: 'all 0.7s cubic-bezier(0.4,0,0.2,1)' }}
                     />
                   </div>
