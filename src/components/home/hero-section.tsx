@@ -181,8 +181,8 @@ export function HeroSection() {
           </motion.div>
         </motion.div>
 
-        {/* Right: Hero image - z-10, cinematic composition, soft blending */}
-        <div className="relative z-10 flex flex-1 items-center justify-center h-full min-h-[420px] max-h-[92vh]">
+        {/* Right: Hero image - z-10, cinematic composition, advanced blending */}
+        <div className="relative z-10 flex flex-1 items-center justify-center h-full min-h-[420px] max-h-[92vh] overflow-visible">
           <AnimatePresence initial={false}>
             {slides.map((slide, index) => {
               const isActive = index === active;
@@ -197,28 +197,37 @@ export function HeroSection() {
                     filter: isActive ? "blur(0px)" : "blur(4px)",
                   }}
                   transition={{ duration: 1.4, ease: [0.22, 1, 0.36, 1] }}
-                  className="absolute bottom-0 right-0 flex items-end justify-end w-full h-full"
-                  style={{ zIndex: 10 }}
+                  className="absolute bottom-0 right-0 flex items-end justify-end w-[105vw] max-w-[1100px] h-[80vh] sm:h-[88vh] md:h-[92vh] lg:h-[98vh] xl:h-[104vh] pointer-events-none"
+                  style={{ zIndex: 10, overflow: 'visible' }}
                 >
-                  <div className="relative flex items-end justify-end w-[90vw] max-w-[950px] h-[70vh] sm:h-[78vh] md:h-[82vh] lg:h-[88vh] xl:h-[92vh]">
-                    {/* Orange glow behind mechanic */}
-                    <div className="absolute -z-10 right-0 bottom-0 w-[80%] h-[90%] pointer-events-none">
-                      <div className="absolute right-0 bottom-0 w-full h-full rounded-full bg-[radial-gradient(circle_at_80%_80%,rgba(255,122,24,0.22),transparent_70%)] blur-3xl" />
-                    </div>
-                    {/* Soft dark radial mask for blending */}
-                    <div className="absolute right-0 bottom-0 w-full h-full pointer-events-none">
-                      <div className="absolute right-0 bottom-0 w-full h-full rounded-full bg-[radial-gradient(circle_at_70%_80%,rgba(10,21,48,0.62)_60%,transparent_100%)]" />
-                    </div>
-                    {/* Mechanic image with soft mask */}
+                  {/* Orange radial glow behind mechanic */}
+                  <div className="absolute right-0 bottom-0 w-[90%] h-[90%]" style={{zIndex:1}}>
+                    <div className="absolute right-0 bottom-0 w-full h-full" style={{
+                      background: 'radial-gradient(circle at 80% 80%, rgba(255,120,0,0.18), transparent 70%)',
+                      filter: 'blur(32px)'}} />
+                  </div>
+                  {/* Mechanic image with mask-image gradient for soft fade */}
+                  <div className="relative w-full h-full" style={{
+                    WebkitMaskImage: 'linear-gradient(to left, rgba(0,0,0,1) 65%, rgba(0,0,0,0.85) 78%, rgba(0,0,0,0.4) 90%, transparent 100%)',
+                    maskImage: 'linear-gradient(to left, rgba(0,0,0,1) 65%, rgba(0,0,0,0.85) 78%, rgba(0,0,0,0.4) 90%, transparent 100%)',
+                    overflow: 'visible',
+                    zIndex: 2
+                  }}>
                     <Image
                       src={slide.image}
                       alt={heroCopy.title}
                       fill
                       priority={index === 0}
-                      sizes="70vw"
-                      className="object-contain object-bottom brightness-[1.13] contrast-[1.08] saturate-[1.1] opacity-[0.99] select-none pointer-events-none [mask-image:radial-gradient(circle_at_70%_80%,white_80%,transparent_100%)]"
-                      style={{ transition: 'all 0.7s cubic-bezier(0.4,0,0.2,1)' }}
+                      sizes="80vw"
+                      className="object-contain object-bottom brightness-[1.13] contrast-[1.08] saturate-[1.1] opacity-[0.99] select-none pointer-events-none"
+                      style={{ transition: 'all 0.7s cubic-bezier(0.4,0,0.2,1)', overflow: 'visible' }}
                     />
+                    {/* Overlay gradient above image for left-to-right blending */}
+                    <div className="absolute inset-0" style={{
+                      background: 'linear-gradient(to right, rgba(2,6,23,0.96) 0%, rgba(2,6,23,0.4) 45%, rgba(0,0,0,0) 100%)',
+                      zIndex: 3,
+                      pointerEvents: 'none'
+                    }} />
                   </div>
                 </motion.div>
               );
