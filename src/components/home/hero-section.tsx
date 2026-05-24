@@ -28,25 +28,47 @@ export function HeroSection() {
     const intervalId = window.setInterval(() => {
       setActive((current) => (current + 1) % slides.length);
     }, 4200);
-
     return () => window.clearInterval(intervalId);
   }, []);
 
   return (
-    <section className="relative w-full overflow-hidden bg-[linear-gradient(180deg,#0e1728_0%,#0d1524_100%)] pt-0">
-      <div className="relative z-10 flex flex-col items-center justify-center min-h-[80vh] w-full px-0 py-0">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_76%_42%,rgba(249,115,22,0.18),transparent_15%),linear-gradient(90deg,rgba(11,20,36,0.06),rgba(11,20,36,0.14))]" />
-        <div className="relative z-10 flex flex-row items-center justify-between w-full max-w-[1600px] px-8 py-12 gap-8">
-          {/* Hero Text Horizontal */}
-          <div className="flex flex-col justify-center items-start w-[48%] min-w-[340px]">
+    <section className="relative w-full min-h-screen flex items-stretch overflow-hidden bg-[linear-gradient(180deg,#0e1728_0%,#0d1524_100%)] pt-0">
+      {/* Fullscreen hero image background */}
+      <div className="absolute inset-0 -z-10">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={slides[active].id}
+            initial={{ opacity: 0, scale: 1.01 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.99 }}
+            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            className="absolute inset-0 w-full h-full"
+          >
+            <Image
+              src={slides[active].image}
+              alt="NINO technician at work"
+              fill
+              priority={active === 0}
+              sizes="100vw"
+              className="object-cover object-center w-full h-full opacity-80"
+            />
+            {/* Overlay for blending */}
+            <div className="absolute inset-0 bg-[linear-gradient(90deg,#0e1728_0%,rgba(14,23,40,0.7)_40%,rgba(14,23,40,0.7)_60%,#0e1728_100%)]" />
+          </motion.div>
+        </AnimatePresence>
+      </div>
+      <div className="relative z-10 flex flex-col justify-center w-full min-h-screen px-4 py-0 sm:px-8">
+        <div className="flex flex-col lg:flex-row items-center justify-between w-full max-w-[1600px] mx-auto gap-8">
+          {/* Hero Text Horizontal, responsive */}
+          <div className="flex flex-col justify-center items-start w-full lg:w-[48%] min-w-[260px] max-w-2xl text-left">
             <div className="inline-flex items-center gap-2 rounded-full border border-[#2e3c56] bg-[#142039] px-3 py-2 text-[0.56rem] font-semibold uppercase tracking-[0.22em] text-[#e2e8f0] sm:px-4 sm:text-[0.62rem]">
               <span className="h-2 w-2 rounded-full bg-[var(--accent)]" />
               Electronics repair and diagnostics
             </div>
-            <h1 className="mt-4 font-display text-[2rem] font-semibold leading-tight tracking-[-0.03em] text-white max-w-full">
+            <h1 className="mt-4 font-display text-[2.1rem] sm:text-[2.5rem] md:text-[2.8rem] lg:text-[2.6rem] xl:text-[3.1rem] font-semibold leading-tight tracking-[-0.03em] text-white max-w-full">
               ECU repair, device diagnostics, <span className="text-[var(--accent)]">board-level recovery,</span> and precision electronics service.
             </h1>
-            <p className="mt-3 text-[0.98rem] leading-7 text-slate-300 max-w-full">
+            <p className="mt-3 text-[1rem] sm:text-[1.1rem] md:text-[1.15rem] lg:text-[1.05rem] leading-7 text-slate-300 max-w-full">
               NINO Electronics Solutions handles ECU repair, ECU cloning and programming, TV repair, laptop repair, phone repair, immobilizer work, key programming, and complex board diagnostics with disciplined technical workflow.
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
@@ -91,30 +113,6 @@ export function HeroSection() {
                 />
               ))}
             </div>
-          </div>
-          {/* Hero Image */}
-          <div className="relative flex items-end justify-center w-[52%] min-h-[22rem] lg:min-h-[31rem]">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={slides[active].id}
-                initial={{ opacity: 0, x: 28, scale: 1.01 }}
-                animate={{ opacity: 1, x: 0, scale: 1 }}
-                exit={{ opacity: 0, x: -24, scale: 0.99 }}
-                transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-                className="relative h-[23rem] w-full max-w-[32rem] sm:h-[29rem] sm:max-w-[38rem] lg:h-[34rem] lg:max-w-[44rem]"
-              >
-                {/* Enhanced overlay for blending image with background on both sides */}
-                <div className="absolute inset-0 z-10 pointer-events-none bg-gradient-to-r from-[#0e1728] via-transparent to-[#0e1728] opacity-80 mix-blend-multiply" />
-                <Image
-                  src={slides[active].image}
-                  alt="NINO technician at work"
-                  fill
-                  priority={active === 0}
-                  sizes="(max-width: 1024px) 95vw, 52vw"
-                  className="object-contain object-bottom lg:object-right-bottom"
-                />
-              </motion.div>
-            </AnimatePresence>
           </div>
         </div>
       </div>
