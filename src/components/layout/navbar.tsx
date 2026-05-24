@@ -47,7 +47,7 @@ export function Navbar() {
   }, []);
 
   return (
-    <header className="sticky top-0 z-50 px-2 pt-2 sm:px-3 lg:px-4">
+    <header className="absolute top-0 left-0 w-full z-50 px-2 pt-2 sm:px-3 lg:px-4 bg-transparent">
       {isHomePage ? <InfoTicker tone="dark" compact className="mb-3" /> : null}
       <div className="section-shell flex h-[4.25rem] items-center justify-between gap-3 rounded-[2rem] border border-[#1e293b] bg-[#0f172a] px-3 shadow-[0_16px_45px_rgba(15,23,42,0.2)] lg:h-[4.8rem] lg:px-5">
         <Link href="/" className="flex items-center gap-3">

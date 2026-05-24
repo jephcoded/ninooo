@@ -33,34 +33,32 @@ export function HeroSection() {
 
   return (
     <section className="relative w-full min-h-screen flex items-stretch overflow-hidden bg-[linear-gradient(180deg,#0e1728_0%,#0d1524_100%)] pt-0">
-      {/* Fullscreen hero image background */}
-      <div className="absolute inset-0 -z-10">
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={slides[active].id}
-            initial={{ opacity: 0, scale: 1.01 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.99 }}
-            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            className="absolute inset-0 w-full h-full"
-          >
-            <Image
-              src={slides[active].image}
-              alt="NINO technician at work"
-              fill
-              priority={active === 0}
-              sizes="100vw"
-              className="object-cover object-center w-full h-full opacity-80"
-            />
-            {/* Overlay for blending */}
-            <div className="absolute inset-0 bg-[linear-gradient(90deg,#0e1728_0%,rgba(14,23,40,0.7)_40%,rgba(14,23,40,0.7)_60%,#0e1728_100%)]" />
-          </motion.div>
-        </AnimatePresence>
-      </div>
+      {/* Fullscreen hero image slider background */}
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={slides[active].id}
+          initial={{ opacity: 0, scale: 1.01 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0, scale: 0.99 }}
+          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+          className="absolute inset-0 w-full h-full z-0"
+        >
+          <Image
+            src={slides[active].image}
+            alt="NINO technician at work"
+            fill
+            priority={active === 0}
+            sizes="100vw"
+            className="object-cover object-center w-full h-full opacity-80 transition-all duration-700"
+          />
+          {/* Overlay for blending */}
+          <div className="absolute inset-0 bg-[linear-gradient(90deg,#0e1728_0%,rgba(14,23,40,0.7)_40%,rgba(14,23,40,0.7)_60%,#0e1728_100%)]" />
+        </motion.div>
+      </AnimatePresence>
       <div className="relative z-10 flex flex-col justify-center w-full min-h-screen px-4 py-0 sm:px-8">
         <div className="flex flex-col lg:flex-row items-center justify-between w-full max-w-[1600px] mx-auto gap-8">
           {/* Hero Text Horizontal, responsive */}
-          <div className="flex flex-col justify-center items-start w-full lg:w-[48%] min-w-[260px] max-w-2xl text-left">
+          <div className="flex flex-col justify-center items-start w-full lg:w-[48%] min-w-[260px] max-w-2xl text-left bg-transparent">
             <div className="inline-flex items-center gap-2 rounded-full border border-[#2e3c56] bg-[#142039] px-3 py-2 text-[0.56rem] font-semibold uppercase tracking-[0.22em] text-[#e2e8f0] sm:px-4 sm:text-[0.62rem]">
               <span className="h-2 w-2 rounded-full bg-[var(--accent)]" />
               Electronics repair and diagnostics

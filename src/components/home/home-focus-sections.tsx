@@ -250,7 +250,7 @@ function FocusCarousel({ cards, href, sectionIndex, sectionSlug }: FocusCarousel
               alt="Tracking experience on mobile"
               fill
               sizes="(max-width: 1024px) 100vw, 46vw"
-              className="object-contain object-center opacity-100 rounded-3xl sm:rounded-[2.5rem]"
+              className="object-contain object-center opacity-100 rounded-[2.5rem] sm:rounded-[3.5rem] border-[6px] border-white"
               priority={false}
             />
           </div>
