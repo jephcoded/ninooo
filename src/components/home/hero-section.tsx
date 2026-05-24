@@ -51,75 +51,42 @@ export function HeroSection() {
     const interval = setInterval(() => {
       setActive((prev) => (prev + 1) % slides.length);
     }, 4200);
-
     return () => clearInterval(interval);
   }, []);
 
   return (
-    <section ref={sectionRef} className="relative min-h-[80vh] max-h-[92vh] overflow-hidden bg-[#0a1530] text-white">
-      <motion.div style={{ y: backgroundY }} className="absolute inset-0">
-        <div className="absolute inset-0 pointer-events-none">
-          <AnimatePresence initial={false}>
-            {slides.map((slide, index) => {
-              const isActive = index === active;
-              return (
-                <motion.div
-                  key={slide.id}
-                  initial={false}
-                  animate={{
-                    opacity: isActive ? 1 : 0,
-                    scale: isActive ? 1 : 0.98,
-                    x: isActive ? 0 : 10,
-                    filter: isActive ? "blur(0px)" : "blur(4px)",
-                  }}
-                  transition={{ duration: 1.4, ease: [0.22, 1, 0.36, 1] }}
-                  className="absolute inset-0 flex items-end justify-end"
-                >
-                  <div className="relative h-[68vh] w-[54vw] min-w-[320px] max-w-[700px] flex items-end justify-end">
-                    <Image
-                      src={slide.image}
-                      alt={heroCopy.title}
-                      fill
-                      priority={index === 0}
-                      sizes="60vw"
-                      className="object-contain object-bottom brightness-[1.13] contrast-[1.08] saturate-[1.1] opacity-[0.98] drop-shadow-[0_32px_88px_rgba(0,0,0,0.32)]"
-                      style={{ marginBottom: '0', marginRight: '0', transition: 'all 0.7s cubic-bezier(0.4,0,0.2,1)' }}
-                    />
-                  </div>
-                </motion.div>
-              );
-            })}
-          </AnimatePresence>
-        </div>
-      </motion.div>
-
-      {/* Cinematic gradients */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[#0a1530] via-[#0a1530] to-[#162040]" />
-      <div className="absolute right-0 top-0 h-[80%] w-[60%] bg-[radial-gradient(circle_at_80%_40%,rgba(255,122,24,0.18),transparent_70%)] pointer-events-none" />
-      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/40" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_24%,rgba(255,122,24,0.12),transparent_18%),radial-gradient(circle_at_78%_18%,rgba(27,61,112,0.10),transparent_22%),radial-gradient(circle_at_72%_36%,rgba(255,255,255,0.06),transparent_16%),radial-gradient(circle_at_42%_100%,rgba(255,122,24,0.06),transparent_28%)]" />
-      <div className="hero-grid absolute inset-0 opacity-10" />
-      <div className="noise-overlay opacity-30" />
-
-      <div className="absolute inset-0 overflow-hidden">
+    <section
+      ref={sectionRef}
+      className="relative w-full min-h-screen overflow-hidden bg-[#0a1530] text-white"
+    >
+      {/* Background overlays - z-0 */}
+      <div className="absolute inset-0 z-0 pointer-events-none">
+        <div className="absolute inset-0 bg-gradient-to-br from-[#0a1530] via-[#0a1530] to-[#162040] opacity-100" />
+        <div className="absolute right-0 top-0 h-[80%] w-[60%] bg-[radial-gradient(circle_at_80%_40%,rgba(255,122,24,0.13),transparent_70%)]" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/30" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_24%,rgba(255,122,24,0.09),transparent_18%),radial-gradient(circle_at_78%_18%,rgba(27,61,112,0.07),transparent_22%),radial-gradient(circle_at_72%_36%,rgba(255,255,255,0.04),transparent_16%),radial-gradient(circle_at_42%_100%,rgba(255,122,24,0.04),transparent_28%)]" />
+        <div className="hero-grid absolute inset-0 opacity-7" />
+        <div className="noise-overlay opacity-20" />
         <motion.span
-          animate={{ y: [0, -18, 0], opacity: [0.3, 0.55, 0.3] }}
+          animate={{ y: [0, -18, 0], opacity: [0.2, 0.38, 0.2] }}
           transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute left-[10%] top-[24%] size-32 rounded-full bg-[radial-gradient(circle,rgba(255,122,24,0.18),transparent_72%)] blur-3xl"
+          className="absolute left-[10%] top-[24%] size-32 rounded-full bg-[radial-gradient(circle,rgba(255,122,24,0.13),transparent_72%)] blur-3xl"
         />
         <motion.span
-          animate={{ y: [0, 16, 0], x: [0, 8, 0], opacity: [0.18, 0.4, 0.18] }}
+          animate={{ y: [0, 16, 0], x: [0, 8, 0], opacity: [0.12, 0.22, 0.12] }}
           transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute right-[12%] top-[18%] size-40 rounded-full bg-[radial-gradient(circle,rgba(255,255,255,0.14),transparent_72%)] blur-3xl"
+          className="absolute right-[12%] top-[18%] size-40 rounded-full bg-[radial-gradient(circle,rgba(255,255,255,0.09),transparent_72%)] blur-3xl"
         />
         <motion.span
-          animate={{ y: [0, -14, 0], opacity: [0.18, 0.34, 0.18] }}
+          animate={{ y: [0, -14, 0], opacity: [0.12, 0.18, 0.12] }}
           transition={{ duration: 8.5, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute bottom-[14%] right-[24%] size-36 rounded-full bg-[radial-gradient(circle,rgba(255,122,24,0.16),transparent_70%)] blur-3xl"
+          className="absolute bottom-[14%] right-[24%] size-36 rounded-full bg-[radial-gradient(circle,rgba(255,122,24,0.10),transparent_70%)] blur-3xl"
         />
       </div>
 
-      <div className="relative z-10 flex min-h-[80vh] max-h-[92vh] items-center justify-start px-4 pb-4 pt-20 sm:px-8 sm:pb-8 sm:pt-20 lg:px-12 lg:pb-10 lg:pt-20 xl:px-16">
+      {/* Hero content row - z-20 */}
+      <div className="relative z-20 mx-auto flex w-full max-w-[1400px] min-h-screen items-center px-4 sm:px-8 lg:px-12 xl:px-16">
+        {/* Left: Text content */}
         <motion.div
           style={{ y: contentY }}
           initial={{ opacity: 0, y: 56 }}
@@ -213,6 +180,42 @@ export function HeroSection() {
             ))}
           </motion.div>
         </motion.div>
+
+        {/* Right: Hero image - z-10 */}
+        <div className="relative z-10 flex flex-1 items-center justify-end h-full min-h-[420px] max-h-[90vh]">
+          <AnimatePresence initial={false}>
+            {slides.map((slide, index) => {
+              const isActive = index === active;
+              return (
+                <motion.div
+                  key={slide.id}
+                  initial={false}
+                  animate={{
+                    opacity: isActive ? 1 : 0,
+                    scale: isActive ? 1 : 0.98,
+                    x: isActive ? 0 : 10,
+                    filter: isActive ? "blur(0px)" : "blur(4px)",
+                  }}
+                  transition={{ duration: 1.4, ease: [0.22, 1, 0.36, 1] }}
+                  className="absolute bottom-0 right-0 flex items-end justify-end w-full h-full"
+                  style={{ zIndex: 10 }}
+                >
+                  <div className="relative w-full h-full min-w-[320px] max-w-[700px] flex items-end justify-end">
+                    <Image
+                      src={slide.image}
+                      alt={heroCopy.title}
+                      fill
+                      priority={index === 0}
+                      sizes="60vw"
+                      className="object-contain object-bottom brightness-[1.13] contrast-[1.08] saturate-[1.1] opacity-[0.98] drop-shadow-[0_32px_88px_rgba(0,0,0,0.32)]"
+                      style={{ transition: 'all 0.7s cubic-bezier(0.4,0,0.2,1)' }}
+                    />
+                  </div>
+                </motion.div>
+              );
+            })}
+          </AnimatePresence>
+        </div>
       </div>
     </section>
   );

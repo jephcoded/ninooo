@@ -67,13 +67,14 @@ export function Navbar() {
     >
       {isHomePage ? <InfoTicker tone="dark" compact className="mb-3" /> : null}
 
-      <div
-        className={`section-shell flex items-center justify-between gap-2 transition-all duration-300 ${
-          scrolled
-            ? "rounded-[1.3rem] border border-[#1e293b] bg-[#0f172a]/96 px-2 py-2 shadow-[0_8px_24px_rgba(15,23,42,0.18)] backdrop-blur-xl lg:px-3"
-            : "rounded-[1.3rem] border border-white/10 bg-[#0b1120]/70 px-2 py-2 backdrop-blur-md lg:px-3"
-        }`}
-      >
+      <div className="mx-auto w-full max-w-[1400px]">
+        <div
+          className={`section-shell flex items-center justify-between gap-2 transition-all duration-300 ${
+            scrolled
+              ? "rounded-[1.3rem] border border-[#1e293b] bg-[#0f172a]/96 px-2 py-2 shadow-[0_8px_24px_rgba(15,23,42,0.18)] backdrop-blur-xl lg:px-3"
+              : "rounded-[1.3rem] border border-white/10 bg-[#0b1120]/70 px-2 py-2 backdrop-blur-md lg:px-3"
+          }`}
+        >
         <Link href="/" className="flex items-center gap-2">
           <span className="relative flex size-11 items-center justify-center overflow-hidden rounded-full border border-[var(--accent)]/30 bg-white shadow-[0_10px_24px_rgba(249,115,22,0.16)]">
             <Image
@@ -141,6 +142,7 @@ export function Navbar() {
               )}
             </svg>
           </button>
+        </div>
         </div>
       </div>
 
