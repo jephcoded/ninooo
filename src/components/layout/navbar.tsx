@@ -87,17 +87,6 @@ export function Navbar() {
     </header>
   );
 }
-        <div className="flex items-center gap-3">
-          <MagneticLink
-            href="/booking"
-            className="hidden items-center justify-center rounded-full border border-[var(--accent)] bg-[var(--accent)] px-5 py-2.5 text-[11px] font-semibold uppercase tracking-[0.2em] text-white transition-transform duration-300 hover:-translate-y-0.5 lg:inline-flex"
-          >
-            Book Inspection
-          </MagneticLink>
-
-          <button
-            type="button"
-            aria-label="Toggle navigation"
             onClick={() => setIsOpen((value) => !value)}
             className="inline-flex size-11 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white lg:hidden"
           >
