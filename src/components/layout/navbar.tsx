@@ -87,17 +87,6 @@ export function Navbar() {
     </header>
   );
 }
-            onClick={() => setIsOpen((value) => !value)}
-            className="inline-flex size-11 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white lg:hidden"
-          >
-            <span className="flex flex-col gap-1.5">
-              <span className="block h-0.5 w-5 bg-current" />
-              <span className="block h-0.5 w-5 bg-current" />
-              <span className="block h-0.5 w-5 bg-current" />
-            </span>
-          </button>
-        </div>
-      </div>
 
       <AnimatePresence>
         {isOpen ? (
