@@ -61,31 +61,30 @@ export function Navbar() {
 
   return (
     <header
-      className={`left-0 top-0 z-50 w-full px-2 pt-2 transition-all duration-500 sm:px-3 lg:px-4 ${
+      className={`left-0 top-0 z-50 w-full px-2 pt-2 transition-all duration-300 sm:px-3 lg:px-4 ${
         scrolled ? "fixed" : "absolute"
-      } bg-[#0a1530]`}
+      }`}
     >
       {isHomePage ? <InfoTicker tone="dark" compact className="mb-3" /> : null}
 
       <div
-        className={`section-shell flex items-center justify-between gap-3 transition-all duration-500 ${
+        className={`section-shell flex items-center justify-between gap-3 transition-all duration-300 ${
           scrolled
-            ? "rounded-[2rem] border border-[#1e293b] bg-[#0a1530]/95 px-3 py-3 shadow-[0_16px_45px_rgba(15,23,42,0.28)] backdrop-blur-xl lg:px-5"
-            : "rounded-[2rem] border border-white/10 bg-[#0a1530]/90 px-3 py-3 backdrop-blur-md lg:px-5"
+            ? "rounded-[2rem] border border-[#1e293b] bg-[#0f172a]/96 px-3 py-3 shadow-[0_16px_45px_rgba(15,23,42,0.28)] backdrop-blur-xl lg:px-5"
+            : "rounded-[2rem] border border-white/10 bg-[#0b1120]/70 px-3 py-3 backdrop-blur-md lg:px-5"
         }`}
       >
         <Link href="/" className="flex items-center gap-3">
-          <span className="relative flex size-11 items-center justify-center overflow-hidden rounded-full border border-[var(--accent)]/30 bg-white shadow-[0_10px_24px_rgba(249,115,22,0.16)]" style={{ marginTop: '18px', transition: 'margin 0.5s cubic-bezier(0.4,0,0.2,1)' }}>
+          <span className="relative flex size-11 items-center justify-center overflow-hidden rounded-full border border-[var(--accent)]/30 bg-white shadow-[0_10px_24px_rgba(249,115,22,0.16)]">
             <Image
               src="/images/nino-logo.jfif"
               alt="Nino logo"
               fill
               sizes="44px"
               className="object-cover object-[35%_45%] scale-[1.2]"
-              style={{ marginTop: '18px', transition: 'margin 0.5s cubic-bezier(0.4,0,0.2,1)' }}
             />
           </span>
-          <span className="font-display text-lg font-bold tracking-[0.18em] text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.7)]">NINO</span>
+          <span className="font-display text-lg font-bold tracking-[0.18em] text-white">NINO</span>
         </Link>
 
         <nav className="hidden items-center gap-2 lg:flex">
@@ -99,8 +98,8 @@ export function Navbar() {
                 className={`inline-flex items-center gap-2 rounded-full border px-4 py-2 text-sm font-semibold uppercase tracking-[0.18em] transition-colors duration-200 ${
                   isActive
                     ? "border-[var(--accent)] bg-[var(--accent)] text-black"
-                    : "border-[#22304a] bg-[#162040] text-white hover:text-[var(--accent)]"
-                } drop-shadow-[0_2px_8px_rgba(0,0,0,0.7)]`}
+                    : "border-[#22304a] bg-[#19233a] text-white hover:text-[var(--accent)]"
+                }`}
               >
                 {item.icon === "cart" ? (
                   <span className="relative inline-flex items-center">
@@ -112,7 +111,7 @@ export function Navbar() {
                     ) : null}
                   </span>
                 ) : null}
-                <span className="drop-shadow-[0_2px_8px_rgba(0,0,0,0.7)]">{item.label}</span>
+                <span>{item.label}</span>
               </Link>
             );
           })}
@@ -121,7 +120,7 @@ export function Navbar() {
         <div className="flex items-center gap-2">
           <Link
             href="/booking"
-            className="hidden items-center justify-center rounded-full bg-[var(--accent)] px-6 py-2.5 text-sm font-semibold uppercase tracking-[0.18em] text-black shadow-[0_10px_24px_rgba(249,115,22,0.16)] transition-colors duration-200 hover:bg-white hover:text-[var(--accent)] lg:inline-flex drop-shadow-[0_2px_8px_rgba(0,0,0,0.7)]"
+            className="hidden items-center justify-center rounded-full bg-[var(--accent)] px-6 py-2.5 text-sm font-semibold uppercase tracking-[0.18em] text-black shadow-[0_10px_24px_rgba(249,115,22,0.16)] transition-colors duration-200 hover:bg-white hover:text-[var(--accent)] lg:inline-flex"
           >
             Book Inspection
           </Link>
@@ -151,7 +150,7 @@ export function Navbar() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="mt-3 overflow-hidden rounded-[1.75rem] border border-[#1e293b] bg-[#0a1530] backdrop-blur-2xl lg:hidden"
+            className="mt-3 overflow-hidden rounded-[1.75rem] border border-[#1e293b] bg-[#0f172a] backdrop-blur-2xl lg:hidden"
           >
             <div className="section-shell flex flex-col gap-3 py-4">
               <div className="rounded-[1.4rem] border border-white/12 bg-[#162038] p-2">
@@ -165,8 +164,8 @@ export function Navbar() {
                       className={`mb-2 block rounded-2xl border px-4 py-3 text-sm uppercase tracking-[0.18em] last:mb-0 ${
                         isActive
                           ? "border-[var(--accent)] bg-[var(--accent)] text-black"
-                          : "border-white/10 bg-[#162040] text-slate-200"
-                      } drop-shadow-[0_2px_8px_rgba(0,0,0,0.7)]`}
+                          : "border-white/10 bg-white/5 text-slate-200"
+                      }`}
                     >
                       <span className="inline-flex items-center gap-2">
                         {item.icon === "cart" ? (
@@ -179,7 +178,7 @@ export function Navbar() {
                             ) : null}
                           </span>
                         ) : null}
-                        <span className="drop-shadow-[0_2px_8px_rgba(0,0,0,0.7)]">{item.label}</span>
+                        <span>{item.label}</span>
                       </span>
                     </Link>
                   );
@@ -188,7 +187,7 @@ export function Navbar() {
 
               <Link
                 href="/booking"
-                className="inline-flex items-center justify-center rounded-2xl bg-[var(--accent)] px-4 py-3 text-sm font-semibold text-black drop-shadow-[0_2px_8px_rgba(0,0,0,0.7)]"
+                className="inline-flex items-center justify-center rounded-2xl bg-[var(--accent)] px-4 py-3 text-sm font-semibold text-black"
               >
                 Book Inspection
               </Link>

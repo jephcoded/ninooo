@@ -56,13 +56,12 @@ export function HeroSection() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="relative min-h-screen overflow-hidden bg-[#050816] text-white">
+    <section ref={sectionRef} className="relative min-h-screen overflow-hidden bg-[#0a1530] text-white">
       <motion.div style={{ y: backgroundY }} className="absolute inset-0">
         <div className="absolute inset-0">
           <AnimatePresence initial={false}>
             {slides.map((slide, index) => {
               const isActive = index === active;
-
               return (
                 <motion.div
                   key={slide.id}
@@ -73,17 +72,18 @@ export function HeroSection() {
                     x: isActive ? 0 : 10,
                     filter: isActive ? "blur(0px)" : "blur(4px)",
                   }}
-                  transition={{ duration: 1.22, ease: [0.22, 1, 0.36, 1] }}
+                  transition={{ duration: 1.7, ease: [0.22, 1, 0.36, 1] }}
                   className="absolute inset-0 flex items-start justify-center"
                 >
-                  <div className="relative h-[100vh] w-full sm:h-[100vh] lg:h-[104vh]">
+                  <div className="relative h-[100vh] w-full sm:h-[100vh] lg:h-[104vh] flex items-start justify-center">
                     <Image
                       src={slide.image}
                       alt={heroCopy.title}
                       fill
                       priority={index === 0}
                       sizes="100vw"
-                      className="object-contain object-top brightness-[1.18] contrast-[1.08] saturate-[1.1] opacity-[0.98] drop-shadow-[0_32px_88px_rgba(0,0,0,0.32)]"
+                      className="object-contain object-top brightness-[1.22] contrast-[1.18] saturate-[1.18] opacity-[0.99] drop-shadow-[0_32px_88px_rgba(0,0,0,0.38)]"
+                      style={{ marginTop: '48px', transition: 'margin 0.7s cubic-bezier(0.4,0,0.2,1)' }}
                     />
                   </div>
                 </motion.div>
@@ -93,8 +93,8 @@ export function HeroSection() {
         </div>
       </motion.div>
 
-      <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(3,5,10,0.86)_0%,rgba(3,5,10,0.64)_28%,rgba(3,5,10,0.26)_52%,rgba(3,5,10,0.42)_100%)]" />
-      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(3,5,10,0.16)_0%,rgba(3,5,10,0.01)_26%,rgba(3,5,10,0.36)_100%)]" />
+      <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(10,21,48,0.92)_0%,rgba(10,21,48,0.74)_28%,rgba(10,21,48,0.36)_52%,rgba(10,21,48,0.52)_100%)]" />
+      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(10,21,48,0.22)_0%,rgba(10,21,48,0.08)_26%,rgba(10,21,48,0.38)_100%)]" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_24%,rgba(255,122,24,0.2),transparent_18%),radial-gradient(circle_at_78%_18%,rgba(27,61,112,0.18),transparent_22%),radial-gradient(circle_at_72%_36%,rgba(255,255,255,0.08),transparent_16%),radial-gradient(circle_at_42%_100%,rgba(255,122,24,0.08),transparent_28%)]" />
       <div className="hero-grid absolute inset-0 opacity-15" />
       <div className="noise-overlay opacity-45" />
@@ -129,7 +129,7 @@ export function HeroSection() {
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="inline-flex items-center gap-2 whitespace-nowrap rounded-full border border-[#f97316]/25 bg-[var(--navy-soft)]/10 px-3 py-2 text-[9px] font-semibold uppercase tracking-[0.18em] text-[#f97316] backdrop-blur-xl sm:gap-3 sm:px-4 sm:text-[10px] sm:tracking-[0.3em]"
+            className="inline-flex items-center gap-2 whitespace-nowrap rounded-full border border-[#f97316]/25 bg-[var(--navy-soft)]/10 px-3 py-2 text-[9px] font-semibold uppercase tracking-[0.18em] text-[#ffb366] drop-shadow-[0_2px_8px_rgba(0,0,0,0.7)] backdrop-blur-xl sm:gap-3 sm:px-4 sm:text-[10px] sm:tracking-[0.3em]"
           >
             <span className="h-2 w-2 rounded-full bg-[#ff7a18] shadow-[0_0_18px_rgba(255,122,24,0.9)]" />
             {heroCopy.eyebrow}
@@ -141,11 +141,11 @@ export function HeroSection() {
             transition={{ duration: 0.72, ease: [0.22, 1, 0.36, 1] }}
             className="mt-5"
           >
-            <h1 className="max-w-[15.5ch] font-display text-[1.6rem] font-semibold leading-[0.96] tracking-[-0.045em] text-[var(--foreground)] sm:max-w-2xl sm:text-[2.15rem] sm:leading-[1.02] lg:text-[2.6rem] xl:max-w-[52rem] xl:text-[2.95rem]">
+            <h1 className="max-w-[15.5ch] font-display text-[1.6rem] font-semibold leading-[0.96] tracking-[-0.045em] text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.7)] sm:max-w-2xl sm:text-[2.15rem] sm:leading-[1.02] lg:text-[2.6rem] xl:max-w-[52rem] xl:text-[2.95rem]">
               {heroCopy.title}
             </h1>
 
-            <p className="mt-3 hidden max-w-[14rem] text-[0.58rem] leading-5 text-slate-300 sm:block sm:max-w-2xl sm:text-[0.86rem] sm:leading-6 lg:max-w-xl">
+            <p className="mt-3 hidden max-w-[14rem] text-[0.58rem] leading-5 text-slate-100 drop-shadow-[0_2px_8px_rgba(0,0,0,0.7)] sm:block sm:max-w-2xl sm:text-[0.86rem] sm:leading-6 lg:max-w-xl">
               {heroCopy.subtitle}
             </p>
           </motion.div>
