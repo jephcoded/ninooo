@@ -146,30 +146,35 @@ export function HeroSection() {
                 href="#cta"
                 className="inline-flex items-center justify-center rounded-full bg-[#ff7a18] px-7 py-3 text-sm font-semibold text-white shadow-[0_12px_30px_rgba(249,115,22,0.25)] transition duration-300 hover:scale-[1.03]"
               >
-                <motion.div
-                  initial={{ opacity: 0, y: 18 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{
-                    delay: 0.22,
-                    duration: 0.7,
-                  }}
-                  className="mt-10 grid grid-cols-2 gap-7 sm:grid-cols-4"
+                Book Repair
+              </MagneticLink>
+              <MagneticLink
+                href="/track-repair"
+                className="inline-flex items-center justify-center rounded-full border border-white/15 bg-white/[0.05] px-7 py-3 text-sm font-semibold text-white backdrop-blur-xl transition duration-300 hover:scale-[1.02]"
+              >
+                Track Repairs
+              </MagneticLink>
+            </motion.div>
+
+            {/* STATS */}
+            <motion.div
+              initial={{ opacity: 0, y: 18 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{
+                delay: 0.22,
+                duration: 0.7,
+              }}
+              className="mt-10 grid grid-cols-2 gap-7 sm:grid-cols-4"
+            >
+              {stats.map(([value, label]) => (
+                <div
+                  key={label}
+                  className="w-full min-w-[170px] rounded-2xl bg-[#111c34]/80 px-8 py-7 backdrop-blur-md shadow-[0_8px_24px_rgba(0,0,0,0.16)] flex flex-col items-center"
                 >
-                  {stats.map(([value, label]) => (
-                    <div
-                      key={label}
-                      className="w-full min-w-[170px] rounded-2xl bg-[#111c34]/80 px-8 py-7 backdrop-blur-md shadow-[0_8px_24px_rgba(0,0,0,0.16)] flex flex-col items-center"
-                    >
-                      <p className="font-display text-[1.25rem] font-semibold tracking-[-0.04em] text-white mb-2">
-                        {value}
-                      </p>
-                      <p className="text-[11px] uppercase tracking-[0.18em] text-slate-400 text-center">
-                        {label}
-                      </p>
-                    </div>
-                  ))}
-                </motion.div>
-                  <p className="mt-1 text-[9px] uppercase tracking-[0.18em] text-slate-400">
+                  <p className="font-display text-[1.25rem] font-semibold tracking-[-0.04em] text-white mb-2">
+                    {value}
+                  </p>
+                  <p className="text-[11px] uppercase tracking-[0.18em] text-slate-400 text-center">
                     {label}
                   </p>
                 </div>
