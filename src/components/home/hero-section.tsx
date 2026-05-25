@@ -1,3 +1,4 @@
+// Trigger redeploy: dummy comment
 "use client";
 
 import Image from "next/image";
@@ -31,8 +32,6 @@ const slides = [
 
 const heroCopy = {
   eyebrow: "Electronics repair and diagnostics",
-  title:
-    "ECU repair, device diagnostics, board-level recovery, and precision electronics service.",
   subtitle:
     "NINO Electronics Solutions handles ECU repair, ECU cloning and programming, TV repair, laptop repair, phone repair, immobilizer work, key programming, and complex board diagnostics with disciplined technical workflow.",
 };
@@ -54,7 +53,7 @@ export function HeroSection() {
     offset: ["start start", "end start"],
   });
 
-  const contentY = useTransform(scrollYProgress, [0, 1], [0, 28]);
+  const contentY = useTransform(scrollYProgress, [0, 1], [0, 24]);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -72,17 +71,17 @@ export function HeroSection() {
       {/* BACKGROUND */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
 
-        {/* BASE */}
-        <div className="absolute inset-0 bg-gradient-to-br from-[#07101f] via-[#081530] to-[#101b36]" />
+        {/* MAIN BACKGROUND */}
+        <div className="absolute inset-0 bg-gradient-to-br from-[#06101f] via-[#081530] to-[#121f3d]" />
 
-        {/* ORANGE GLOW */}
-        <div className="absolute right-[-8%] top-[8%] h-[85%] w-[60%] bg-[radial-gradient(circle_at_55%_45%,rgba(255,122,24,0.18),transparent_68%)] blur-[20px]" />
+        {/* RIGHT ORANGE GLOW */}
+        <div className="absolute right-[-8%] top-[5%] h-[90%] w-[60%] bg-[radial-gradient(circle_at_55%_45%,rgba(255,122,24,0.18),transparent_68%)] blur-[30px]" />
 
-        {/* DARK BLEND */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#07101f] via-[#081530]/90 to-transparent" />
+        {/* DARK DEPTH */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/10" />
 
-        {/* BOTTOM DEPTH */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-black/15" />
+        {/* LEFT BLEND */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#07101f] via-[#081530]/92 to-transparent" />
 
         {/* GRID */}
         <div className="hero-grid absolute inset-0 opacity-[0.05]" />
@@ -92,21 +91,21 @@ export function HeroSection() {
 
       </div>
 
-      {/* HERO */}
+      {/* HERO CONTAINER */}
       <div className="relative z-20 flex min-h-screen items-center">
 
-        <div className="relative mx-auto grid w-full max-w-[1380px] items-center gap-4 px-6 pt-24 pb-10 sm:px-8 lg:grid-cols-[0.88fr_1.12fr] lg:px-10 xl:px-14">
+        <div className="relative mx-auto grid w-full max-w-[1380px] items-center gap-2 px-6 pt-28 pb-12 sm:px-8 lg:grid-cols-[0.86fr_1.14fr] lg:px-10 xl:px-14">
 
           {/* LEFT CONTENT */}
           <motion.div
             style={{ y: contentY }}
-            initial={{ opacity: 0, y: 45 }}
+            initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{
               duration: 0.9,
               ease: [0.22, 1, 0.36, 1],
             }}
-            className="relative z-30 flex max-w-[510px] flex-col justify-center"
+            className="relative z-30 flex max-w-[520px] flex-col justify-center"
           >
 
             {/* EYEBROW */}
@@ -114,7 +113,7 @@ export function HeroSection() {
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
-              className="inline-flex w-fit items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.26em] text-[#ff7a18] backdrop-blur-xl"
+              className="inline-flex w-fit items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.24em] text-[#ff7a18] backdrop-blur-xl"
             >
               <span className="h-2 w-2 rounded-full bg-[#ff7a18] shadow-[0_0_18px_rgba(255,122,24,0.9)]" />
 
@@ -129,10 +128,10 @@ export function HeroSection() {
                 duration: 0.7,
                 ease: [0.22, 1, 0.36, 1],
               }}
-              className="mt-5"
+              className="mt-6"
             >
 
-              <h1 className="max-w-[11ch] font-display text-[2.9rem] font-semibold leading-[1.03] tracking-[-0.055em] text-white drop-shadow-[0_4px_18px_rgba(0,0,0,0.4)] sm:text-[3.5rem] lg:text-[4.1rem]">
+              <h1 className="max-w-[12ch] font-display text-[2.7rem] font-semibold leading-[1.02] tracking-[-0.06em] text-white drop-shadow-[0_4px_18px_rgba(0,0,0,0.35)] sm:text-[3.4rem] lg:text-[3.8rem]">
 
                 ECU repair, device diagnostics,
                 <span className="text-[#ff7a18]">
@@ -142,7 +141,7 @@ export function HeroSection() {
 
               </h1>
 
-              <p className="mt-5 max-w-[500px] text-[0.97rem] leading-7 text-slate-300">
+              <p className="mt-5 max-w-[500px] text-[0.96rem] leading-7 text-slate-300">
                 {heroCopy.subtitle}
               </p>
 
@@ -168,7 +167,7 @@ export function HeroSection() {
 
               <MagneticLink
                 href="/track-repair"
-                className="inline-flex items-center justify-center rounded-full border border-white/15 bg-white/[0.06] px-7 py-3 text-sm font-semibold text-white backdrop-blur-xl transition duration-300 hover:scale-[1.02]"
+                className="inline-flex items-center justify-center rounded-full border border-white/15 bg-white/[0.05] px-7 py-3 text-sm font-semibold text-white backdrop-blur-xl transition duration-300 hover:scale-[1.02]"
               >
                 Track Repairs
               </MagneticLink>
@@ -177,10 +176,10 @@ export function HeroSection() {
 
             {/* STATS */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 18 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{
-                delay: 0.2,
+                delay: 0.22,
                 duration: 0.7,
               }}
               className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-4"
@@ -192,7 +191,7 @@ export function HeroSection() {
                   className="rounded-[1rem] border border-white/10 bg-[#111c34]/70 px-4 py-4 backdrop-blur-md shadow-[0_8px_24px_rgba(0,0,0,0.16)]"
                 >
 
-                  <p className="font-display text-[1.12rem] font-semibold tracking-[-0.04em] text-white">
+                  <p className="font-display text-[1.08rem] font-semibold tracking-[-0.04em] text-white">
                     {value}
                   </p>
 
@@ -205,9 +204,9 @@ export function HeroSection() {
 
             </motion.div>
 
-            {/* DOTS */}
+            {/* SLIDER DOTS */}
             <motion.div
-              initial={{ opacity: 0, y: 14 }}
+              initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{
                 delay: 0.28,
@@ -256,16 +255,16 @@ export function HeroSection() {
                       duration: 1.1,
                       ease: [0.22, 1, 0.36, 1],
                     }}
-                    className="relative flex h-[70vh] w-full items-end justify-end pointer-events-none lg:h-[82vh]"
+                    className="relative flex h-[62vh] w-full items-center justify-end pointer-events-none lg:h-[72vh]"
                   >
 
-                    {/* ORANGE GLOW */}
+                    {/* GLOW */}
                     <div
                       className="absolute inset-0"
                       style={{
                         background:
-                          "radial-gradient(circle at 62% 45%, rgba(255,120,0,0.22), transparent 70%)",
-                        filter: "blur(45px)",
+                          "radial-gradient(circle at 62% 45%, rgba(255,120,0,0.24), transparent 70%)",
+                        filter: "blur(50px)",
                       }}
                     />
 
@@ -282,19 +281,19 @@ export function HeroSection() {
 
                       <Image
                         src={slide.image}
-                        alt={heroCopy.title}
+                        alt="Mechanic"
                         fill
                         priority={index === 0}
                         sizes="58vw"
-                        className="object-contain object-bottom-right select-none pointer-events-none scale-[1.02]"
+                        className="object-contain object-right select-none pointer-events-none scale-[1.22]"
                       />
 
-                      {/* LEFT BLEND */}
+                      {/* LEFT DARK BLEND */}
                       <div
                         className="absolute inset-0"
                         style={{
                           background:
-                            "linear-gradient(to right, rgba(2,6,23,0.92) 0%, rgba(2,6,23,0.14) 34%, rgba(0,0,0,0) 65%)",
+                            "linear-gradient(to right, rgba(2,6,23,0.94) 0%, rgba(2,6,23,0.12) 35%, rgba(0,0,0,0) 68%)",
                         }}
                       />
 
