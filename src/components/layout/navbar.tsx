@@ -70,7 +70,7 @@ export function Navbar() {
       <div className="mx-auto max-w-[1320px]">
 
         {/* MAIN NAVBAR */}
-        <div className="flex items-center justify-between rounded-[1.4rem] border border-white/10 bg-[#081120]/88 px-5 py-2.5 backdrop-blur-xl shadow-[0_10px_40px_rgba(0,0,0,0.18)]">
+        <div className="flex items-center justify-between px-5 py-2.5">
 
           {/* LEFT */}
           <Link href="/" className="flex items-center gap-3">
@@ -96,14 +96,14 @@ export function Navbar() {
           </Link>
 
           {/* CENTER NAV */}
-          <nav className="hidden items-center gap-7 lg:flex">
+          <nav className="hidden items-center gap-10 lg:flex">
             {navItems.map((item) => {
               const isActive = pathname === item.href;
               return (
                 <Link
                   key={item.href}
                   href={item.href}
-                  className={`text-[13px] font-semibold uppercase tracking-[0.18em] transition-colors duration-200 ${isActive ? "text-[#ff7a18]" : "text-white hover:text-[#ff7a18]"}`}
+                  className={`text-[15px] font-semibold uppercase tracking-[0.18em] transition-colors duration-200 ${isActive ? "text-[#ff7a18]" : "text-white hover:text-[#ff7a18]"}`}
                 >
                   {item.icon === "cart" ? (
                     <span className="relative inline-flex items-center">

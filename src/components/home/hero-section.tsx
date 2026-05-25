@@ -119,7 +119,7 @@ export function HeroSection() {
               }}
               className="mt-6"
             >
-              <h1 className="font-display text-[2.1rem] font-semibold leading-[1.08] tracking-[-0.06em] text-white drop-shadow-[0_4px_18px_rgba(0,0,0,0.35)] sm:text-[2.5rem] lg:text-[2.8rem]">
+              <h1 className="font-display text-[1.45rem] font-semibold leading-[1.13] tracking-[-0.06em] text-white drop-shadow-[0_4px_18px_rgba(0,0,0,0.35)] sm:text-[1.85rem] lg:text-[2.1rem]">
                 <span className="block">
                   ECU repair, device diagnostics, <span className="text-[#ff7a18]">board-level</span>
                 </span>
@@ -146,34 +146,29 @@ export function HeroSection() {
                 href="#cta"
                 className="inline-flex items-center justify-center rounded-full bg-[#ff7a18] px-7 py-3 text-sm font-semibold text-white shadow-[0_12px_30px_rgba(249,115,22,0.25)] transition duration-300 hover:scale-[1.03]"
               >
-                Book Repair
-              </MagneticLink>
-              <MagneticLink
-                href="/track-repair"
-                className="inline-flex items-center justify-center rounded-full border border-white/15 bg-white/[0.05] px-7 py-3 text-sm font-semibold text-white backdrop-blur-xl transition duration-300 hover:scale-[1.02]"
-              >
-                Track Repairs
-              </MagneticLink>
-            </motion.div>
-
-            {/* STATS */}
-            <motion.div
-              initial={{ opacity: 0, y: 18 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{
-                delay: 0.22,
-                duration: 0.7,
-              }}
-              className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-4"
-            >
-              {stats.map(([value, label]) => (
-                <div
-                  key={label}
-                  className="rounded-[1rem] border border-white/10 bg-[#111c34]/70 px-4 py-4 backdrop-blur-md shadow-[0_8px_24px_rgba(0,0,0,0.16)]"
+                <motion.div
+                  initial={{ opacity: 0, y: 18 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{
+                    delay: 0.22,
+                    duration: 0.7,
+                  }}
+                  className="mt-10 grid grid-cols-2 gap-7 sm:grid-cols-4"
                 >
-                  <p className="font-display text-[1.08rem] font-semibold tracking-[-0.04em] text-white">
-                    {value}
-                  </p>
+                  {stats.map(([value, label]) => (
+                    <div
+                      key={label}
+                      className="w-full min-w-[170px] rounded-2xl bg-[#111c34]/80 px-8 py-7 backdrop-blur-md shadow-[0_8px_24px_rgba(0,0,0,0.16)] flex flex-col items-center"
+                    >
+                      <p className="font-display text-[1.25rem] font-semibold tracking-[-0.04em] text-white mb-2">
+                        {value}
+                      </p>
+                      <p className="text-[11px] uppercase tracking-[0.18em] text-slate-400 text-center">
+                        {label}
+                      </p>
+                    </div>
+                  ))}
+                </motion.div>
                   <p className="mt-1 text-[9px] uppercase tracking-[0.18em] text-slate-400">
                     {label}
                   </p>
@@ -207,67 +202,7 @@ export function HeroSection() {
             </motion.div>
           </motion.div>
 
-          {/* RIGHT IMAGE */}
-          <div className="relative flex h-full min-h-[420px] items-center justify-end lg:min-h-[540px]">
-            <AnimatePresence initial={false}>
-              {slides.map((slide, index) => {
-                const isActive = index === active;
-                return (
-                  <motion.div
-                    key={slide.id}
-                    initial={false}
-                    animate={{
-                      opacity: isActive ? 1 : 0,
-                      scale: isActive ? 1 : 0.985,
-                      x: isActive ? 0 : 40,
-                    }}
-                    transition={{
-                      duration: 1.1,
-                      ease: [0.22, 1, 0.36, 1],
-                    }}
-                    className="relative flex h-[44vw] min-h-[420px] max-h-[900px] w-full items-center justify-end pointer-events-none lg:h-[70vh] xl:h-[80vh]"
-                  >
-                    {/* GLOW */}
-                    <div
-                      className="absolute inset-0"
-                      style={{
-                        background:
-                          "radial-gradient(circle at 62% 45%, rgba(255,120,0,0.24), transparent 70%)",
-                        filter: "blur(50px)",
-                      }}
-                    />
-                    {/* IMAGE */}
-                    <div
-                      className="relative h-full w-full"
-                      style={{
-                        WebkitMaskImage:
-                          "linear-gradient(to left, rgba(0,0,0,1) 82%, rgba(0,0,0,0.82) 92%, transparent 100%)",
-                        maskImage:
-                          "linear-gradient(to left, rgba(0,0,0,1) 82%, rgba(0,0,0,0.82) 92%, transparent 100%)",
-                      }}
-                    >
-                      <Image
-                        src={slide.image}
-                        alt="Mechanic"
-                        fill
-                        priority={index === 0}
-                        sizes="(max-width: 1024px) 100vw, 70vw"
-                        className="object-contain object-right-bottom select-none pointer-events-none scale-[1.65] transition-all duration-500"
-                      />
-                      {/* LEFT DARK BLEND */}
-                      <div
-                        className="absolute inset-0"
-                        style={{
-                          background:
-                            "linear-gradient(to right, rgba(2,6,23,0.94) 0%, rgba(2,6,23,0.12) 35%, rgba(0,0,0,0) 68%)",
-                        }}
-                      />
-                    </div>
-                  </motion.div>
-                );
-              })}
-            </AnimatePresence>
-          </div>
+          {/* RIGHT IMAGE REMOVED: Now background */}
         </div>
       </div>
     </section>
