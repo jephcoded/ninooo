@@ -119,12 +119,13 @@ export function HeroSection() {
               }}
               className="mt-6"
             >
-              <h1 className="max-w-[10ch] font-display text-[2.1rem] font-semibold leading-[1.08] tracking-[-0.06em] text-white drop-shadow-[0_4px_18px_rgba(0,0,0,0.35)] sm:text-[2.5rem] lg:text-[2.8rem]">
-                ECU repair, device diagnostics,
-                <span className="text-[#ff7a18]">
-                  {" "}board-level recovery,
-                </span>{" "}
-                and precision electronics service.
+              <h1 className="font-display text-[2.1rem] font-semibold leading-[1.08] tracking-[-0.06em] text-white drop-shadow-[0_4px_18px_rgba(0,0,0,0.35)] sm:text-[2.5rem] lg:text-[2.8rem]">
+                <span className="block">
+                  ECU repair, device diagnostics, <span className="text-[#ff7a18]">board-level</span>
+                </span>
+                <span className="block">
+                  recovery, and precision electronics service.
+                </span>
               </h1>
               <p className="mt-5 max-w-[400px] text-[0.95rem] leading-7 text-slate-300">
                 {heroCopy.subtitle}
@@ -224,7 +225,7 @@ export function HeroSection() {
                       duration: 1.1,
                       ease: [0.22, 1, 0.36, 1],
                     }}
-                    className="relative flex h-[54vw] min-h-[340px] max-h-[700px] w-full items-center justify-end pointer-events-none lg:h-[62vh] xl:h-[68vh]"
+                    className="relative flex h-[44vw] min-h-[420px] max-h-[900px] w-full items-center justify-end pointer-events-none lg:h-[70vh] xl:h-[80vh]"
                   >
                     {/* GLOW */}
                     <div
@@ -250,8 +251,8 @@ export function HeroSection() {
                         alt="Mechanic"
                         fill
                         priority={index === 0}
-                        sizes="(max-width: 1024px) 100vw, 60vw"
-                        className="object-contain object-right-bottom select-none pointer-events-none scale-[1.38] transition-all duration-500"
+                        sizes="(max-width: 1024px) 100vw, 70vw"
+                        className="object-contain object-right-bottom select-none pointer-events-none scale-[1.65] transition-all duration-500"
                       />
                       {/* LEFT DARK BLEND */}
                       <div

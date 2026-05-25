@@ -96,42 +96,29 @@ export function Navbar() {
           </Link>
 
           {/* CENTER NAV */}
-          <nav className="hidden items-center gap-2 lg:flex">
-
+          <nav className="hidden items-center gap-7 lg:flex">
             {navItems.map((item) => {
               const isActive = pathname === item.href;
-
               return (
                 <Link
                   key={item.href}
                   href={item.href}
-                  className={`inline-flex items-center gap-2 rounded-full border px-4 py-[0.62rem] text-[10px] font-semibold uppercase tracking-[0.2em] transition-all duration-300 ${
-                    isActive
-                      ? "border-[#ff7a18] bg-[#ff7a18] text-black shadow-[0_6px_18px_rgba(249,115,22,0.25)]"
-                      : "border-white/10 bg-white/[0.03] text-white hover:border-[#ff7a18] hover:text-[#ff7a18]"
-                  }`}
+                  className={`text-[13px] font-semibold uppercase tracking-[0.18em] transition-colors duration-200 ${isActive ? "text-[#ff7a18]" : "text-white hover:text-[#ff7a18]"}`}
                 >
-
                   {item.icon === "cart" ? (
                     <span className="relative inline-flex items-center">
-
                       <CartIcon />
-
                       {cartCount > 0 ? (
                         <span className="absolute -right-2 -top-2 inline-flex min-w-5 items-center justify-center rounded-full bg-[#ff7a18] px-1.5 py-0.5 text-[9px] font-bold text-black">
                           {cartCount}
                         </span>
                       ) : null}
-
                     </span>
                   ) : null}
-
                   <span>{item.label}</span>
-
                 </Link>
               );
             })}
-
           </nav>
 
           {/* RIGHT CTA */}
