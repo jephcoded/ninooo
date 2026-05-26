@@ -41,15 +41,13 @@ export function Navbar() {
   const isHomePage = pathname === "/";
   const [cartCount, setCartCount] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
     const syncCartCount = () => setCartCount(getCartCount());
-
     syncCartCount();
-
     window.addEventListener("storage", syncCartCount);
     window.addEventListener(SHOP_EVENT, syncCartCount);
-
     return () => {
       window.removeEventListener("storage", syncCartCount);
       window.removeEventListener(SHOP_EVENT, syncCartCount);
@@ -60,24 +58,18 @@ export function Navbar() {
     setIsOpen(false);
   }, [pathname]);
 
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 10);
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   return (
-    <header className="absolute left-0 top-0 z-50 w-full px-4 pt-4">
-
-      {isHomePage ? (
-        <InfoTicker tone="dark" compact className="mb-2" />
-      ) : null}
-
+    <header className={`sticky top-0 z-50 w-full px-4 pt-4 transition-all duration-300 ${scrolled ? "bg-[#081120]/88 border-b border-white/10 shadow-[0_10px_40px_rgba(0,0,0,0.18)]" : "bg-transparent border-none shadow-none"}`}>
       <div className="mx-auto max-w-[1320px]">
-
-        {/* MAIN NAVBAR */}
-        <div className="flex items-center justify-between px-5 py-2.5">
-
-          {/* LEFT */}
+        <div className="flex items-center justify-between px-5 py-2.5 rounded-[1.4rem] ${scrolled ? 'bg-[#081120]/88 border border-white/10 backdrop-blur-xl' : ''}">
           <Link href="/" className="flex items-center gap-3">
-
-            {/* LOGO */}
             <span className="relative flex h-11 w-11 items-center justify-center overflow-hidden rounded-full border border-white/10 bg-white">
-
               <Image
                 src="/images/nino-logo.jfif"
                 alt="Nino logo"
@@ -85,17 +77,11 @@ export function Navbar() {
                 sizes="44px"
                 className="object-cover scale-[1.15]"
               />
-
             </span>
-
-            {/* BRAND */}
             <span className="font-display text-[1.3rem] font-semibold tracking-[0.18em] text-white">
               NINO
             </span>
-
           </Link>
-
-          {/* CENTER NAV */}
           <nav className="hidden items-center gap-10 lg:flex">
             {navItems.map((item) => {
               const isActive = pathname === item.href;
