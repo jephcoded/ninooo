@@ -85,8 +85,17 @@ export function HeroSection() {
       </div>
 
       {/* HERO CONTAINER */}
-      <div className="relative z-20 flex min-h-screen items-center">
-        <div className="relative mx-auto grid w-full max-w-[1380px] items-center gap-2 px-6 pt-28 pb-12 sm:px-8 lg:grid-cols-[0.95fr_1.25fr] lg:px-10 xl:px-14">
+      <div
+        className="relative z-20 flex min-h-screen items-center"
+      >
+        <div
+          className="relative mx-auto grid w-full max-w-[1380px] items-center gap-2 px-6 pt-28 pb-12 sm:px-8 lg:grid-cols-[0.95fr_1.25fr] lg:px-10 xl:px-14"
+          style={{
+            background: `url(${slides[active].image.src}) right center / cover no-repeat`,
+            transition: 'background-image 0.7s cubic-bezier(0.22, 1, 0.36, 1)',
+            backgroundBlendMode: 'normal',
+          }}
+        >
           {/* LEFT CONTENT */}
           <motion.div
             style={{ y: contentY }}
@@ -103,7 +112,7 @@ export function HeroSection() {
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
-              className="inline-flex w-fit items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.24em] text-[#ff7a18] backdrop-blur-xl"
+              className="inline-flex w-fit items-center gap-2 rounded-full bg-white/[0.04] px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.24em] text-[#ff7a18] backdrop-blur-xl"
             >
               <span className="h-2 w-2 rounded-full bg-[#ff7a18] shadow-[0_0_18px_rgba(255,122,24,0.9)]" />
               {heroCopy.eyebrow}
@@ -164,12 +173,12 @@ export function HeroSection() {
                 delay: 0.22,
                 duration: 0.7,
               }}
-              className="mt-10 grid grid-cols-2 gap-7 sm:grid-cols-4"
+              className="mt-10 grid grid-cols-2 gap-7 sm:grid-cols-4 gap-x-10 gap-y-8"
             >
               {stats.map(([value, label]) => (
                 <div
                   key={label}
-                  className="w-full min-w-[170px] rounded-2xl bg-[#111c34]/80 px-8 py-7 backdrop-blur-md shadow-[0_8px_24px_rgba(0,0,0,0.16)] flex flex-col items-center"
+                  className="w-full min-w-[170px] rounded-2xl bg-[#111c34]/80 px-8 py-7 backdrop-blur-md shadow-[0_8px_24px_rgba(0,0,0,0.16)] flex flex-col items-center mx-2 my-2"
                 >
                   <p className="font-display text-[1.25rem] font-semibold tracking-[-0.04em] text-white mb-2">
                     {value}
@@ -183,12 +192,9 @@ export function HeroSection() {
 
             {/* SLIDER DOTS */}
             <motion.div
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{
-                delay: 0.28,
-                duration: 0.65,
-              }}
+              initial={{ opacity: 0, y: 12 } as any}
+              animate={{ opacity: 1, y: 0 } as any}
+              transition={{ duration: 0.65 } as any}
               className="mt-5 flex items-center gap-2"
             >
               {slides.map((slide, index) => (
@@ -206,12 +212,7 @@ export function HeroSection() {
               ))}
             </motion.div>
           </motion.div>
-
-          {/* RIGHT IMAGE REMOVED: Now background */}
         </div>
       </div>
     </section>
-  );
-}
-
-export default HeroSection;
+  );}
